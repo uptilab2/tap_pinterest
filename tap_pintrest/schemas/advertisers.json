@@ -1,0 +1,276 @@
+{
+    "actions": {
+        "description": "Actions a user can take depending on their assigned role (see `roles` field). For detailed information on user roles and actions, see our <a href=\"/docs/redoc/#tag/Account-Sharing\">Account Sharing</a> article.",
+        "example": "'READ_ROLES', 'ADVERTISER_READ', 'CATALOGS_READ', 'CATALOGS_UPDATE', 'CATALOGS_CREATE'",
+        "items": {
+            "type": "string"
+        },
+        "type": "array"
+    },
+    "business_address": {
+        "properties": {
+            "address_line_1": {
+                "description": "Address line 1, e.g., \"1600 California St.\"",
+                "type": "string"
+            },
+            "address_line_2": {
+                "description": "Address line 2, e.g., \"Apartment 1\"",
+                "type": "string"
+            },
+            "city": {
+                "description": "City, e.g., \"San Francisco\"",
+                "type": "string"
+            },
+            "country": {
+                "description": "Advertiser country enum, e.g., 1 (US)",
+                "type": "string"
+            },
+            "neigbhborhood": {
+                "description": "Neighborhood, e.g., \"Murray Hill\"",
+                "type": "string"
+            },
+            "phone_number": {
+                "description": "Phone number, e.g., \"4158675309\"",
+                "type": "string"
+            },
+            "postal_code": {
+                "description": "Postal code, e.g., \"94120\"",
+                "type": "string"
+            },
+            "state": {
+                "description": "State code, e.g., \"CA\"",
+                "type": "string"
+            }
+        },
+        "type": "object"
+    },
+    "campaign_ids": {
+        "description": "Advertiser created campaign IDs.",
+        "example": "",
+        "items": {
+            "type": "string"
+        },
+        "type": "array"
+    },
+    "country": {
+        "description": "Advertiser's 2-character country code.",
+        "enum": [
+            "AR",
+            "AT",
+            "AU",
+            "BE",
+            "BR",
+            "CA",
+            "CH",
+            "CL",
+            "CO",
+            "CY",
+            "CZ",
+            "DE",
+            "DK",
+            "ES",
+            "FI",
+            "FR",
+            "GB",
+            "GR",
+            "HK",
+            "HU",
+            "IE",
+            "IL",
+            "IT",
+            "JP",
+            "KR",
+            "LU",
+            "MT",
+            "MX",
+            "NL",
+            "NO",
+            "NZ",
+            "PL",
+            "PT",
+            "RO",
+            "SE",
+            "SG",
+            "SK",
+            "UNKNOWN",
+            "US"
+        ],
+        "example": "US",
+        "type": "string"
+    },
+    "created_time": {
+        "description": "Advertiser account creation time. Unix timestamp in seconds.",
+        "example": 1432744744,
+        "type": "number"
+    },
+    "currency": {
+        "description": "Advertiser's currency setting.",
+        "enum": [
+            "ARS",
+            "AUD",
+            "BRL",
+            "CAD",
+            "CHF",
+            "CLP",
+            "COP",
+            "CZK",
+            "DKK",
+            "EUR",
+            "GBP",
+            "HKD",
+            "HUF",
+            "ILS",
+            "JPY",
+            "KRW",
+            "MXN",
+            "NOK",
+            "NZD",
+            "PLN",
+            "RON",
+            "SEK",
+            "SGD",
+            "UNK",
+            "USD"
+        ],
+        "example": "USD",
+        "type": "string"
+    },
+    "exempt_additional_tax": {
+        "description": "Is advertiser exempt from additional tax?",
+        "example": "true",
+        "type": "boolean"
+    },
+    "id": {
+        "description": "Advertiser ID.",
+        "example": "549755885175",
+        "type": "string"
+    },
+    "is_agency": {
+        "description": "Is advertiser agency-managed?",
+        "example": "true",
+        "type": "boolean"
+    },
+    "is_agency_paying": {
+        "description": "Is agency paying?",
+        "example": "true",
+        "type": "boolean"
+    },
+    "is_one_tap": {
+        "description": "When <code>true</code>, a single click bypasses the pin detail view and directly opens the pin promotion's destination URL. This setting can be overridden at the Campaign level.",
+        "example": "true",
+        "type": "boolean"
+    },
+    "merchant_id": {
+        "description": "Advertiser's merchant ID.",
+        "example": "2501328852723608426",
+        "type": "string"
+    },
+    "name": {
+        "description": "Advertiser name.",
+        "example": "ACME Tools",
+        "type": "string"
+    },
+    "owner_user_id": {
+        "description": "Owning user's ID.",
+        "example": "383791336903426391",
+        "type": "string"
+    },
+    "represented_advertiser_country": {
+        "description": "Agency-managed advertiser's ISO two character country code.",
+        "enum": [
+            "AR",
+            "AT",
+            "AU",
+            "BE",
+            "BR",
+            "CA",
+            "CH",
+            "CL",
+            "CO",
+            "CY",
+            "CZ",
+            "DE",
+            "DK",
+            "ES",
+            "FI",
+            "FR",
+            "GB",
+            "GR",
+            "HK",
+            "HU",
+            "IE",
+            "IL",
+            "IT",
+            "JP",
+            "KR",
+            "LU",
+            "MT",
+            "MX",
+            "NL",
+            "NO",
+            "NZ",
+            "PL",
+            "PT",
+            "RO",
+            "SE",
+            "SG",
+            "SK",
+            "UNKNOWN",
+            "US"
+        ],
+        "example": "US",
+        "type": "string"
+    },
+    "roles": {
+        "description": "User role in regard to advertiser. For example: OWNER, ADMIN, CAMPAIGN_MANAGER, and so on. Each role is assigned actions they can take (see `actions` field). For detailed information on user roles and actions, see our <a href=\"/docs/redoc/#tag/Account-Sharing\">Account Sharing</a> article. ",
+        "example": "CATALOGS_MANAGER",
+        "items": {
+            "type": "string"
+        },
+        "type": "array"
+    },
+    "source_integration_platform_type": {
+        "description": "The source integration platform used when creating the advertiser.",
+        "enum": [
+            "DEFAULT",
+            "SHOPIFY"
+        ],
+        "example": "DEFAULT",
+        "type": "string"
+    },
+    "status": {
+        "description": "Advertiser's entity status.",
+        "enum": [
+            "ACTIVE",
+            "ARCHIVED",
+            "PAUSED"
+        ],
+        "example": "ACTIVE",
+        "type": "string"
+    },
+    "test_account": {
+        "description": "Is the advertiser a test account? A test account has all available regular advertiser functionality, but no test advertiser campaigns or pin promotions are actually served on Pinterest. In addition, no advertiser spending takes place.",
+        "example": "true",
+        "type": "boolean"
+    },
+    "type": {
+        "description": "Always \"advertiser\".",
+        "example": "advertiser",
+        "type": "string"
+    },
+    "updated_time": {
+        "description": "Unix timestamp. Last update time in seconds.",
+        "example": 1432744744,
+        "type": "number"
+    },
+    "vat_exempt_number": {
+        "description": "Business tax exemption number.",
+        "example": "DKSKD",
+        "type": "string"
+    },
+    "vat_number": {
+        "description": "Business tax number.",
+        "example": "KLDSK",
+        "type": "string"
+    }
+}
