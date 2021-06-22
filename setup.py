@@ -19,7 +19,7 @@ setup(
     tap-pintrest=tap_pintrest:main
     """,
     packages=["tap_pintrest"],
-    package_data = {
+    package_data={
         "schemas": ["tap_pintrest/schemas/*.json"]
     },
     include_package_data=True,

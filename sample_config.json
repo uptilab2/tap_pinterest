@@ -1,5 +1,8 @@
 {
   "start_date": "2017-01-01T00:00:00Z",
+  "client_id": "xxx",
+  "client_secret": "xxx",
+  "refresh_token": "xxx",
   "access_token": "xxx",
   "advertiser_ids": null
 }

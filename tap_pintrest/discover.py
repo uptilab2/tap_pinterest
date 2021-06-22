@@ -1,5 +1,5 @@
 from singer.catalog import Catalog, CatalogEntry, Schema
-from tap_pinterest.schema import get_schemas, STREAMS
+from schema import get_schemas, STREAMS
 
 
 def discover():

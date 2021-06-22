@@ -89,11 +89,10 @@ def raise_for_error(response):
 
 
 class PinterestClient:
-    def __init__(self, client_id, client_secret, refresh_token, user_agent=None):
+    def __init__(self, client_id, client_secret, refresh_token):
         self.__client_id = client_id
         self.__client_secret = client_secret
         self.__refresh_token = refresh_token
-        self.__user_agent = user_agent
         self.__session = requests.Session()
         self.__base_url = None
 
@@ -144,9 +143,6 @@ class PinterestClient:
             kwargs['headers'] = {}
         kwargs['headers']['Authorization'] = f'Bearer {self.__access_token}'
         kwargs['headers']['Accept'] = 'application/json'
-
-        if self.__user_agent:
-            kwargs['headers']['User-Agent'] = self.__user_agent
 
         if method == 'POST':
             kwargs['headers']['Content-Type'] = 'application/json'

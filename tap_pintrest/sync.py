@@ -297,7 +297,7 @@ def sync(client, config, catalog, state):
     last_stream = singer.get_currently_syncing(state)
     LOGGER.info('last/currently syncing stream: %s', last_stream)
 
-    # TODO: Change this
+    # TODO: Add all endpoints
     # endpoints: API URL endpoints to be called
     endpoints = {
         'advertisers': {
@@ -314,12 +314,12 @@ def sync(client, config, catalog, state):
                     'path': 'campaigns',
                     'account_filter': None,
                     'params': {
-                        'campaign_status': 'ALL',  # TODO: fill this correctly.
-                        'managed_status': 'UNMANAGED'
+                        'campaign_status': 'ALL',
+                        'managed_status': 'UNMANAGED'  # TODO: Check if param is right.
                     },
                     'data_key': 'data',
                     'bookmark_field': 'updated_time',
-                    'id_fields': ['id']
+                    'id_fields': ['id', 'advertiser_id']
                 }
             }
         },

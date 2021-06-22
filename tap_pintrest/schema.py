@@ -7,10 +7,10 @@ from singer import metadata
 
 # TODO: Edit STREAMS list
 STREAMS = {
-    'accounts': {
+    'advertisers': {
         'key_properties': ['id'],
         'replication_method': 'INCREMENTAL',
-        'replication_keys': ['last_modified_time']
+        'replication_keys': ['updated_time']
     },
     'video_ads': {
         'key_properties': ['content_reference'],

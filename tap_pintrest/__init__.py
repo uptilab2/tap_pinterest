@@ -3,16 +3,14 @@
 import sys
 import json
 import singer
-from tap_pinterest.client import LinkedinClient
-from tap_pinterest.discover import discover
-from tap_pinterest.sync import sync
+from client import PinterestClient
+from discover import discover
+from sync import sync
 
 LOGGER = singer.get_logger()
 
 REQUIRED_CONFIG_KEYS = [
     'start_date',
-    'user_agent',
-    'accounts',
     'client_id',
     'client_secret',
     'refresh_token',
@@ -32,11 +30,10 @@ def main():
 
     parsed_args = singer.utils.parse_args(REQUIRED_CONFIG_KEYS)
 
-    with LinkedinClient(
+    with PinterestClient(
         client_id=parsed_args.config['client_id'],
         client_secret=parsed_args.config['client_secret'],
         refresh_token=parsed_args.config['refresh_token'],
-        user_agent=parsed_args.config['user_agent'],
     ) as client:
         state = {}
         if parsed_args.state:
