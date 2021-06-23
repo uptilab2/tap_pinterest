@@ -42,7 +42,7 @@ def write_bookmark(state, stream, value):
     singer.write_state(state)
 
 
-def process_records(catalog,  # pylint: disable=too-many-branches
+def process_records(catalog,
                     stream_name,
                     records,
                     time_extracted,
@@ -304,7 +304,7 @@ def sync(client, config, catalog, state):
             'path': 'advertisers',
             'account_filter': 'id',
             'params': {
-                'owner_user_id': 'search',
+                'owner_user_id': config['owner_user_id'],
             },
             'data_key': 'data',
             'bookmark_field': 'updated_time',

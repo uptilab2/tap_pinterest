@@ -4,5 +4,5 @@
   "client_secret": "xxx",
   "refresh_token": "xxx",
   "access_token": "xxx",
-  "advertiser_ids": null
+  "owner_user_id": ""
 }

@@ -5,47 +5,12 @@ from singer import metadata
 # Reference:
 #   https://github.com/singer-io/getting-started/blob/master/docs/DISCOVERY_MODE.md#Metadata
 
-# TODO: Edit STREAMS list
+# TODO: Fill STREAMS list
 STREAMS = {
     'advertisers': {
         'key_properties': ['id'],
         'replication_method': 'INCREMENTAL',
         'replication_keys': ['updated_time']
-    },
-    'video_ads': {
-        'key_properties': ['content_reference'],
-        'replication_method': 'INCREMENTAL',
-        'replication_keys': ['last_modified_time']
-    },
-    'account_users': {
-        'key_properties': ['account_id', 'user_person_id'],
-        'replication_method': 'INCREMENTAL',
-        'replication_keys': ['last_modified_time']
-    },
-    'campaign_groups': {
-        'key_properties': ['id'],
-        'replication_method': 'INCREMENTAL',
-        'replication_keys': ['last_modified_time']
-    },
-    'campaigns': {
-        'key_properties': ['id'],
-        'replication_method': 'INCREMENTAL',
-        'replication_keys': ['last_modified_time']
-    },
-    'creatives': {
-        'key_properties': ['id'],
-        'replication_method': 'INCREMENTAL',
-        'replication_keys': ['last_modified_time']
-    },
-    'ad_analytics_by_campaign': {
-        'key_properties': ['campaign_id', 'start_at'],
-        'replication_method': 'INCREMENTAL',
-        'replication_keys': ['end_at']
-    },
-    'ad_analytics_by_creative': {
-        'key_properties': ['creative_id', 'start_at'],
-        'replication_method': 'INCREMENTAL',
-        'replication_keys': ['end_at']
     }
 }
 
