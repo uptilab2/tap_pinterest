@@ -1,6 +1,6 @@
 import singer
 from singer import metrics, metadata, Transformer, utils, UNIX_MILLISECONDS_INTEGER_DATETIME_PARSING
-from singer.utils import strptime_to_utc, strftime
+from datetime import datetime, timezone
 
 LOGGER = singer.get_logger()
 
@@ -55,6 +55,9 @@ def process_records(catalog,
     schema = stream.schema.to_dict()
     stream_metadata = metadata.to_map(stream.metadata)
 
+    max_bookmark_value = datetime.strptime(max_bookmark_value, "%Y-%m-%dT%H:%M:%SZ")
+    last_datetime = datetime.strptime(last_datetime, "%Y-%m-%dT%H:%M:%SZ")
+
     with metrics.record_counter(stream_name) as counter:
         for record in records:
             # If child object, add parent_id to record
@@ -68,36 +71,24 @@ def process_records(catalog,
                     schema,
                     stream_metadata)
 
-                if stream_name == 'account_users':
-                    # bookmark that doesn't use date
-                    if not max_bookmark_value:
-                        max_bookmark_value.append({field: transformed_record[field] for field in bookmark_field})
-                        LOGGER.info(max_bookmark_value)
-                        write_record(stream_name, transformed_record, time_extracted=time_extracted)
-                        counter.increment()
-                    else:
-                        if {field: transformed_record[field] for field in bookmark_field} not in max_bookmark_value:
-                            max_bookmark_value.append({field: transformed_record[field] for field in bookmark_field})
-                            write_record(stream_name, transformed_record, time_extracted=time_extracted)
-                            counter.increment()
-                else:
-                    # Reset max_bookmark_value to new value if higher
-                    if (bookmark_field and (bookmark_field in transformed_record)) and (
-                            max_bookmark_value is None or
-                            strptime_to_utc(transformed_record[bookmark_field]) > strptime_to_utc(max_bookmark_value)
-                    ):
-                        max_bookmark_value = transformed_record[bookmark_field]
+                bookmark_dttm = datetime.utcfromtimestamp(int(transformed_record[bookmark_field]))
 
-                    if bookmark_field and (bookmark_field in transformed_record):
-                        last_dttm = strptime_to_utc(last_datetime)
-                        bookmark_dttm = strptime_to_utc(transformed_record[bookmark_field])
-                        # Keep only records whose bookmark is after the last_datetime
-                        if (bookmark_dttm >= last_dttm):
-                            write_record(stream_name, transformed_record, time_extracted=time_extracted)
-                            counter.increment()
-                    else:
+                # Reset max_bookmark_value to new value if higher
+                if (bookmark_field and (bookmark_field in transformed_record)) and (
+                        max_bookmark_value is None or
+                        bookmark_dttm > max_bookmark_value
+                ):
+                    max_bookmark_value = bookmark_dttm
+
+                if bookmark_field and (bookmark_field in transformed_record):
+                    last_dttm = last_datetime
+                    # Keep only records whose bookmark is after the last_datetime
+                    if (bookmark_dttm >= last_dttm):
                         write_record(stream_name, transformed_record, time_extracted=time_extracted)
                         counter.increment()
+                else:
+                    write_record(stream_name, transformed_record, time_extracted=time_extracted)
+                    counter.increment()
 
         return max_bookmark_value, counter.value
 
@@ -151,7 +142,7 @@ def sync_endpoint(client,  # pylint: disable=too-many-branches,too-many-statemen
     pagination = True
 
     while pagination:
-        LOGGER.info('URL for %s: %s -> params: %s', stream_name, url, params.items())
+        LOGGER.info(f'URL for {stream_name}: {url} -> params: {params.items()}')
 
         # Get data, API request
         data = client.get(url=url, endpoint=stream_name, params=params)
@@ -166,14 +157,11 @@ def sync_endpoint(client,  # pylint: disable=too-many-branches,too-many-statemen
         else:
             pagination = False
 
-        # TODO: Here lied transform.py
-        # Do we use it no Pinterest ?
-
         # Process records and get the max_bookmark_value and record_count for the set of records
         max_bookmark_value, record_count = process_records(
             catalog=catalog,
             stream_name=stream_name,
-            records=data,
+            records=data['data'],
             time_extracted=time_extracted,
             bookmark_field=bookmark_field,
             max_bookmark_value=max_bookmark_value,
@@ -202,12 +190,13 @@ def sync_endpoint(client,  # pylint: disable=too-many-branches,too-many-statemen
                             i = i + 1
                         parent_id = record.get(parent_id_field)
 
-                        # TODO: Get child stream using ID in parent.
+                        # TODO: debug why the child stream isn't syncing.
+
                         LOGGER.info('Syncing: %s, parent_stream: %s, parent_id: %s',
                                     child_stream_name,
                                     stream_name,
                                     parent_id)
-                        child_path = child_endpoint_config.get('path')
+                        child_path = child_endpoint_config.get('path').format(id=parent_id)
                         child_total_records, child_batch_bookmark_value = sync_endpoint(
                             client=client,
                             catalog=catalog,
@@ -224,11 +213,18 @@ def sync_endpoint(client,  # pylint: disable=too-many-branches,too-many-statemen
                             parent=child_endpoint_config.get('parent'),
                             parent_id=parent_id)
 
-                        child_batch_bookmark_dttm = strptime_to_utc(child_batch_bookmark_value)
+                        child_batch_bookmark_dttm = datetime.strptime(child_batch_bookmark_value, "%Y-%m-%dT%H:%M:%SZ")
                         child_max_bookmark = child_max_bookmarks.get(child_stream_name)
-                        child_max_bookmark_dttm = strptime_to_utc(child_max_bookmark)
+
+                        # Handle case where bookmark comes from a unix timestamp OR a datetime string
+                        if type(child_max_bookmark) is str and child_max_bookmark.isdigit():
+                            child_max_bookmark_dttm = datetime.utcfromtimestamp(child_max_bookmark)
+                        else:
+                            child_max_bookmark_dttm = datetime.strptime(child_max_bookmark, "%Y-%m-%dT%H:%M:%SZ")
+
                         if child_batch_bookmark_dttm > child_max_bookmark_dttm:
-                            child_max_bookmarks[child_stream_name] = strftime(child_batch_bookmark_dttm)
+                            child_batch_bookmark_dttm = child_batch_bookmark_dttm.replace(tzinfo=timezone.utc)
+                            child_max_bookmarks[child_stream_name] = datetime.strftime(child_batch_bookmark_dttm, "%Y-%m-%dT%H:%M:%SZ")
 
                         LOGGER.info('Synced: %s, parent_id: %s, total_records: %s',
                                     child_stream_name,
@@ -243,10 +239,10 @@ def sync_endpoint(client,  # pylint: disable=too-many-branches,too-many-statemen
         page = page + 1
 
     # Write child bookmarks
-    for key, val in list(child_max_bookmarks.items()):
-        write_bookmark(state, key, val)
+    for stream, timestamp in list(child_max_bookmarks.items()):
+        write_bookmark(state, stream, timestamp)
 
-    return total_records, max_bookmark_value
+    return total_records, datetime.strftime(max_bookmark_value, "%Y-%m-%dT%H:%M:%SZ")
 
 
 # Review catalog and make a list of selected streams
@@ -305,13 +301,14 @@ def sync(client, config, catalog, state):
             'account_filter': 'id',
             'params': {
                 'owner_user_id': config['owner_user_id'],
+                'include_acl': True
             },
             'data_key': 'data',
             'bookmark_field': 'updated_time',
             'id_fields': ['id'],
             'children': {
-                'advertiser_campaigns': {
-                    'path': 'campaigns',
+                'advertisers_campaigns': {
+                    'path': 'advertisers/{id}/campaigns',
                     'account_filter': None,
                     'params': {
                         'campaign_status': 'ALL',

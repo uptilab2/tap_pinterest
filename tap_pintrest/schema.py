@@ -11,6 +11,11 @@ STREAMS = {
         'key_properties': ['id'],
         'replication_method': 'INCREMENTAL',
         'replication_keys': ['updated_time']
+    },
+    'advertisers_campaigns': {
+        'key_properties': ['advertiser_id'],
+        'replication_method': 'INCREMENTAL',
+        'replication_keys': ['updated_time']
     }
 }
 
