@@ -1,5 +1,6 @@
 import backoff
 import requests
+import json
 
 import singer
 
@@ -77,7 +78,7 @@ def raise_for_error(response):
                                       response.get('message', 'Unknown Error'))
                 error_code = response.get('status')
                 ex = get_exception_for_error_code(error_code)
-                if response.status_code == 401 and 'Expired access token' in message:
+                if error_code == 401 and 'Expired access token' in message:
                     LOGGER.error("Your access_token has expired as per Pinterest’s security \
                         policy. \n Please re-authenticate your connection to generate a new token \
                         and resume extraction.")
@@ -89,15 +90,16 @@ def raise_for_error(response):
 
 
 class PinterestClient:
-    def __init__(self, client_id, client_secret, refresh_token):
+    def __init__(self, client_id, client_secret, refresh_token, access_token):
         self.__client_id = client_id
         self.__client_secret = client_secret
         self.__refresh_token = refresh_token
         self.__session = requests.Session()
-        self.__base_url = None
+        self.__access_token = access_token  # TODO: No access token directly in prod
 
     def __enter__(self):
-        self.__access_token = self.get_access_token()
+        if not self.__access_token:  # TODO: NO if
+            self.__access_token = self.get_access_token()
         return self
 
     def __exit__(self, exception_type, exception_value, traceback):
@@ -126,12 +128,10 @@ class PinterestClient:
                           (Server5xxError, requests.exceptions.ConnectionError, Server429Error),
                           max_tries=5,
                           factor=2)
-    def request(self, method, url=None, path=None, **kwargs):
-        if not url and self.__base_url is None:
-            self.__base_url = 'https://api.pinterest.com/ads/v3'
+    def request(self, method, url='https://api.pinterest.com/ads/v3', path=None, **kwargs):
 
-        if not url and path:
-            url = f'{self.__base_url}/{path}'
+        if path:
+            url = f'{url}/{path}'
 
         if 'endpoint' in kwargs:
             endpoint = kwargs['endpoint']
@@ -164,3 +164,14 @@ class PinterestClient:
 
     def post(self, url=None, path=None, **kwargs):
         return self.request('POST', url=url, path=path, **kwargs)
+
+    def download_report(self, url):
+        res = requests.get(url)
+
+        if res.status_code >= 500:
+            raise Server5xxError()
+
+        if res.status_code != 200:
+            raise_for_error(res)
+
+        return json.loads(res.content.decode())

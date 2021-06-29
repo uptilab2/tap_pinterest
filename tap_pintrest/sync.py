@@ -1,4 +1,5 @@
 import singer
+import backoff
 from singer import metrics, metadata, Transformer, utils, UNIX_MILLISECONDS_INTEGER_DATETIME_PARSING
 from datetime import datetime, timezone
 
@@ -27,11 +28,7 @@ def write_record(stream_name, record, time_extracted):
 def get_bookmark(state, stream, default):
     if (state is None) or ('bookmarks' not in state):
         return default
-    return (
-        state
-        .get('bookmarks', {})
-        .get(stream, default)
-    )
+    return state.get('bookmarks', {}).get(stream, default)
 
 
 def write_bookmark(state, stream, value):
@@ -94,53 +91,57 @@ def process_records(catalog,
 
 
 # Sync a specific parent or child endpoint.
-def sync_endpoint(client,  # pylint: disable=too-many-branches,too-many-statements
-                  catalog,
-                  state,
-                  start_date,
-                  stream_name,
-                  path,
-                  endpoint_config,
-                  data_key,
-                  static_params,
-                  bookmark_query_field=None,
-                  bookmark_field=None,
-                  id_fields=None,
-                  parent=None,
-                  parent_id=None):
+def sync_endpoint(client, catalog, state, start_date, stream_name, path, endpoint_config, parent_id=None):
+
+    url = f'https://api.pinterest.com/ads/v3/{path}'
+
+    # Two types of endpoints exist, each with their own logic.
+    if (endpoint_config.get('async_report', False)):
+        total_records, max_bookmark_value = sync_async_endpoint(client, catalog, state, url, stream_name, start_date, endpoint_config, parent_id)
+    else:
+        total_records, max_bookmark_value = sync_rest_endpoint(client, catalog, state, url, stream_name, start_date, endpoint_config, parent_id)
+
+    return total_records, datetime.strftime(max_bookmark_value, "%Y-%m-%dT%H:%M:%SZ")
+
+
+def sync_rest_endpoint(client, catalog, state, url, stream_name, start_date, endpoint_config, parent_id=None):
+    """ Sync endpoints using the traditional REST API method.
+    This handles getting the endpoint and pagination.
+    """
+
+    # Pagination params
+    page_size = endpoint_config.get('count', 100)  # Batch size; Number of records per API call, default = 100
+    page = 1
+
+    # Request params
+    params = {
+        'page_size': page_size,
+        **endpoint_config.get('params')  # adds in endpoint specific, sort, filter params
+    }
 
     # Get the latest bookmark for the stream and set the last_datetime
     last_datetime = get_bookmark(state, stream_name, start_date)
     max_bookmark_value = last_datetime
-    LOGGER.info('%s: bookmark last_datetime = %s', stream_name, max_bookmark_value)
+    LOGGER.info(f'{stream_name}: bookmark last_datetime = {max_bookmark_value}')
+
+    bookmark_query_field = endpoint_config.get('bookmark_query_field')
+    if bookmark_query_field:
+        params[bookmark_query_field] = last_datetime
 
     # Initialize child_max_bookmarks
     child_max_bookmarks = {}
     children = endpoint_config.get('children')
     if children:
         for child_stream_name, child_endpoint_config in children.items():
-            should_stream, _ = should_sync_stream(get_selected_streams(catalog),
-                                                  None,
-                                                  child_stream_name)
-
+            should_stream, _ = should_sync_stream(get_selected_streams(catalog), None, child_stream_name)
             if should_stream:
                 child_bookmark_field = child_endpoint_config.get('bookmark_field')
                 if child_bookmark_field:
                     child_last_datetime = get_bookmark(state, stream_name, start_date)
                     child_max_bookmarks[child_stream_name] = child_last_datetime
 
-    page_size = endpoint_config.get('count', 100)  # Batch size; Number of records per API call, default = 100
     total_records = 0
-    page = 1
-    params = {
-        'page_size': page_size,
-        **static_params  # adds in endpoint specific, sort, filter params
-    }
-    if bookmark_query_field:
-        params[bookmark_query_field] = last_datetime
-    url = f'https://api.pinterest.com/ads/v3/{path}'
     pagination = True
-
     while pagination:
         LOGGER.info(f'URL for {stream_name}: {url} -> params: {params.items()}')
 
@@ -157,18 +158,20 @@ def sync_endpoint(client,  # pylint: disable=too-many-branches,too-many-statemen
         else:
             pagination = False
 
+        data = data[endpoint_config.get('data_key', 'data')]
+
         # Process records and get the max_bookmark_value and record_count for the set of records
         max_bookmark_value, record_count = process_records(
             catalog=catalog,
             stream_name=stream_name,
-            records=data['data'],
+            records=data,
             time_extracted=time_extracted,
-            bookmark_field=bookmark_field,
+            bookmark_field=endpoint_config.get('bookmark_field'),
             max_bookmark_value=max_bookmark_value,
             last_datetime=last_datetime,
-            parent=parent,
+            parent=endpoint_config.get('parent'),
             parent_id=parent_id)
-        LOGGER.info('%s, records processed: %s', stream_name, record_count)
+        LOGGER.info(f'{stream_name}, records processed: {record_count}')
         total_records = total_records + record_count
 
         # Loop thru parent batch records for each children objects (if should stream)
@@ -179,10 +182,10 @@ def sync_endpoint(client,  # pylint: disable=too-many-branches,too-many-statemen
                                                       child_stream_name)
                 if should_stream:
                     # For each parent record
-                    for record in data['data']:
+                    for record in data:
                         i = 0
                         # Set parent_id
-                        for id_field in id_fields:
+                        for id_field in endpoint_config.get('id_fields'):
                             if i == 0:
                                 parent_id_field = id_field
                             if id_field == 'id':
@@ -192,10 +195,7 @@ def sync_endpoint(client,  # pylint: disable=too-many-branches,too-many-statemen
 
                         # TODO: debug why the child stream isn't syncing.
 
-                        LOGGER.info('Syncing: %s, parent_stream: %s, parent_id: %s',
-                                    child_stream_name,
-                                    stream_name,
-                                    parent_id)
+                        LOGGER.info(f'Syncing: {child_stream_name}, parent_stream: {stream_name}, parent_id: {parent_id}')
                         child_path = child_endpoint_config.get('path').format(id=parent_id)
                         child_total_records, child_batch_bookmark_value = sync_endpoint(
                             client=client,
@@ -226,23 +226,104 @@ def sync_endpoint(client,  # pylint: disable=too-many-branches,too-many-statemen
                             child_batch_bookmark_dttm = child_batch_bookmark_dttm.replace(tzinfo=timezone.utc)
                             child_max_bookmarks[child_stream_name] = datetime.strftime(child_batch_bookmark_dttm, "%Y-%m-%dT%H:%M:%SZ")
 
-                        LOGGER.info('Synced: %s, parent_id: %s, total_records: %s',
-                                    child_stream_name,
-                                    parent_id,
-                                    child_total_records)
+                        LOGGER.info(f'Synced: {child_stream_name}, parent_id: {parent_id}, total_records: {child_total_records}')
 
-        LOGGER.info('%s: Synced page %s, this page: %s. Total records processed: %s',
-                    stream_name,
-                    page,
-                    record_count,
-                    total_records)
+        LOGGER.info(f'{stream_name}: Synced page {page}, this page: {record_count}. Total records processed: {total_records}')
         page = page + 1
 
     # Write child bookmarks
     for stream, timestamp in list(child_max_bookmarks.items()):
         write_bookmark(state, stream, timestamp)
 
-    return total_records, datetime.strftime(max_bookmark_value, "%Y-%m-%dT%H:%M:%SZ")
+    return total_records, max_bookmark_value
+
+
+def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, endpoint_config, parent_id=None):
+    """ Sync endpoints using the fancy ansyc report method.
+    https://developers.pinterest.com/docs/redoc/combined_reporting/#operation/ads_v3_create_advertiser_delivery_metrics_report_POST
+    https://developers.pinterest.com/docs/redoc/combined_reporting/#tag/reports
+    """
+
+    # Request params
+    # start_date and end_date are already defined in the endpoints dict
+    # NOTE: Documentation specifies start_date and end_date cannot be more than 30 days appart
+    # TODO: Handle this.
+    body = endpoint_config.get('params')
+
+    # Get the latest bookmark for the stream and set the last_datetime
+    last_datetime = get_bookmark(state, stream_name, start_date)
+    max_bookmark_value = last_datetime
+    LOGGER.info(f'{stream_name}: bookmark last_datetime = {max_bookmark_value}')
+
+    # Bookmark query field is always 'start_date' in our case, but lets keep it variable.
+    bookmark_query_field = endpoint_config.get('bookmark_query_field')
+    if bookmark_query_field:
+        body[bookmark_query_field] = last_datetime
+
+    # NOTE: Async reports don't have children to I decided to simplify the code.
+
+    # Create request to generate report
+    LOGGER.info(f'URL for {stream_name}: {url} -> body: {body.items()}')
+    res = client.post(url=url, endpoint=stream_name, data=body)
+
+    # If the report generates instantly
+    if res['data'].get('report_status') == 'FINISHED':
+        token = res['data'].get('token')
+    else:
+        token = retry_report(client, 'post', url, stream_name, data=body)
+
+    # GET the report data using the token
+    LOGGER.info(f'Getting report with token: {token}')
+    res = client.get(url=url, endpoint=stream_name, params=dict(token=token))
+
+    # Here we do the same retry.
+    # Normally this should never be used as we wait in the first step, but lets be safe.
+    if res['data'].get('report_status') == 'FINISHED':
+        report_url = res['data'].get('url')
+    else:
+        report_url = retry_report(client, 'get', url, stream_name, params=dict(token=token))
+
+    # Now that we have the report, we need to dowload the link to the file.
+    data = client.download_report(report_url)
+
+    # time_extracted: datetime when the data was extracted from the API
+    time_extracted = utils.now()
+
+    # Process records and get the max_bookmark_value and record_count for the set of records
+    max_bookmark_value, record_count = process_records(
+        catalog=catalog,
+        stream_name=stream_name,
+        records=data,
+        time_extracted=time_extracted,
+        bookmark_field=endpoint_config.get('bookmark_field'),
+        max_bookmark_value=max_bookmark_value,
+        last_datetime=last_datetime,
+        parent=endpoint_config.get('parent'),
+        parent_id=parent_id)
+    LOGGER.info(f'{stream_name}: Synced report. Total records processed: {record_count}')
+
+    return record_count, max_bookmark_value
+
+
+class TokenNotReadyException(Exception):
+    pass
+
+
+@backoff.on_exception(backoff.expo, TokenNotReadyException, max_time=120, factor=2)
+def retry_report(client, method, url, stream_name, **kwargs):
+    # Get status of report generating proccess
+    LOGGER.info(f' -- REPORT NOT READY -> retrying: {url} -> {kwargs.items()}')
+    if method == 'post':
+        res = client.post(url=url, endpoint=stream_name, **kwargs)
+    else:
+        res = client.get(url=url, endpoint=stream_name, **kwargs)
+
+    # If the report generates instantly
+    if res['data'].get('report_status') == 'FINISHED':
+        return res['data'].get('token')
+    else:
+        LOGGER.info(f' -- -- REPORT STATUS: {res["data"].get("report_status")}')
+        raise TokenNotReadyException
 
 
 # Review catalog and make a list of selected streams
@@ -280,18 +361,19 @@ def should_sync_stream(selected_streams, last_stream, stream_name):
 
 
 def sync(client, config, catalog, state):
-    if 'start_date' in config:
-        start_date = config['start_date']
+    date = datetime.strptime(config['start_date'], "%Y-%m-%dT%H:%M:%SZ")
+    date_string = datetime.strftime(date, "%Y-%m-%d")
+    now = datetime.strftime(datetime.now(), "%Y-%m-%d")
 
     selected_streams = get_selected_streams(catalog)
-    LOGGER.info('selected_streams: %s', selected_streams)
+    LOGGER.info(f'selected_streams: {selected_streams}')
 
     if not selected_streams:
         return
 
     # last_stream = Previous currently synced stream, if the load was interrupted
     last_stream = singer.get_currently_syncing(state)
-    LOGGER.info('last/currently syncing stream: %s', last_stream)
+    LOGGER.info(f'last/currently syncing stream: {last_stream}')
 
     # TODO: Add all endpoints
     # endpoints: API URL endpoints to be called
@@ -312,24 +394,52 @@ def sync(client, config, catalog, state):
                     'account_filter': None,
                     'params': {
                         'campaign_status': 'ALL',
-                        'managed_status': 'UNMANAGED'  # TODO: Check if param is right.
+                        'managed_status': 'ALL'
                     },
                     'data_key': 'data',
                     'bookmark_field': 'updated_time',
-                    'id_fields': ['id', 'advertiser_id']
+                    'id_fields': ['id', 'advertiser_id'],
+                    'children': {  # TODO: JSON Schema
+                        'campaign_delivery_metrics': {  # https://developers.pinterest.com/docs/redoc/combined_reporting/#operation/ads_v3_create_advertiser_delivery_metrics_report_POST
+                            'path': 'reports/async/{id}/delivery_metrics',
+                            'account_filter': None,
+                            'params': {
+                                'end_date': now,
+                                'granularity': 'DAY',  # This returns one record per day, no need to iterate on days like some other taps
+                                'level': 'CAMPAIGN',
+
+                            },
+                            'data_key': 'data',
+                            'bookmark_field': 'updated_time',
+                            'bookmark_query_field': 'start_date',  # TODO: Check this for all
+                            'id_fields': ['id', 'advertiser_id'],
+                        }
+                    }
+                },
+                'advertiser_delivery_metrics': {  # https://developers.pinterest.com/docs/redoc/combined_reporting/#operation/ads_v3_create_advertiser_delivery_metrics_report_POST
+                    'path': 'reports/async/{id}/delivery_metrics',
+                    'account_filter': None,
+                    'params': {
+                        'end_date': now,
+                        'granularity': 'DAY',  # This returns one record per day, no need to iterate on days like some other taps
+                        'level': 'ADVERTISER',
+
+                    },
+                    'data_key': 'data',
+                    'bookmark_field': 'updated_time',
+                    'bookmark_query_field': 'start_date',
+                    'id_fields': ['id', 'advertiser_id'],
                 }
             }
-        },
+        }
     }
 
     # For each endpoint (above), determine if the stream should be streamed
     #   (based on the catalog and last_stream), then sync those streams.
     for stream_name, endpoint_config in endpoints.items():
-        should_stream, last_stream = should_sync_stream(selected_streams,
-                                                        last_stream,
-                                                        stream_name)
+        should_stream, last_stream = should_sync_stream(selected_streams, last_stream, stream_name)
         if should_stream:
-            LOGGER.info('START Syncing: %s', stream_name)
+            LOGGER.info(f'START Syncing: {stream_name} for date {date_string}')
             update_currently_syncing(state, stream_name)
             path = endpoint_config.get('path')
             bookmark_field = endpoint_config.get('bookmark_field')
@@ -345,7 +455,7 @@ def sync(client, config, catalog, state):
                 client=client,
                 catalog=catalog,
                 state=state,
-                start_date=start_date,
+                start_date=config.get('start_date'),
                 stream_name=stream_name,
                 path=path,
                 endpoint_config=endpoint_config,
@@ -360,7 +470,5 @@ def sync(client, config, catalog, state):
                 write_bookmark(state, stream_name, max_bookmark_value)
 
             update_currently_syncing(state, None)
-            LOGGER.info('Synced: %s, total_records: %s',
-                        stream_name,
-                        total_records)
-            LOGGER.info('FINISHED Syncing: %s', stream_name)
+            LOGGER.info(f'Synced: {stream_name}, total_records: {total_records}')
+            LOGGER.info(f'FINISHED Syncing: {stream_name}')
