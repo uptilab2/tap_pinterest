@@ -1,0 +1,52 @@
+{
+    "properties": {
+        "type": "array",
+        "items": [{
+            "type": "object",
+            "properties": {
+                "VIDEO_P75_COMBINED_2": {
+                    "type": "integer"
+                },
+                "IMPRESSION_2": {
+                    "type": "integer"
+                },
+                "OUTBOUND_CLICK_2": {
+                    "type": "integer"
+                },
+                "VIDEO_P95_COMBINED_2": {
+                    "type": "integer"
+                },
+                "VIDEO_P100_COMPLETE_2": {
+                    "type": "integer"
+                },
+                "VIDEO_MRC_VIEWS_2": {
+                    "type": "integer"
+                },
+                "CLICKTHROUGH_2": {
+                    "type": "integer"
+                },
+                "DATE": {
+                    "type": "string"
+                },
+                "ADVERTISER_ID": {
+                    "type": "integer"
+                },
+                "VIDEO_AVG_WATCHTIME_IN_SECOND_2": {
+                    "type": "number"
+                },
+                "VIDEO_P50_COMBINED_2": {
+                    "type": "integer"
+                },
+                "VIDEO_P25_COMBINED_2": {
+                    "type": "integer"
+                },
+                "ENGAGEMENT_2": {
+                    "type": "integer"
+                },
+                "VIDEO_P0_COMBINED_2": {
+                    "type": "integer"
+                }
+            }
+        }]
+    }
+}

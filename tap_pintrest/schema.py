@@ -16,6 +16,21 @@ STREAMS = {
         'key_properties': ['advertiser_id'],
         'replication_method': 'INCREMENTAL',
         'replication_keys': ['updated_time']
+    },
+    'advertiser_delivery_metrics': {
+        'key_properties': ['ADVERTISER_ID'],
+        'replication_method': 'INCREMENTAL',
+        'replication_keys': ['DATE']
+    },
+    'campaign_delivery_metrics': {
+        'key_properties': ['CAMPAIGN_ID'],
+        'replication_method': 'INCREMENTAL',
+        'replication_keys': ['DATE']
+    },
+    'campaign_ad_groups': {
+        'key_properties': ['id'],
+        'replication_method': 'INCREMENTAL',
+        'replication_keys': ['updated_time']
     }
 }
 

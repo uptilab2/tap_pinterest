@@ -39,10 +39,7 @@ def write_bookmark(state, stream, value):
     singer.write_state(state)
 
 
-def process_records(catalog,
-                    stream_name,
-                    records,
-                    time_extracted,
+def process_records(catalog, stream_name, records, time_extracted,
                     bookmark_field=None,
                     max_bookmark_value=None,
                     last_datetime=None,
@@ -286,6 +283,10 @@ def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, en
     # Now that we have the report, we need to dowload the link to the file.
     data = client.download_report(report_url)
 
+    # The report key is usually an ID which we can just solve for and not have to deal with in the JSON schema.
+    if endpoint_config.get('report_key'):
+        data = data[endpoint_config['report_key'].format(id=parent_id)]
+
     # time_extracted: datetime when the data was extracted from the API
     time_extracted = utils.now()
 
@@ -391,28 +392,36 @@ def sync(client, config, catalog, state):
             'children': {
                 'advertisers_campaigns': {
                     'path': 'advertisers/{id}/campaigns',
-                    'account_filter': None,
                     'params': {
                         'campaign_status': 'ALL',
                         'managed_status': 'ALL'
                     },
                     'data_key': 'data',
                     'bookmark_field': 'updated_time',
-                    'id_fields': ['id', 'advertiser_id'],
+                    'id_fields': ['id'],
                     'children': {  # TODO: JSON Schema
                         'campaign_delivery_metrics': {  # https://developers.pinterest.com/docs/redoc/combined_reporting/#operation/ads_v3_create_advertiser_delivery_metrics_report_POST
                             'path': 'reports/async/{id}/delivery_metrics',
-                            'account_filter': None,
                             'params': {
                                 'end_date': now,
                                 'granularity': 'DAY',  # This returns one record per day, no need to iterate on days like some other taps
                                 'level': 'CAMPAIGN',
-
                             },
+                            'report_key': '{id}',
+                            'bookmark_field': 'DATE',
+                            'bookmark_query_field': 'start_date',  # TODO: Check this for all
+                            'id_fields': ['CAMPAIGN_ID'],
+                        },
+                        'campaign_ad_groups': {
+                            'path': 'campaigns/{id}/ad_groups',
                             'data_key': 'data',
                             'bookmark_field': 'updated_time',
-                            'bookmark_query_field': 'start_date',  # TODO: Check this for all
-                            'id_fields': ['id', 'advertiser_id'],
+                            'id_fields': ['id'],
+                            'children': {
+                                'ad_groups_delivery_report': {
+                                    # TODO: Why do all async reports output just a few metrics and not all that we want ?
+                                }
+                            }
                         }
                     }
                 },
@@ -423,12 +432,11 @@ def sync(client, config, catalog, state):
                         'end_date': now,
                         'granularity': 'DAY',  # This returns one record per day, no need to iterate on days like some other taps
                         'level': 'ADVERTISER',
-
                     },
-                    'data_key': 'data',
-                    'bookmark_field': 'updated_time',
+                    'report_key': '{id}',
+                    'bookmark_field': 'DATE',
                     'bookmark_query_field': 'start_date',
-                    'id_fields': ['id', 'advertiser_id'],
+                    'id_fields': ['ADVERTISER_ID'],
                 }
             }
         }
