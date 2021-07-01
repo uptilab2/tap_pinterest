@@ -282,28 +282,27 @@ def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, en
 
     # Now that we have the report, we need to dowload the link to the file.
     data = client.download_report(report_url)
+    total_records = 0
 
-    # The report key is usually an ID which we can just solve for and not have to deal with in the JSON schema.
-    if endpoint_config.get('report_key'):
-        data = data[endpoint_config['report_key'].format(id=parent_id)]
+    for line in data:
+        # time_extracted: datetime when the data was extracted from the API
+        time_extracted = utils.now()
 
-    # time_extracted: datetime when the data was extracted from the API
-    time_extracted = utils.now()
+        # Process records and get the max_bookmark_value and record_count for the set of records
+        max_bookmark_value, record_count = process_records(
+            catalog=catalog,
+            stream_name=stream_name,
+            records=line,
+            time_extracted=time_extracted,
+            bookmark_field=endpoint_config.get('bookmark_field'),
+            max_bookmark_value=max_bookmark_value,
+            last_datetime=last_datetime,
+            parent=endpoint_config.get('parent'),
+            parent_id=parent_id)
+        LOGGER.info(f'{stream_name}: Synced report. Total records processed: {record_count}')
+        total_records = total_records + record_count
 
-    # Process records and get the max_bookmark_value and record_count for the set of records
-    max_bookmark_value, record_count = process_records(
-        catalog=catalog,
-        stream_name=stream_name,
-        records=data,
-        time_extracted=time_extracted,
-        bookmark_field=endpoint_config.get('bookmark_field'),
-        max_bookmark_value=max_bookmark_value,
-        last_datetime=last_datetime,
-        parent=endpoint_config.get('parent'),
-        parent_id=parent_id)
-    LOGGER.info(f'{stream_name}: Synced report. Total records processed: {record_count}')
-
-    return record_count, max_bookmark_value
+    return total_records, max_bookmark_value
 
 
 class TokenNotReadyException(Exception):
@@ -407,7 +406,6 @@ def sync(client, config, catalog, state):
                                 'granularity': 'DAY',  # This returns one record per day, no need to iterate on days like some other taps
                                 'level': 'CAMPAIGN',
                             },
-                            'report_key': '{id}',
                             'bookmark_field': 'DATE',
                             'bookmark_query_field': 'start_date',  # TODO: Check this for all
                             'id_fields': ['CAMPAIGN_ID'],
@@ -433,7 +431,6 @@ def sync(client, config, catalog, state):
                         'granularity': 'DAY',  # This returns one record per day, no need to iterate on days like some other taps
                         'level': 'ADVERTISER',
                     },
-                    'report_key': '{id}',
                     'bookmark_field': 'DATE',
                     'bookmark_query_field': 'start_date',
                     'id_fields': ['ADVERTISER_ID'],
