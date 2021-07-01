@@ -202,12 +202,6 @@ def sync_rest_endpoint(client, catalog, state, url, stream_name, start_date, end
                             stream_name=child_stream_name,
                             path=child_path,
                             endpoint_config=child_endpoint_config,
-                            data_key=child_endpoint_config.get('data_key', 'elements'),
-                            static_params=child_endpoint_config.get('params', {}),
-                            bookmark_query_field=child_endpoint_config.get('bookmark_query_field'),
-                            bookmark_field=child_endpoint_config.get('bookmark_field'),
-                            id_fields=child_endpoint_config.get('id_fields'),
-                            parent=child_endpoint_config.get('parent'),
                             parent_id=parent_id)
 
                         child_batch_bookmark_dttm = datetime.strptime(child_batch_bookmark_value, "%Y-%m-%dT%H:%M:%SZ")
@@ -463,12 +457,7 @@ def sync(client, config, catalog, state):
                 start_date=config.get('start_date'),
                 stream_name=stream_name,
                 path=path,
-                endpoint_config=endpoint_config,
-                data_key=endpoint_config.get('data_key', 'elements'),
-                static_params=endpoint_config.get('params', {}),
-                bookmark_query_field=endpoint_config.get('bookmark_query_field'),
-                bookmark_field=bookmark_field,
-                id_fields=endpoint_config.get('id_fields'))
+                endpoint_config=endpoint_config)
 
             # Write parent bookmarks
             if bookmark_field:
