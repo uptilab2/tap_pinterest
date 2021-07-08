@@ -2,13 +2,13 @@
 from setuptools import setup
 
 setup(
-    name="tap-pintrest",
+    name="tap-pinterest",
     version="0.1.0",
     description="Singer.io tap for extracting data",
     author="Stitch",
     url="http://singer.io",
     classifiers=["Programming Language :: Python :: 3 :: Only"],
-    py_modules=["tap_pintrest"],
+    py_modules=["tap_pinterest"],
     install_requires=[
         # NB: Pin these to a more specific version for tap reliability
         "singer-python",
@@ -16,11 +16,11 @@ setup(
     ],
     entry_points="""
     [console_scripts]
-    tap-pintrest=tap_pintrest:main
+    tap-pinterest=tap_pinterest:main
     """,
-    packages=["tap_pintrest"],
+    packages=["tap_pinterest"],
     package_data={
-        "schemas": ["tap_pintrest/schemas/*.json"]
+        "schemas": ["tap_pinterest/schemas/*.json"]
     },
     include_package_data=True,
 )

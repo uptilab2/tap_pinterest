@@ -9,12 +9,15 @@ from sync import sync
 
 LOGGER = singer.get_logger()
 
-REQUIRED_CONFIG_KEYS = [
-    'start_date',
-    'client_id',
-    'client_secret',
-    'refresh_token',
-]
+
+# TODO: add this again
+# REQUIRED_CONFIG_KEYS = [
+#     'start_date',
+#     'client_id',
+#     'client_secret',
+#     'refresh_token',
+# ]
+REQUIRED_CONFIG_KEYS = []
 
 
 def do_discover():
@@ -34,6 +37,7 @@ def main():
         client_id=parsed_args.config['client_id'],
         client_secret=parsed_args.config['client_secret'],
         refresh_token=parsed_args.config['refresh_token'],
+        access_token=parsed_args.config['access_token']  # TODO: Remove this
     ) as client:
         state = {}
         if parsed_args.state:

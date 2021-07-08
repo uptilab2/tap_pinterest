@@ -1,4 +1,4 @@
-# tap-pintrest
+# tap-pinterest
 
 This is a [Singer](https://singer.io) tap that produces JSON-formatted data
 following the [Singer

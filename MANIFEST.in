@@ -1,2 +1,2 @@
 include LICENSE
-include tap_pintrest/schemas/*.json
+include tap_pinterest/schemas/*.json
