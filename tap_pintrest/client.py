@@ -141,11 +141,14 @@ class PinterestClient:
 
         if 'headers' not in kwargs:
             kwargs['headers'] = {}
+
         kwargs['headers']['Authorization'] = f'Bearer {self.__access_token}'
-        kwargs['headers']['Accept'] = 'application/json'
 
         if method == 'POST':
-            kwargs['headers']['Content-Type'] = 'application/json'
+            kwargs['headers']['Content-Type'] = 'application/x-www-form-urlencoded'
+            kwargs['headers']['Accept'] = '*/*'
+        else:
+            kwargs['headers']['Accept'] = 'application/json'
 
         with singer.metrics.http_request_timer(endpoint) as timer:
             response = self.__session.request(method, url, **kwargs)

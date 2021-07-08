@@ -9,7 +9,7 @@ from singer import metadata
 STREAMS = {
     'advertisers': {
         'key_properties': ['id'],
-        'replication_method': 'INCREMENTAL',
+        'replication_method': 'FULL_TABLE',
         'replication_keys': ['updated_time']
     },
     'advertisers_campaigns': {
