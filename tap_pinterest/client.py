@@ -90,16 +90,14 @@ def raise_for_error(response):
 
 
 class PinterestClient:
-    def __init__(self, client_id, client_secret, refresh_token, access_token):
+    def __init__(self, client_id, client_secret, refresh_token):
         self.__client_id = client_id
         self.__client_secret = client_secret
         self.__refresh_token = refresh_token
         self.__session = requests.Session()
-        self.__access_token = access_token  # TODO: No access token directly in prod
 
     def __enter__(self):
-        if not self.__access_token:  # TODO: NO if
-            self.__access_token = self.get_access_token()
+        self.__access_token = self.get_access_token()
         return self
 
     def __exit__(self, exception_type, exception_value, traceback):
@@ -117,7 +115,7 @@ class PinterestClient:
             'grant_type': 'refresh_token',
             'client_id': self.__client_id,
             'client_secret': self.__client_secret,
-            'refresh_token': self.__refresh_token,
+            'refresh_token': self.__refresh_token
         })
         if response.status_code != 200:
             LOGGER.error('Error status_code = %s', response.status_code)
