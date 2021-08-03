@@ -90,14 +90,16 @@ def raise_for_error(response):
 
 
 class PinterestClient:
-    def __init__(self, client_id, client_secret, refresh_token):
+    def __init__(self, client_id, client_secret, refresh_token, access_token=None):
         self.__client_id = client_id
         self.__client_secret = client_secret
         self.__refresh_token = refresh_token
+        self.__access_token = access_token
         self.__session = requests.Session()
 
     def __enter__(self):
-        self.__access_token = self.get_access_token()
+        if not self.__access_token:
+            self.__access_token = self.get_access_token()
         return self
 
     def __exit__(self, exception_type, exception_value, traceback):
