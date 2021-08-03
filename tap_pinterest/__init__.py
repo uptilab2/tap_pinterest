@@ -3,9 +3,9 @@
 import sys
 import json
 import singer
-from client import PinterestClient
-from discover import discover
-from sync import sync
+from tap_pinterest.client import PinterestClient
+from tap_pinterest.discover import discover
+from tap_pinterest.sync import sync
 
 LOGGER = singer.get_logger()
 
