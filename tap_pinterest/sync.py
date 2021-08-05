@@ -255,7 +255,7 @@ def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, en
 
     # NOTE: Documentation specifies start_date and end_date cannot be more than 30 days appart.
     segments = {}
-    now = datetime.date().today()
+    now = datetime.date.today()
 
     segment_start = last_datetime
     segment_end = segment_start + datetime.timedelta(days=30)
