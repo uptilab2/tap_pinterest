@@ -141,7 +141,7 @@ def sync_rest_endpoint(client, catalog, state, url, stream_name, start_date, end
                     child_last_datetime = get_bookmark(state, stream_name, start_date)
                     child_max_bookmarks[child_stream_name] = child_last_datetime
 
-    path = '{BASE_URL}/advertisers'
+    path = f'{BASE_URL}/advertisers'
     advertiser_ids = endpoint_config['advertiser_ids'] or get_advertiser_ids(client, path, endpoint_config.get('owner_user_id'))
 
     total_records = 0
@@ -269,7 +269,7 @@ def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, en
         if segment_end > now:
             segments.append((segment_start, now))
 
-    path = '{BASE_URL}/advertisers'
+    path = f'{BASE_URL}/advertisers'
     advertiser_ids = endpoint_config['advertiser_ids'] or get_advertiser_ids(client, path, endpoint_config.get('owner_user_id'))
 
     total_records = 0
