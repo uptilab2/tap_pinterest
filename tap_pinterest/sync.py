@@ -257,7 +257,7 @@ def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, en
     segments = {}
     now = date.today()
 
-    segment_start = last_datetime
+    segment_start = last_datetime.strptime("%Y-%m-%d").date()
     segment_end = segment_start + timedelta(days=30)
     if segment_end > now:
         segments.add((segment_start, now))
