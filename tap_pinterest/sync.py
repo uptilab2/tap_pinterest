@@ -254,7 +254,7 @@ def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, en
     LOGGER.info(f'{stream_name}: bookmark last_datetime = {max_bookmark_value}')
 
     # NOTE: Documentation specifies start_date and end_date cannot be more than 30 days appart.
-    segments = {}
+    segments = []
     now = date.today()
 
     segment_start = datetime.strptime(last_datetime, "%Y-%m-%dT%H:%M:%SZ").date()
