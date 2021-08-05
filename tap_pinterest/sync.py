@@ -260,14 +260,14 @@ def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, en
     segment_start = datetime.strptime(last_datetime, "%Y-%m-%dT%H:%M:%SZ").date()
     segment_end = segment_start + timedelta(days=30)
     if segment_end > now:
-        segments.add((segment_start, now))
+        segments.append((segment_start, now))
     else:
         while segment_end <= now:
             segments.add((segment_start, segment_end))
             segment_start = segment_end + timedelta(days=1)
             segment_end = segment_end + timedelta(days=30)
         if segment_end > now:
-            segments.add((segment_start, now))
+            segments.append((segment_start, now))
 
     path = '{BASE_URL}/advertisers'
     advertiser_ids = endpoint_config['advertiser_ids'] or get_advertiser_ids(client, path, endpoint_config.get('owner_user_id'))
