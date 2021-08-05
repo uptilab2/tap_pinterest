@@ -1,7 +1,7 @@
 import singer
 import backoff
 from singer import metrics, metadata, Transformer, utils, UNIX_MILLISECONDS_INTEGER_DATETIME_PARSING
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timezone, timedelta, date
 
 LOGGER = singer.get_logger()
 BASE_URL = 'https://api.pinterest.com/ads/v3'
@@ -255,7 +255,7 @@ def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, en
 
     # NOTE: Documentation specifies start_date and end_date cannot be more than 30 days appart.
     segments = {}
-    now = datetime.date.today()
+    now = date.today()
 
     segment_start = last_datetime
     segment_end = segment_start + datetime.timedelta(days=30)
