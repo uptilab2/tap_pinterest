@@ -257,7 +257,10 @@ def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, en
     segments = []
     now = date.today()
 
-    segment_start = datetime.strptime(last_datetime, "%Y-%m-%dT%H:%M:%SZ").date()
+    if type(last_datetime) is str:
+        last_datetime = datetime.strptime(last_datetime, "%Y-%m-%dT%H:%M:%SZ")
+
+    segment_start = last_datetime.date()
     segment_end = segment_start + timedelta(days=30)
     if segment_end > now:
         segments.append((segment_start, now))
@@ -514,8 +517,8 @@ def sync(client, config, catalog, state):
 
             # Write parent bookmarks
             if bookmark_field:
-                if type(max_bookmark_value) is datetime:
-                    max_bookmark_value = max_bookmark_value.strftime('%Y-%m-%dT%H:%M:%SZ')
+                if type(max_bookmark_value) is str:
+                    max_bookmark_value = datetime.strptime(max_bookmark_value, "%Y-%m-%dT%H:%M:%SZ")
                 write_bookmark(state, stream_name, max_bookmark_value)
 
             update_currently_syncing(state, None)
