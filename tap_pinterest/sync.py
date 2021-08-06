@@ -303,7 +303,7 @@ def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, en
             if res['data'].get('report_status') == 'FINISHED':
                 token = res['data'].get('token')
             else:
-                token = retry_report(client, 'post', url, stream_name, data=body)
+                token = retry_report(client, 'post', url, stream_name, data=body, key='token')
 
             # GET the report data using the token
             LOGGER.info(f'Getting report with token: {token}')
@@ -314,7 +314,7 @@ def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, en
             if res['data'].get('report_status') == 'FINISHED':
                 report_url = res['data'].get('url')
             else:
-                report_url = retry_report(client, 'get', url, stream_name, params=dict(token=token))
+                report_url = retry_report(client, 'get', url, stream_name, params=dict(token=token), key='url')
 
             # Now that we have the report, we need to dowload the link to the file.
             data = client.download_report(report_url)
@@ -349,7 +349,7 @@ class TokenNotReadyException(Exception):
 
 
 @backoff.on_exception(backoff.expo, TokenNotReadyException, max_time=120, factor=2)
-def retry_report(client, method, url, stream_name, **kwargs):
+def retry_report(client, method, url, stream_name, key='token', **kwargs):
     # Get status of report generating proccess
     LOGGER.info(f' -- REPORT NOT READY -> retrying: {url} -> {kwargs.items()}')
     if method == 'post':
@@ -359,7 +359,7 @@ def retry_report(client, method, url, stream_name, **kwargs):
 
     # If the report generates instantly
     if res['data'].get('report_status') == 'FINISHED':
-        return res['data'].get('token')
+        return res['data'].get(key)
     else:
         LOGGER.info(f' -- -- REPORT STATUS: {res["data"].get("report_status")}')
         raise TokenNotReadyException
