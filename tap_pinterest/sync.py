@@ -517,8 +517,8 @@ def sync(client, config, catalog, state):
 
             # Write parent bookmarks
             if bookmark_field:
-                if type(max_bookmark_value) is str:
-                    max_bookmark_value = datetime.strptime(max_bookmark_value, "%Y-%m-%dT%H:%M:%SZ")
+                if type(max_bookmark_value) is datetime:
+                    max_bookmark_value = max_bookmark_value.strdtime("%Y-%m-%dT%H:%M:%SZ")
                 write_bookmark(state, stream_name, max_bookmark_value)
 
             update_currently_syncing(state, None)
