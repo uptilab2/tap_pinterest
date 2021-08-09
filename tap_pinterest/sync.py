@@ -69,7 +69,7 @@ def process_records(catalog, stream_name, records, time_extracted,
             if bookmark_field and (bookmark_field in record):
                 last_dttm = last_datetime
                 # Keep only records whose bookmark is after the last_datetime
-                if (bookmark_dttm >= last_dttm):
+                if (bookmark_dttm.date() >= last_dttm):
                     write_record(stream_name, record, time_extracted=time_extracted)
                     counter.increment()
             else:
