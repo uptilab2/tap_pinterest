@@ -55,6 +55,12 @@ def process_records(catalog, stream_name, records, time_extracted,
         for record in records:
 
             for key in schema:
+                LOGGER.info(f"""
+                --- --- --- --- ---
+                {schema}
+                {key}
+                
+                """)  
                 if key not in record:
                     record[key] = None
 
