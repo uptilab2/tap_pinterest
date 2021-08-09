@@ -289,7 +289,7 @@ def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, en
             start = start.strftime("%Y-%m-%d")
             end = end.strftime("%Y-%m-%d")
 
-            LOGGER.info(f' -- Looking up data for segment : {start} --TO-> {end}')
+            LOGGER.info(f' -- Looking up data for advertiser: {advertiser_id} ---- segment: {start} --TO--> {end}')
 
             body.update({
                 'start_date': start,
@@ -318,18 +318,7 @@ def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, en
                 report_url = retry_report(client, 'get', url, stream_name, params=dict(token=token), key='url')
 
             # Now that we have the report, we need to dowload the link to the file.
-            LOGGER.info(f"""
-            --- --- URL --- --- ---
-            {report_url}
-            
-            """)  
-
             data = client.download_report(report_url)
-            LOGGER.info(f"""
-            --- --- REPORT --- --- ---
-            {data}
-            
-            """)  
             total_records = 0
 
             if not data:
@@ -353,7 +342,7 @@ def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, en
                 LOGGER.info(f'{stream_name}: Synced report. Total records processed: {record_count}')
                 total_records = total_records + record_count
 
-        return total_records, max_bookmark_value
+    return total_records, max_bookmark_value
 
 
 class TokenNotReadyException(Exception):
