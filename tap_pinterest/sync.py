@@ -177,21 +177,19 @@ def sync_rest_endpoint(client, catalog, state, url, stream_name, start_date, end
 
             data = data[endpoint_config.get('data_key', 'data')]
 
-            for line in data.values():
-
-                # Process records and get the max_bookmark_value and record_count for the set of records
-                max_bookmark_value, record_count = process_records(
-                    catalog=catalog,
-                    stream_name=stream_name,
-                    records=line,
-                    time_extracted=time_extracted,
-                    bookmark_field=endpoint_config.get('bookmark_field'),
-                    max_bookmark_value=max_bookmark_value,
-                    last_datetime=last_datetime,
-                    parent=endpoint_config.get('parent'),
-                    parent_id=parent_id)
-                LOGGER.info(f'{stream_name}, records processed: {record_count}')
-                total_records = total_records + record_count
+            # Process records and get the max_bookmark_value and record_count for the set of records
+            max_bookmark_value, record_count = process_records(
+                catalog=catalog,
+                stream_name=stream_name,
+                records=data,
+                time_extracted=time_extracted,
+                bookmark_field=endpoint_config.get('bookmark_field'),
+                max_bookmark_value=max_bookmark_value,
+                last_datetime=last_datetime,
+                parent=endpoint_config.get('parent'),
+                parent_id=parent_id)
+            LOGGER.info(f'{stream_name}, records processed: {record_count}')
+            total_records = total_records + record_count
 
             # Loop thru parent batch records for each children objects (if should stream)
             if children:
@@ -334,19 +332,21 @@ def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, en
             # time_extracted: datetime when the data was extracted from the API
             time_extracted = utils.now()
 
-            # Process records and get the max_bookmark_value and record_count for the set of records
-            max_bookmark_value, record_count = process_records(
-                catalog=catalog,
-                stream_name=stream_name,
-                records=data,
-                time_extracted=time_extracted,
-                bookmark_field=endpoint_config.get('bookmark_field'),
-                max_bookmark_value=max_bookmark_value,
-                last_datetime=start,
-                parent=endpoint_config.get('parent'),
-                parent_id=parent_id)
-            LOGGER.info(f'{stream_name}: Synced report. Total records processed: {record_count}')
-            total_records = total_records + record_count
+            for line in data.values():
+
+                # Process records and get the max_bookmark_value and record_count for the set of records
+                max_bookmark_value, record_count = process_records(
+                    catalog=catalog,
+                    stream_name=stream_name,
+                    records=line,
+                    time_extracted=time_extracted,
+                    bookmark_field=endpoint_config.get('bookmark_field'),
+                    max_bookmark_value=max_bookmark_value,
+                    last_datetime=start,
+                    parent=endpoint_config.get('parent'),
+                    parent_id=parent_id)
+                LOGGER.info(f'{stream_name}: Synced report. Total records processed: {record_count}')
+                total_records = total_records + record_count
 
     return total_records, max_bookmark_value
 
