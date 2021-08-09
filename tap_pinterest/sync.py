@@ -4,7 +4,8 @@ from singer import metrics, metadata, Transformer, utils, UNIX_MILLISECONDS_INTE
 from datetime import datetime, timezone, timedelta, date
 
 LOGGER = singer.get_logger()
-BASE_URL = 'https://api.pinterest.com/ads/v3'
+API_VERSION = 'v3'
+BASE_URL = f'https://api.pinterest.com/ads/{API_VERSION}'
 
 
 def write_schema(catalog, stream_name):
@@ -81,7 +82,7 @@ def process_records(catalog, stream_name, records, time_extracted,
 def get_advertiser_ids(client, url, owner_user_id=None):
 
     if not owner_user_id:
-        res = client.get(f'{BASE_URL}/users/me/')
+        res = client.get(f'https://api.pinterest.com/{API_VERSION}/users/me/')
         if res['data']:
             owner_user_id = res['data']['id']
         else:
