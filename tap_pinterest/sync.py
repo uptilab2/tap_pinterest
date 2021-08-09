@@ -46,23 +46,24 @@ def process_records(catalog, stream_name, records, time_extracted,
                     max_bookmark_value=None,
                     last_datetime=None,
                     parent=None,
-                    parent_id=None):
+                    parent_id=None,
+                    date=None):
     stream = catalog.get_stream(stream_name)
     schema = stream.schema.to_dict()
     stream_metadata = metadata.to_map(stream.metadata)
 
     with metrics.record_counter(stream_name) as counter:
         for record in records:
-
-            for key in schema['properties']:
-                if key not in record:
-                    record[key] = 0
-
+            
             LOGGER.info(f"""
             --- --- --- --- ---
             {record}
             
             """)  
+
+            for key in schema['properties']:
+                if key not in record:
+                    record[key] = 0
 
             # If child object, add parent_id to record
             if parent_id and parent:
@@ -71,12 +72,10 @@ def process_records(catalog, stream_name, records, time_extracted,
             # Transform record for Singer.io
             with Transformer(integer_datetime_fmt=UNIX_MILLISECONDS_INTEGER_DATETIME_PARSING) as transformer:
                 transformed_record = transformer.transform(record, schema, stream_metadata)
-                LOGGER.info(f"""
-                --- --- --- --- ---
-                {transformed_record}
-                
-                """)  
-                bookmark_dttm = datetime.utcfromtimestamp(int(transformed_record[bookmark_field]))
+                if date and not transformed_record.get(bookmark_field):
+                    bookmark_dttm = date
+                else:
+                    bookmark_dttm = datetime.utcfromtimestamp(int(transformed_record[bookmark_field]))
 
                 # Reset max_bookmark_value to new value if higher
                 if (bookmark_field and (bookmark_field in transformed_record)) and (max_bookmark_value is None or bookmark_dttm > max_bookmark_value):
