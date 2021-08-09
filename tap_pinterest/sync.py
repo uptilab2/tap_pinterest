@@ -65,6 +65,12 @@ def process_records(catalog, stream_name, records, time_extracted,
                 if key not in record:
                     record[key] = 0
 
+            LOGGER.info(f"""
+            --- --- --- --- ---
+            {record}
+            
+            """)  
+
             # If child object, add parent_id to record
             if parent_id and parent:
                 record[parent + '_id'] = parent_id
