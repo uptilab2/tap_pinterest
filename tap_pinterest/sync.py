@@ -54,13 +54,7 @@ def process_records(catalog, stream_name, records, time_extracted,
     with metrics.record_counter(stream_name) as counter:
         for record in records:
 
-            for key in schema:
-                LOGGER.info(f"""
-                --- --- --- --- ---
-                {schema}
-                {key}
-                
-                """)  
+            for key in schema['properties']:
                 if key not in record:
                     record[key] = None
 
