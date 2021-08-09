@@ -58,6 +58,12 @@ def process_records(catalog, stream_name, records, time_extracted,
                 if key not in record:
                     record[key] = None
 
+            LOGGER.info(f"""
+            --- --- --- --- ---
+            {record}
+            
+            """)  
+
             # If child object, add parent_id to record
             if parent_id and parent:
                 record[parent + '_id'] = parent_id
@@ -65,6 +71,11 @@ def process_records(catalog, stream_name, records, time_extracted,
             # Transform record for Singer.io
             with Transformer(integer_datetime_fmt=UNIX_MILLISECONDS_INTEGER_DATETIME_PARSING) as transformer:
                 transformed_record = transformer.transform(record, schema, stream_metadata)
+                LOGGER.info(f"""
+                --- --- --- --- ---
+                {transformed_record}
+                
+                """)  
                 bookmark_dttm = datetime.utcfromtimestamp(int(transformed_record[bookmark_field]))
 
                 # Reset max_bookmark_value to new value if higher
