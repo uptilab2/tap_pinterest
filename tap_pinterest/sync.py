@@ -1,6 +1,6 @@
 import singer
 import backoff
-from singer import metrics, metadata, Transformer, utils, UNIX_MILLISECONDS_INTEGER_DATETIME_PARSING
+from singer import metrics, utils
 from datetime import datetime, timezone, timedelta, date
 
 LOGGER = singer.get_logger()
@@ -46,8 +46,7 @@ def process_records(catalog, stream_name, records, time_extracted,
                     max_bookmark_value=None,
                     last_datetime=None,
                     parent=None,
-                    parent_id=None,
-                    date=None):
+                    parent_id=None):
     stream = catalog.get_stream(stream_name)
     schema = stream.schema.to_dict()
 
@@ -287,14 +286,11 @@ def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, en
 
         for start, end in segments:
 
-            start = start.strftime("%Y-%m-%d")
-            end = end.strftime("%Y-%m-%d")
-
             LOGGER.info(f' -- Looking up data for advertiser: {advertiser_id} ---- segment: {start} --TO--> {end}')
 
             body.update({
-                'start_date': start,
-                'end_date': end
+                'start_date': start.strftime("%Y-%m-%d"),
+                'end_date': end.strftime("%Y-%m-%d")
             })
 
             # Create request to generate report
