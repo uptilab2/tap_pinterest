@@ -51,13 +51,19 @@ def process_records(catalog, stream_name, records, time_extracted,
     schema = stream.schema.to_dict()
     LOGGER.info(f"""
     --- --- --- --- ---
-    {schema}
+    {schema['properties']}
 
     """)
     stream_metadata = metadata.to_map(stream.metadata)
 
     with metrics.record_counter(stream_name) as counter:
         for record in records:
+
+            LOGGER.info(f"""
+            --- --- --- --- ---
+            {record}
+            
+            """)
 
             for key in schema:
                 if key not in record:
