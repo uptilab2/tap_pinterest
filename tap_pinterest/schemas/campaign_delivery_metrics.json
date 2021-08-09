@@ -546,67 +546,67 @@
             "description": "The value from downstream web conversions from your promoted Pins, in micro dollars"
         },
         "COST_PER_CONVERSION_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value of cost for a single conversion event"
         },
         "COST_PER_DESTINATION_VIEW_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Spend divided by total destination views"
         },
         "COST_PER_DESTINATION_VIEW_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The cost per destination view in micro dollars"
         },
         "CP3SV_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The cost per first-order 3 second video view in micro dollars"
         },
         "CPCV_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The cost per first-order completed video view in dollars"
         },
         "CPCV_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The cost per first-order completed video view in micro dollars"
         },
         "CPCV_P95_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The cost per first-order at least 95% completed video view in dollars"
         },
         "CPCV_P95_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The cost per first-order at least 95% completed video view in micro dollars"
         },
         "CPC_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The cost per click in dollars"
         },
         "CPC_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The cost per click in micro dollars"
         },
         "CPE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The cost per engagement in dollars"
         },
         "CPE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The cost per engagement in micro dollars"
         },
         "CPM_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Average cost per 1k impressions"
         },
         "CPM_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Cost per thousand first-order impressions in micro dollars"
         },
         "CPV_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The cost per first-order MRC video view in dollars"
         },
         "CPV_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The cost per first-order MRC video view in micro dollars"
         },
         "CTR": {
@@ -638,51 +638,51 @@
             "description": "Total destination views divided by total impressions"
         },
         "ECPCV_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Average cost per video view that was watched to completion"
         },
         "ECPCV_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The cost per first-order and downstream completed video view in micro dollars"
         },
         "ECPCV_P95_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Average cost per video that was watched until 95% of its length"
         },
         "ECPCV_P95_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The cost per first-order and downstream at least 95% completed video view in micro dollars"
         },
         "ECPC_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Average cost per click"
         },
         "ECPC_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Effective CPC (including first-order and downstream clicks) in micro dollars"
         },
         "ECPE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Cost per engagement"
         },
         "ECPE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Effective CPE (including first-order and downstream engagements) in micro dollars"
         },
         "ECPM_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Effective CPM (including first-order and downstream impressions) in dollars"
         },
         "ECPM_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Effective CPM (including first-order and downstream impressions) in micro dollars"
         },
         "ECPV_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Average cost per video view"
         },
         "ECPV_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The cost per first-order and downstream MRC video views in micro dollars"
         },
         "ECTR": {
@@ -1406,11 +1406,11 @@
             "description": "Average return on ad spend for signup events"
         },
         "SPEND_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total amount you've spent during the reporting time period"
         },
         "SPEND_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The money you spend for promoted Pins, in micro dollars"
         },
         "SPEND_LIFETIME": {
@@ -1426,7 +1426,7 @@
             "description": "Yesterday's Spend In local micro currency"
         },
         "SPEND_YESTERDAY_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total amount you spent yesterday"
         },
         "TOTAL_ADD_TO_CART": {
@@ -1474,11 +1474,11 @@
             "description": "Number of add-to-cart conversions where the ad exposure occurred on tablet and conversion occurred on tablet"
         },
         "TOTAL_ADD_TO_CART_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The cost per add to cart in dollars"
         },
         "TOTAL_ADD_TO_CART_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of add to cart events resulting from interactions with your ad"
         },
         "TOTAL_APP_INSTALL": {
@@ -1526,11 +1526,11 @@
             "description": "Number of app install conversions where the ad exposure occurred on tablet and conversion occurred on tablet"
         },
         "TOTAL_APP_INSTALL_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The cost per app install in dollars"
         },
         "TOTAL_APP_INSTALL_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of app install events resulting from interactions with your ad"
         },
         "TOTAL_BUY_BUTTON_CLICKS": {
@@ -1598,11 +1598,11 @@
             "description": "Number of checkout conversions where the ad exposure occurred on tablet and conversion occurred on tablet"
         },
         "TOTAL_CHECKOUT_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The cost per checkout in dollars"
         },
         "TOTAL_CHECKOUT_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of checkout events resulting from interactions with your ad"
         },
         "TOTAL_CLICKTHROUGH": {
@@ -1618,11 +1618,11 @@
             "description": "The quantity from total click add-to-cart actions from your promoted Pins"
         },
         "TOTAL_CLICK_ADD_TO_CART_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total click add-to-cart actions from your promoted Pins, in dollars"
         },
         "TOTAL_CLICK_ADD_TO_CART_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of add to cart events resulting from clicks on your ad"
         },
         "TOTAL_CLICK_APP_INSTALL": {
@@ -1634,7 +1634,7 @@
             "description": "The quantity from total click app install actions from your promoted Pins"
         },
         "TOTAL_CLICK_APP_INSTALL_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of app install events resulting from clicks on your ad"
         },
         "TOTAL_CLICK_CHECKOUT": {
@@ -1646,11 +1646,11 @@
             "description": "The quantity from total clickthrough checkouts from your promoted Pins"
         },
         "TOTAL_CLICK_CHECKOUT_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total clickthrough checkouts from your promoted Pins, in dollars"
         },
         "TOTAL_CLICK_CHECKOUT_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of checkout events resulting from clicks on your ad"
         },
         "TOTAL_CLICK_CUSTOM": {
@@ -1662,11 +1662,11 @@
             "description": "The quantity from total click custom actions from your promoted Pins"
         },
         "TOTAL_CLICK_CUSTOM_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total click custom actions from your promoted Pins, in dollars"
         },
         "TOTAL_CLICK_CUSTOM_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of custom events resulting from clicks on your ad"
         },
         "TOTAL_CLICK_LEAD": {
@@ -1678,11 +1678,11 @@
             "description": "The quantity from total click lead actions from your promoted Pins"
         },
         "TOTAL_CLICK_LEAD_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total click lead actions from your promoted Pins, in dollars"
         },
         "TOTAL_CLICK_LEAD_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of lead events resulting from clicks on your ad"
         },
         "TOTAL_CLICK_PAGE_VISIT": {
@@ -1694,11 +1694,11 @@
             "description": "The quantity from total clickthrough page visits from your promoted Pins"
         },
         "TOTAL_CLICK_PAGE_VISIT_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total clickthrough page visits from your promoted Pins, in dollars"
         },
         "TOTAL_CLICK_PAGE_VISIT_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of page visit events resulting from clicks on your ad"
         },
         "TOTAL_CLICK_SEARCH": {
@@ -1710,11 +1710,11 @@
             "description": "The quantity from total click search actions from your promoted Pins"
         },
         "TOTAL_CLICK_SEARCH_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total click search actions from your promoted Pins, in dollars"
         },
         "TOTAL_CLICK_SEARCH_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of website search events resulting from clicks on your ad"
         },
         "TOTAL_CLICK_SIGNUP": {
@@ -1726,11 +1726,11 @@
             "description": "The quantity from total clickthrough sign ups from your promoted Pins"
         },
         "TOTAL_CLICK_SIGNUP_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total clickthrough sign ups from your promoted Pins, in dollars"
         },
         "TOTAL_CLICK_SIGNUP_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of signup events resulting from clicks on your ad"
         },
         "TOTAL_CLICK_UNKNOWN": {
@@ -1742,7 +1742,7 @@
             "description": "The quantity from total click unknown actions from your promoted Pins"
         },
         "TOTAL_CLICK_UNKNOWN_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of unknown events resulting from clicks on your ad"
         },
         "TOTAL_CLICK_VIEW_CATEGORY": {
@@ -1754,11 +1754,11 @@
             "description": "The quantity from total click view category actions from your promoted Pins"
         },
         "TOTAL_CLICK_VIEW_CATEGORY_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total click view category actions from your promoted Pins, in dollars"
         },
         "TOTAL_CLICK_VIEW_CATEGORY_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of category view events resulting from clicks on your ad"
         },
         "TOTAL_CLICK_WATCH_VIDEO": {
@@ -1770,11 +1770,11 @@
             "description": "The quantity from total click watch video actions from your promoted Pins"
         },
         "TOTAL_CLICK_WATCH_VIDEO_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total click watch video actions from your promoted Pins, in dollars"
         },
         "TOTAL_CLICK_WATCH_VIDEO_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of watch video events resulting from engagements with your ad"
         },
         "TOTAL_CLOSEUP": {
@@ -1798,11 +1798,11 @@
             "description": "The quantity from web conversions from your promoted Pins, including both first-order and downstream"
         },
         "TOTAL_CONVERSIONS_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from web conversions from your promoted Pins, including both first-order and downstream, in dollars"
         },
         "TOTAL_CONVERSIONS_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from web conversions from your promoted Pins, including both first-order and downstream, in micro dollars"
         },
         "TOTAL_CUSTOM": {
@@ -1850,11 +1850,11 @@
             "description": "Number of custom conversions where the ad exposure occurred on tablet and conversion occurred on tablet"
         },
         "TOTAL_CUSTOM_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The cost per custom action in dollars"
         },
         "TOTAL_CUSTOM_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of custom events resulting from interactions with your ad"
         },
         "TOTAL_DESTINATION_VIEWS": {
@@ -1874,11 +1874,11 @@
             "description": "The quantity from total engagement add-to-cart actions from your promoted Pins"
         },
         "TOTAL_ENGAGEMENT_ADD_TO_CART_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total engagement add-to-cart actions from your promoted Pins, in dollars"
         },
         "TOTAL_ENGAGEMENT_ADD_TO_CART_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of add to cart events resulting from engagements with your ad. Engagements includes saves, closeups, carousel swipes, collection secondary closeups, and collection secondary saves."
         },
         "TOTAL_ENGAGEMENT_APP_INSTALL": {
@@ -1890,7 +1890,7 @@
             "description": "The quantity from total engagement app install actions from your promoted Pins"
         },
         "TOTAL_ENGAGEMENT_APP_INSTALL_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of app install events resulting from engagements with your ad. Engagements includes saves, closeups, carousel swipes, collection secondary closeups, and collection secondary saves."
         },
         "TOTAL_ENGAGEMENT_CHECKOUT": {
@@ -1902,11 +1902,11 @@
             "description": "The quantity from total engagement checkouts from your promoted Pins"
         },
         "TOTAL_ENGAGEMENT_CHECKOUT_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total engagement checkouts from your promoted Pins, in dollars"
         },
         "TOTAL_ENGAGEMENT_CHECKOUT_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of checkout events resulting from engagements with your ad. Engagements includes saves, closeups, carousel swipes, collection secondary closeups, and collection secondary saves."
         },
         "TOTAL_ENGAGEMENT_CUSTOM": {
@@ -1918,11 +1918,11 @@
             "description": "The quantity from total engagement custom actions from your promoted Pins"
         },
         "TOTAL_ENGAGEMENT_CUSTOM_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total engagement custom actions from your promoted Pins, in dollars"
         },
         "TOTAL_ENGAGEMENT_CUSTOM_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of custom events resulting from engagements with your ad. Engagements includes saves, closeups, carousel swipes, collection secondary closeups, and collection secondary saves."
         },
         "TOTAL_ENGAGEMENT_LEAD": {
@@ -1934,11 +1934,11 @@
             "description": "The quantity from total engagement lead actions from your promoted Pins"
         },
         "TOTAL_ENGAGEMENT_LEAD_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total engagement lead actions from your promoted Pins, in dollars"
         },
         "TOTAL_ENGAGEMENT_LEAD_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of lead events resulting from engagements with your ad. Engagements includes saves, closeups, carousel swipes, collection secondary closeups, and collection secondary saves."
         },
         "TOTAL_ENGAGEMENT_PAGE_VISIT": {
@@ -1950,11 +1950,11 @@
             "description": "The quantity from total engagement page visits from your promoted Pins"
         },
         "TOTAL_ENGAGEMENT_PAGE_VISIT_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total engagement page visits from your promoted Pins, in dollars"
         },
         "TOTAL_ENGAGEMENT_PAGE_VISIT_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of page visit events resulting from engagements with your ad (save, closeup, carousel card swipe, collection secondary save, or collection secondary closeup)"
         },
         "TOTAL_ENGAGEMENT_SEARCH": {
@@ -1966,11 +1966,11 @@
             "description": "The quantity from total engagement search actions from your promoted Pins"
         },
         "TOTAL_ENGAGEMENT_SEARCH_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total engagement search actions from your promoted Pins, in dollars"
         },
         "TOTAL_ENGAGEMENT_SEARCH_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of website search events resulting from engagements with your ad. Engagements includes saves, closeups, carousel swipes, collection secondary closeups, and collection secondary saves."
         },
         "TOTAL_ENGAGEMENT_SIGNUP": {
@@ -1982,11 +1982,11 @@
             "description": "The quantity from total engagement sign ups from your promoted Pins"
         },
         "TOTAL_ENGAGEMENT_SIGNUP_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total engagement sign ups from your promoted Pins, in dollars"
         },
         "TOTAL_ENGAGEMENT_SIGNUP_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of signup events resulting from engagements with your ad. Engagements includes saves, closeups, carousel swipes, collection secondary closeups, and collection secondary saves."
         },
         "TOTAL_ENGAGEMENT_UNKNOWN": {
@@ -1998,7 +1998,7 @@
             "description": "The quantity from total engagement unknown actions from your promoted Pins"
         },
         "TOTAL_ENGAGEMENT_UNKNOWN_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of unknown events resulting from engagements with your ad. Engagements includes saves, closeups, carousel swipes, collection secondary closeups, and collection secondary saves."
         },
         "TOTAL_ENGAGEMENT_VIEW_CATEGORY": {
@@ -2010,11 +2010,11 @@
             "description": "The quantity from total engagement view category actions from your promoted Pins"
         },
         "TOTAL_ENGAGEMENT_VIEW_CATEGORY_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total engagement view category actions from your promoted Pins, in dollars"
         },
         "TOTAL_ENGAGEMENT_VIEW_CATEGORY_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of category events resulting from engagements with your ad (via save, closeup, carousel card swipe, collection secondary save, or collection secondary closeup)"
         },
         "TOTAL_ENGAGEMENT_WATCH_VIDEO": {
@@ -2026,11 +2026,11 @@
             "description": "The quantity from total engagement watch video actions from your promoted Pins"
         },
         "TOTAL_ENGAGEMENT_WATCH_VIDEO_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total engagement watch video actions from your promoted Pins, in dollars"
         },
         "TOTAL_ENGAGEMENT_WATCH_VIDEO_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of watch video events resulting from engagements with your ad. Engagements includes saves, closeups, carousel swipes, collection secondary closeups, and collection secondary saves."
         },
         "TOTAL_FLAG": {
@@ -2062,11 +2062,11 @@
             "description": "Total integer of in-app add to cart events resulting from clicks on your ad"
         },
         "TOTAL_INAPP_ADD_TO_CART_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in app add to cart actions from your promoted Pins, in dollars"
         },
         "TOTAL_INAPP_ADD_TO_CART_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of in-app add to cart events resulting from interactions with your ad"
         },
         "TOTAL_INAPP_APP_INSTALL": {
@@ -2074,11 +2074,11 @@
             "description": "Total integer of in-app app install events resulting from clicks on your ad"
         },
         "TOTAL_INAPP_APP_INSTALL_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in app app install actions from your promoted Pins, in dollars"
         },
         "TOTAL_INAPP_APP_INSTALL_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of in-app app install events resulting from interactions with your ad"
         },
         "TOTAL_INAPP_CHECKOUT": {
@@ -2086,11 +2086,11 @@
             "description": "Total integer of in-app checkout events resulting from clicks on your ad"
         },
         "TOTAL_INAPP_CHECKOUT_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in app checkout actions from your promoted Pins, in dollars"
         },
         "TOTAL_INAPP_CHECKOUT_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of in-app checkout events resulting from interactions with your ad"
         },
         "TOTAL_INAPP_CLICK_ADD_TO_CART": {
@@ -2098,11 +2098,11 @@
             "description": "Total integer of in-app add to cart events resulting from clicks on your ad"
         },
         "TOTAL_INAPP_CLICK_ADD_TO_CART_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in app click-through add to cart actions from your promoted Pins, in dollars"
         },
         "TOTAL_INAPP_CLICK_ADD_TO_CART_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of in-app add to cart events resulting from clicks on your ad"
         },
         "TOTAL_INAPP_CLICK_APP_INSTALL": {
@@ -2110,11 +2110,11 @@
             "description": "Total integer of in-app app install events resulting from clicks on your ad"
         },
         "TOTAL_INAPP_CLICK_APP_INSTALL_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in app click-through app install actions from your promoted Pins, in dollars"
         },
         "TOTAL_INAPP_CLICK_APP_INSTALL_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of in-app app install events resulting from clicks on your ad"
         },
         "TOTAL_INAPP_CLICK_CHECKOUT": {
@@ -2122,11 +2122,11 @@
             "description": "Total integer of in-app checkout events resulting from clicks on your ad"
         },
         "TOTAL_INAPP_CLICK_CHECKOUT_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in app click-through checkout actions from your promoted Pins, in dollars"
         },
         "TOTAL_INAPP_CLICK_CHECKOUT_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of in-app checkout events resulting from clicks on your ad"
         },
         "TOTAL_INAPP_CLICK_SEARCH": {
@@ -2134,11 +2134,11 @@
             "description": "Total integer of in-app website search events resulting from clicks on your ad"
         },
         "TOTAL_INAPP_CLICK_SEARCH_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in app click-through order actions from your promoted Pins, in dollars"
         },
         "TOTAL_INAPP_CLICK_SEARCH_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of in-app website search events resulting from clicks on your ad"
         },
         "TOTAL_INAPP_CLICK_SIGNUP": {
@@ -2146,11 +2146,11 @@
             "description": "Total integer of in-app signup events resulting from clicks on your ad"
         },
         "TOTAL_INAPP_CLICK_SIGNUP_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in app click-through signup actions from your promoted Pins, in dollars"
         },
         "TOTAL_INAPP_CLICK_SIGNUP_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of in-app signup events resulting from clicks on your ad"
         },
         "TOTAL_INAPP_CLICK_UNKNOWN": {
@@ -2158,11 +2158,11 @@
             "description": "Total integer of in-app unknown events resulting from clicks on your ad"
         },
         "TOTAL_INAPP_CLICK_UNKNOWN_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in app click-through unknown actions from your promoted Pins, in dollars"
         },
         "TOTAL_INAPP_CLICK_UNKNOWN_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of in-app unknown events resulting from clicks on your ad"
         },
         "TOTAL_INAPP_ENGAGEMENT_ADD_TO_CART": {
@@ -2170,11 +2170,11 @@
             "description": "Total integer of in-app add to cart events resulting from engagements with your ad (save, closeup or carousel swipe)"
         },
         "TOTAL_INAPP_ENGAGEMENT_ADD_TO_CART_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in app engagement add to cart actions from your promoted Pins, in dollars"
         },
         "TOTAL_INAPP_ENGAGEMENT_ADD_TO_CART_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of in-app add to cart events resulting from engagements with your ad (save, closeup or carousel swipe)"
         },
         "TOTAL_INAPP_ENGAGEMENT_APP_INSTALL": {
@@ -2182,11 +2182,11 @@
             "description": "Total integer of in-app app install events resulting from engagements with your ad (save, closeup or carousel swipe)"
         },
         "TOTAL_INAPP_ENGAGEMENT_APP_INSTALL_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in app engagement app install actions from your promoted Pins, in dollars"
         },
         "TOTAL_INAPP_ENGAGEMENT_APP_INSTALL_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of in-app app install events resulting from engagements with your ad (save, closeup or carousel swipe)"
         },
         "TOTAL_INAPP_ENGAGEMENT_CHECKOUT": {
@@ -2194,11 +2194,11 @@
             "description": "Total integer of in-app checkout events resulting from engagements with your ad (save, closeup or carousel swipe)"
         },
         "TOTAL_INAPP_ENGAGEMENT_CHECKOUT_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in app engagement checkout actions from your promoted Pins, in dollars"
         },
         "TOTAL_INAPP_ENGAGEMENT_CHECKOUT_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of in-app checkout events resulting from engagements with your ad (save, closeup or carousel swipe)"
         },
         "TOTAL_INAPP_ENGAGEMENT_SEARCH": {
@@ -2206,11 +2206,11 @@
             "description": "Total integer of in-app website search events resulting from engagements with your ad (save, closeup or carousel swipe)"
         },
         "TOTAL_INAPP_ENGAGEMENT_SEARCH_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in app engagement order actions from your promoted Pins, in dollars"
         },
         "TOTAL_INAPP_ENGAGEMENT_SEARCH_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of in-app website search events resulting from engagements with your ad (save, closeup or carousel swipe)"
         },
         "TOTAL_INAPP_ENGAGEMENT_SIGNUP": {
@@ -2218,11 +2218,11 @@
             "description": "Total integer of in-app signup events resulting from engagements with your ad (save, closeup or carousel swipe)"
         },
         "TOTAL_INAPP_ENGAGEMENT_SIGNUP_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in app engagement signup actions from your promoted Pins, in dollars"
         },
         "TOTAL_INAPP_ENGAGEMENT_SIGNUP_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of in-app signup events resulting from engagements with your ad (save, closeup or carousel swipe)"
         },
         "TOTAL_INAPP_ENGAGEMENT_UNKNOWN": {
@@ -2230,11 +2230,11 @@
             "description": "Total integer of in-app unknown events resulting from engagements with your ad (save, closeup or carousel swipe)"
         },
         "TOTAL_INAPP_ENGAGEMENT_UNKNOWN_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in app engagement unknown actions from your promoted Pins, in dollars"
         },
         "TOTAL_INAPP_ENGAGEMENT_UNKNOWN_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of in-app unknown events resulting from engagements with your ad (save, closeup or carousel swipe)"
         },
         "TOTAL_INAPP_SEARCH": {
@@ -2242,11 +2242,11 @@
             "description": "Total integer of in-app website search events resulting from clicks on your ad"
         },
         "TOTAL_INAPP_SEARCH_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in app order actions from your promoted Pins, in dollars"
         },
         "TOTAL_INAPP_SEARCH_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of in-app website search events resulting from interactions with your ad"
         },
         "TOTAL_INAPP_SIGNUP": {
@@ -2254,11 +2254,11 @@
             "description": "Total integer of in-app signup events resulting from clicks on your ad"
         },
         "TOTAL_INAPP_SIGNUP_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in app signup actions from your promoted Pins, in dollars"
         },
         "TOTAL_INAPP_SIGNUP_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of in-app signup events resulting from interactions with your ad"
         },
         "TOTAL_INAPP_UNKNOWN": {
@@ -2266,11 +2266,11 @@
             "description": "Total integer of in-app unknown events resulting from clicks on your ad"
         },
         "TOTAL_INAPP_UNKNOWN_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in app unknown actions from your promoted Pins, in dollars"
         },
         "TOTAL_INAPP_UNKNOWN_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of in-app unknown events resulting from interactions with your ad"
         },
         "TOTAL_INAPP_VIEW_ADD_TO_CART": {
@@ -2278,11 +2278,11 @@
             "description": "Total integer of in-app add to cart events resulting from views of your ad"
         },
         "TOTAL_INAPP_VIEW_ADD_TO_CART_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in app view add to cart actions from your promoted Pins, in dollars"
         },
         "TOTAL_INAPP_VIEW_ADD_TO_CART_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of in-app add to cart events resulting from views of your ad"
         },
         "TOTAL_INAPP_VIEW_APP_INSTALL": {
@@ -2290,11 +2290,11 @@
             "description": "Total integer of in-app app install events resulting from views of your ad"
         },
         "TOTAL_INAPP_VIEW_APP_INSTALL_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in app view app install actions from your promoted Pins, in dollars"
         },
         "TOTAL_INAPP_VIEW_APP_INSTALL_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of in-app app install events resulting from views of your ad"
         },
         "TOTAL_INAPP_VIEW_CHECKOUT": {
@@ -2302,11 +2302,11 @@
             "description": "Total integer of in-app checkout events resulting from views of your ad"
         },
         "TOTAL_INAPP_VIEW_CHECKOUT_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in app view checkout actions from your promoted Pins, in dollars"
         },
         "TOTAL_INAPP_VIEW_CHECKOUT_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of in-app checkout events resulting from views of your ad"
         },
         "TOTAL_INAPP_VIEW_SEARCH": {
@@ -2314,11 +2314,11 @@
             "description": "Total integer of in-app website search events resulting from views of your ad"
         },
         "TOTAL_INAPP_VIEW_SEARCH_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in app view order actions from your promoted Pins, in dollars"
         },
         "TOTAL_INAPP_VIEW_SEARCH_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of in-app website search events resulting from views of your ad"
         },
         "TOTAL_INAPP_VIEW_SIGNUP": {
@@ -2326,11 +2326,11 @@
             "description": "Total integer of in-app signup events resulting from views of your ad"
         },
         "TOTAL_INAPP_VIEW_SIGNUP_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in app view signup actions from your promoted Pins, in dollars"
         },
         "TOTAL_INAPP_VIEW_SIGNUP_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of in-app signup events resulting from views of your ad"
         },
         "TOTAL_INAPP_VIEW_UNKNOWN": {
@@ -2338,7 +2338,7 @@
             "description": "Total integer of in-app unknown events resulting from views of your ad"
         },
         "TOTAL_INAPP_VIEW_UNKNOWN_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of in-app unknown events resulting from views of your ad"
         },
         "TOTAL_LEAD": {
@@ -2386,11 +2386,11 @@
             "description": "Number of lead conversions where the ad exposure occurred on tablet and conversion occurred on tablet"
         },
         "TOTAL_LEAD_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The cost per lead in dollars"
         },
         "TOTAL_LEAD_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of lead events resulting from interactions with your ad"
         },
         "TOTAL_LIFETIME_IMPRESSION_USER": {
@@ -2406,11 +2406,11 @@
             "description": "Total integer of offline checkout events resulting from clicks on your ad"
         },
         "TOTAL_OFFLINE_CHECKOUT_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in offline checkout actions from your promoted Pins, in dollars"
         },
         "TOTAL_OFFLINE_CHECKOUT_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of offline checkout events resulting from interactions with your ad"
         },
         "TOTAL_OFFLINE_CLICK_CHECKOUT": {
@@ -2418,11 +2418,11 @@
             "description": "Total integer of offline checkout events resulting from clicks on your ad"
         },
         "TOTAL_OFFLINE_CLICK_CHECKOUT_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in offline click-through checkout actions from your promoted Pins, in dollars"
         },
         "TOTAL_OFFLINE_CLICK_CHECKOUT_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of offline checkout events resulting from clicks on your ad"
         },
         "TOTAL_OFFLINE_CLICK_CUSTOM": {
@@ -2430,11 +2430,11 @@
             "description": "Total integer of offline custom events resulting from clicks on your ad"
         },
         "TOTAL_OFFLINE_CLICK_CUSTOM_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in offline click-through custom actions from your promoted Pins, in dollars"
         },
         "TOTAL_OFFLINE_CLICK_CUSTOM_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of offline custom events resulting from clicks on your ad"
         },
         "TOTAL_OFFLINE_CLICK_LEAD": {
@@ -2442,11 +2442,11 @@
             "description": "Total integer of offline lead events resulting from clicks on your ad"
         },
         "TOTAL_OFFLINE_CLICK_LEAD_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in offline click-through lead actions from your promoted Pins, in dollars"
         },
         "TOTAL_OFFLINE_CLICK_LEAD_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of offline lead events resulting from clicks on your ad"
         },
         "TOTAL_OFFLINE_CLICK_SIGNUP": {
@@ -2454,11 +2454,11 @@
             "description": "Total integer of offline signup events resulting from clicks on your ad"
         },
         "TOTAL_OFFLINE_CLICK_SIGNUP_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in offline click-through signup actions from your promoted Pins, in dollars"
         },
         "TOTAL_OFFLINE_CLICK_SIGNUP_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of offline signup events resulting from clicks on your ad"
         },
         "TOTAL_OFFLINE_CLICK_UNKNOWN": {
@@ -2466,11 +2466,11 @@
             "description": "Total integer of offline unknown events resulting from clicks on your ad"
         },
         "TOTAL_OFFLINE_CLICK_UNKNOWN_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in offline click-through unknown actions from your promoted Pins, in dollars"
         },
         "TOTAL_OFFLINE_CLICK_UNKNOWN_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of offline unknown events resulting from clicks on your ad"
         },
         "TOTAL_OFFLINE_CUSTOM": {
@@ -2478,11 +2478,11 @@
             "description": "Total integer of offline custom events resulting from clicks on your ad"
         },
         "TOTAL_OFFLINE_CUSTOM_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in offline custom actions from your promoted Pins, in dollars"
         },
         "TOTAL_OFFLINE_CUSTOM_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of offline custom events resulting from interactions with your ad"
         },
         "TOTAL_OFFLINE_ENGAGEMENT_CHECKOUT": {
@@ -2490,11 +2490,11 @@
             "description": "Total integer of offline checkout events resulting from engagements with your ad (save, closeup or carousel swipe)"
         },
         "TOTAL_OFFLINE_ENGAGEMENT_CHECKOUT_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in offline engagement checkout actions from your promoted Pins, in dollars"
         },
         "TOTAL_OFFLINE_ENGAGEMENT_CHECKOUT_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of offline checkout events resulting from engagements with your ad (save, closeup or carousel swipe)"
         },
         "TOTAL_OFFLINE_ENGAGEMENT_CUSTOM": {
@@ -2502,11 +2502,11 @@
             "description": "Total integer of offline custom events resulting from engagements with your ad (save, closeup or carousel swipe)"
         },
         "TOTAL_OFFLINE_ENGAGEMENT_CUSTOM_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in offline engagement custom actions from your promoted Pins, in dollars"
         },
         "TOTAL_OFFLINE_ENGAGEMENT_CUSTOM_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of offline custom events resulting from engagements with your ad (save, closeup or carousel swipe)"
         },
         "TOTAL_OFFLINE_ENGAGEMENT_LEAD": {
@@ -2514,11 +2514,11 @@
             "description": "Total integer of offline lead events resulting from engagements with your ad (save, closeup or carousel swipe)"
         },
         "TOTAL_OFFLINE_ENGAGEMENT_LEAD_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in engagement click-through lead actions from your promoted Pins, in dollars"
         },
         "TOTAL_OFFLINE_ENGAGEMENT_LEAD_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of offline lead events resulting from engagements with your ad (save, closeup or carousel swipe)"
         },
         "TOTAL_OFFLINE_ENGAGEMENT_SIGNUP": {
@@ -2526,11 +2526,11 @@
             "description": "Total integer of offline signup events resulting from engagements with your ad (save, closeup or carousel swipe)"
         },
         "TOTAL_OFFLINE_ENGAGEMENT_SIGNUP_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in offline engagement signup actions from your promoted Pins, in dollars"
         },
         "TOTAL_OFFLINE_ENGAGEMENT_SIGNUP_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of offline signup events resulting from engagements with your ad (save, closeup or carousel swipe)"
         },
         "TOTAL_OFFLINE_ENGAGEMENT_UNKNOWN": {
@@ -2538,11 +2538,11 @@
             "description": "Total integer of offline unknown events resulting from engagements with your ad (save, closeup or carousel swipe)"
         },
         "TOTAL_OFFLINE_ENGAGEMENT_UNKNOWN_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in offline engagement unknown actions from your promoted Pins, in dollars"
         },
         "TOTAL_OFFLINE_ENGAGEMENT_UNKNOWN_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of offline unknown events resulting from engagements with your ad (save, closeup or carousel swipe)"
         },
         "TOTAL_OFFLINE_LEAD": {
@@ -2550,11 +2550,11 @@
             "description": "Total integer of offline lead events resulting from clicks on your ad"
         },
         "TOTAL_OFFLINE_LEAD_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in offline lead actions from your promoted Pins, in dollars"
         },
         "TOTAL_OFFLINE_LEAD_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of offline lead events resulting from interactions with your ad"
         },
         "TOTAL_OFFLINE_SIGNUP": {
@@ -2562,11 +2562,11 @@
             "description": "Total integer of offline signup events resulting from clicks on your ad"
         },
         "TOTAL_OFFLINE_SIGNUP_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in offline signup actions from your promoted Pins, in dollars"
         },
         "TOTAL_OFFLINE_SIGNUP_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of offline signup events resulting from interactions with your ad"
         },
         "TOTAL_OFFLINE_UNKNOWN": {
@@ -2574,11 +2574,11 @@
             "description": "Total integer of offline unknown events resulting from clicks on your ad"
         },
         "TOTAL_OFFLINE_UNKNOWN_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in offline unknown actions from your promoted Pins, in dollars"
         },
         "TOTAL_OFFLINE_UNKNOWN_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of offline unknown events resulting from interactions with your ad"
         },
         "TOTAL_OFFLINE_VIEW_CHECKOUT": {
@@ -2586,11 +2586,11 @@
             "description": "Total integer of offline checkout events resulting from views of your ad"
         },
         "TOTAL_OFFLINE_VIEW_CHECKOUT_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in offline view checkout actions from your promoted Pins, in dollars"
         },
         "TOTAL_OFFLINE_VIEW_CHECKOUT_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of offline checkout events resulting from views of your ad"
         },
         "TOTAL_OFFLINE_VIEW_CUSTOM": {
@@ -2598,11 +2598,11 @@
             "description": "Total integer of offline custom events resulting from views of your ad"
         },
         "TOTAL_OFFLINE_VIEW_CUSTOM_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in offline view custom actions from your promoted Pins, in dollars"
         },
         "TOTAL_OFFLINE_VIEW_CUSTOM_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of offline custom events resulting from views of your ad"
         },
         "TOTAL_OFFLINE_VIEW_LEAD": {
@@ -2610,11 +2610,11 @@
             "description": "Total integer of offline lead events resulting from views of your ad"
         },
         "TOTAL_OFFLINE_VIEW_LEAD_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in view click-through lead actions from your promoted Pins, in dollars"
         },
         "TOTAL_OFFLINE_VIEW_LEAD_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of offline lead events resulting from views of your ad"
         },
         "TOTAL_OFFLINE_VIEW_SIGNUP": {
@@ -2622,11 +2622,11 @@
             "description": "Total integer of offline signup events resulting from views of your ad"
         },
         "TOTAL_OFFLINE_VIEW_SIGNUP_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in offline view signup actions from your promoted Pins, in dollars"
         },
         "TOTAL_OFFLINE_VIEW_SIGNUP_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of offline signup events resulting from views of your ad"
         },
         "TOTAL_OFFLINE_VIEW_UNKNOWN": {
@@ -2634,11 +2634,11 @@
             "description": "Total integer of offline unknown events resulting from views of your ad"
         },
         "TOTAL_OFFLINE_VIEW_UNKNOWN_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total in offline view unknown actions from your promoted Pins, in dollars"
         },
         "TOTAL_OFFLINE_VIEW_UNKNOWN_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of offline unknown events resulting from views of your ad"
         },
         "TOTAL_ONE_TAP_V2_WEBSITE_VIEW": {
@@ -2694,11 +2694,11 @@
             "description": "Number of page visit conversions where the ad exposure occurred on tablet and conversion occurred on tablet"
         },
         "TOTAL_PAGE_VISIT_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The cost per page visit in dollars"
         },
         "TOTAL_PAGE_VISIT_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of page visit events resulting from interactions with your ad"
         },
         "TOTAL_REPIN": {
@@ -2754,11 +2754,11 @@
             "description": "Number of search conversions where the ad exposure occurred on tablet and conversion occurred on tablet"
         },
         "TOTAL_SEARCH_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The cost per search in dollars"
         },
         "TOTAL_SEARCH_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of website search events resulting from interactions with your ad"
         },
         "TOTAL_SEND": {
@@ -2810,11 +2810,11 @@
             "description": "Number of signup conversions where the ad exposure occurred on tablet and conversion occurred on tablet"
         },
         "TOTAL_SIGNUP_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The cost per signup in dollars"
         },
         "TOTAL_SIGNUP_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of signup events resulting from interactions with your ad"
         },
         "TOTAL_UNKNOWN": {
@@ -2862,11 +2862,11 @@
             "description": "Number of unknown conversions where the ad exposure occurred on tablet and conversion occurred on tablet"
         },
         "TOTAL_UNKNOWN_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The cost per unknown action in dollars"
         },
         "TOTAL_UNKNOWN_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of unknown events resulting from interactions with your ad"
         },
         "TOTAL_VIDEO_3SEC_VIEWS": {
@@ -2950,11 +2950,11 @@
             "description": "The quantity from total view add-to-cart actions from your promoted Pins"
         },
         "TOTAL_VIEW_ADD_TO_CART_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total view add-to-cart actions from your promoted Pins, in dollars"
         },
         "TOTAL_VIEW_ADD_TO_CART_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of add to cart events resulting from views of your ad"
         },
         "TOTAL_VIEW_APP_INSTALL": {
@@ -2966,7 +2966,7 @@
             "description": "The quantity from total view app install actions from your promoted Pins"
         },
         "TOTAL_VIEW_APP_INSTALL_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of app install events resulting from views of your ad"
         },
         "TOTAL_VIEW_CATEGORY": {
@@ -3014,11 +3014,11 @@
             "description": "Number of view category conversions where the ad exposure occurred on tablet and conversion occurred on tablet"
         },
         "TOTAL_VIEW_CATEGORY_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The total value of view category conversions, in dollars"
         },
         "TOTAL_VIEW_CATEGORY_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of category view events resulting from interactions with your ad"
         },
         "TOTAL_VIEW_CHECKOUT": {
@@ -3030,11 +3030,11 @@
             "description": "The quantity from total view checkouts from your promoted Pins"
         },
         "TOTAL_VIEW_CHECKOUT_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total view checkouts from your promoted Pins, in dollars"
         },
         "TOTAL_VIEW_CHECKOUT_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of checkout events resulting from views of your ad"
         },
         "TOTAL_VIEW_CUSTOM": {
@@ -3046,11 +3046,11 @@
             "description": "The quantity from total view custom actions from your promoted Pins"
         },
         "TOTAL_VIEW_CUSTOM_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total view custom actions from your promoted Pins, in dollars"
         },
         "TOTAL_VIEW_CUSTOM_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of custom events resulting from views of your ad"
         },
         "TOTAL_VIEW_LEAD": {
@@ -3062,11 +3062,11 @@
             "description": "The quantity from total view lead actions from your promoted Pins"
         },
         "TOTAL_VIEW_LEAD_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total view lead actions from your promoted Pins, in dollars"
         },
         "TOTAL_VIEW_LEAD_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of lead events resulting from views of your ad"
         },
         "TOTAL_VIEW_PAGE_VISIT": {
@@ -3078,11 +3078,11 @@
             "description": "The quantity from total view page visits from your promoted Pins"
         },
         "TOTAL_VIEW_PAGE_VISIT_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total view page visits from your promoted Pins, in dollars"
         },
         "TOTAL_VIEW_PAGE_VISIT_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of page visit events resulting from views of your ad"
         },
         "TOTAL_VIEW_SEARCH": {
@@ -3094,11 +3094,11 @@
             "description": "The quantity from total view search actions from your promoted Pins"
         },
         "TOTAL_VIEW_SEARCH_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total view search actions from your promoted Pins, in dollars"
         },
         "TOTAL_VIEW_SEARCH_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of website search events resulting from views of your ad"
         },
         "TOTAL_VIEW_SIGNUP": {
@@ -3110,11 +3110,11 @@
             "description": "The quantity from total view sign ups from your promoted Pins"
         },
         "TOTAL_VIEW_SIGNUP_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total view sign ups from your promoted Pins, in dollars"
         },
         "TOTAL_VIEW_SIGNUP_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of signup events resulting from views of your ad"
         },
         "TOTAL_VIEW_UNKNOWN": {
@@ -3126,7 +3126,7 @@
             "description": "The quantity from total view unknown actions from your promoted Pins"
         },
         "TOTAL_VIEW_UNKNOWN_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of unknown events resulting from views of your ad"
         },
         "TOTAL_VIEW_VIEW_CATEGORY": {
@@ -3138,11 +3138,11 @@
             "description": "The quantity from total view view category actions from your promoted Pins"
         },
         "TOTAL_VIEW_VIEW_CATEGORY_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total view view category actions from your promoted Pins, in dollars"
         },
         "TOTAL_VIEW_VIEW_CATEGORY_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of category events resulting from interactions with your ad"
         },
         "TOTAL_VIEW_WATCH_VIDEO": {
@@ -3154,11 +3154,11 @@
             "description": "The quantity from total view watch video actions from your promoted Pins"
         },
         "TOTAL_VIEW_WATCH_VIDEO_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total view watch video actions from your promoted Pins, in dollars"
         },
         "TOTAL_VIEW_WATCH_VIDEO_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of watch video events resulting from views of your ad"
         },
         "TOTAL_WATCH_VIDEO": {
@@ -3206,11 +3206,11 @@
             "description": "Number of watch video conversions where the ad exposure occurred on tablet and conversion occurred on tablet"
         },
         "TOTAL_WATCH_VIDEO_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The cost per video watch in dollars"
         },
         "TOTAL_WATCH_VIDEO_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of watch video events resulting from interactions with your ad"
         },
         "TOTAL_WEB_ADD_TO_CART": {
@@ -3218,11 +3218,11 @@
             "description": "Total integer of web add to cart events resulting from clicks on your ad"
         },
         "TOTAL_WEB_ADD_TO_CART_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total web add to cart actions from your promoted Pins, in dollars"
         },
         "TOTAL_WEB_ADD_TO_CART_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of web add to cart events resulting from interactions with your ad"
         },
         "TOTAL_WEB_CHECKOUT": {
@@ -3230,11 +3230,11 @@
             "description": "Total integer of web checkout events resulting from clicks on your ad"
         },
         "TOTAL_WEB_CHECKOUT_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total web checkout actions from your promoted Pins, in dollars"
         },
         "TOTAL_WEB_CHECKOUT_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of web checkout events resulting from interactions with your ad"
         },
         "TOTAL_WEB_CLICK_ADD_TO_CART": {
@@ -3242,11 +3242,11 @@
             "description": "Total integer of web add to cart events resulting from clicks on your ad"
         },
         "TOTAL_WEB_CLICK_ADD_TO_CART_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total web click add to cart actions from your promoted Pins, in dollars"
         },
         "TOTAL_WEB_CLICK_ADD_TO_CART_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of web add to cart events resulting from clicks on your ad"
         },
         "TOTAL_WEB_CLICK_CHECKOUT": {
@@ -3254,11 +3254,11 @@
             "description": "Total integer of web checkout events resulting from clicks on your ad"
         },
         "TOTAL_WEB_CLICK_CHECKOUT_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total web click checkout actions from your promoted Pins, in dollars"
         },
         "TOTAL_WEB_CLICK_CHECKOUT_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of web checkout events resulting from clicks on your ad"
         },
         "TOTAL_WEB_CLICK_CUSTOM": {
@@ -3266,11 +3266,11 @@
             "description": "Total integer of web custom events resulting from clicks on your ad"
         },
         "TOTAL_WEB_CLICK_CUSTOM_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total web click-through custom actions from your promoted Pins, in dollars"
         },
         "TOTAL_WEB_CLICK_CUSTOM_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of web custom events resulting from clicks on your ad"
         },
         "TOTAL_WEB_CLICK_LEAD": {
@@ -3278,11 +3278,11 @@
             "description": "Total integer of web lead events resulting from clicks on your ad"
         },
         "TOTAL_WEB_CLICK_LEAD_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total web click-through lead actions from your promoted Pins, in dollars"
         },
         "TOTAL_WEB_CLICK_LEAD_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of web lead events resulting from clicks on your ad"
         },
         "TOTAL_WEB_CLICK_PAGE_VISIT": {
@@ -3290,11 +3290,11 @@
             "description": "Total integer of web page visit events resulting from clicks on your ad"
         },
         "TOTAL_WEB_CLICK_PAGE_VISIT_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total web click page visit actions from your promoted Pins, in dollars"
         },
         "TOTAL_WEB_CLICK_PAGE_VISIT_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of web page visit events resulting from clicks on your ad"
         },
         "TOTAL_WEB_CLICK_SEARCH": {
@@ -3302,11 +3302,11 @@
             "description": "Total integer of web website search events resulting from clicks on your ad"
         },
         "TOTAL_WEB_CLICK_SEARCH_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total web click-through search actions from your promoted Pins, in dollars"
         },
         "TOTAL_WEB_CLICK_SEARCH_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of web website search events resulting from clicks on your ad"
         },
         "TOTAL_WEB_CLICK_SIGNUP": {
@@ -3314,11 +3314,11 @@
             "description": "Total integer of web signup events resulting from clicks on your ad"
         },
         "TOTAL_WEB_CLICK_SIGNUP_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total web click-through signup actions from your promoted Pins, in dollars"
         },
         "TOTAL_WEB_CLICK_SIGNUP_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of web signup events resulting from clicks on your ad"
         },
         "TOTAL_WEB_CLICK_UNKNOWN": {
@@ -3326,11 +3326,11 @@
             "description": "Total integer of web unknown events resulting from clicks on your ad"
         },
         "TOTAL_WEB_CLICK_UNKNOWN_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total web click-through order actions from your promoted Pins, in dollars"
         },
         "TOTAL_WEB_CLICK_UNKNOWN_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of web unknown events resulting from clicks on your ad"
         },
         "TOTAL_WEB_CLICK_VIEW_CATEGORY": {
@@ -3338,11 +3338,11 @@
             "description": "Total integer of web category view events resulting from clicks on your ad"
         },
         "TOTAL_WEB_CLICK_VIEW_CATEGORY_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total web click-through view category actions from your promoted Pins, in dollars"
         },
         "TOTAL_WEB_CLICK_VIEW_CATEGORY_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of web category view events resulting from clicks on your ad"
         },
         "TOTAL_WEB_CLICK_WATCH_VIDEO": {
@@ -3350,11 +3350,11 @@
             "description": "Total integer of web watch video events resulting from clicks on your ad"
         },
         "TOTAL_WEB_CLICK_WATCH_VIDEO_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total web click-through watch video actions from your promoted Pins, in dollars"
         },
         "TOTAL_WEB_CLICK_WATCH_VIDEO_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of web watch video events resulting from clicks on your ad"
         },
         "TOTAL_WEB_CUSTOM": {
@@ -3362,11 +3362,11 @@
             "description": "Total integer of web custom events resulting from clicks on your ad"
         },
         "TOTAL_WEB_CUSTOM_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total web custom actions from your promoted Pins, in dollars"
         },
         "TOTAL_WEB_CUSTOM_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of web custom events resulting from interactions with your ad"
         },
         "TOTAL_WEB_ENGAGEMENT_ADD_TO_CART": {
@@ -3374,7 +3374,7 @@
             "description": "Total integer of web add to cart events resulting from engagements with your ad (save, closeup or carousel swipe)"
         },
         "TOTAL_WEB_ENGAGEMENT_ADD_TO_CART_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of web add to cart events resulting from engagements with your ad (save, closeup or carousel swipe)"
         },
         "TOTAL_WEB_ENGAGEMENT_CHECKOUT": {
@@ -3382,11 +3382,11 @@
             "description": "Total integer of web checkout events resulting from engagements with your ad (save, closeup or carousel swipe)"
         },
         "TOTAL_WEB_ENGAGEMENT_CHECKOUT_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total web engagement checkout actions from your promoted Pins, in dollars"
         },
         "TOTAL_WEB_ENGAGEMENT_CHECKOUT_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of web checkout events resulting from engagements with your ad (save, closeup or carousel swipe)"
         },
         "TOTAL_WEB_ENGAGEMENT_CUSTOM": {
@@ -3394,11 +3394,11 @@
             "description": "Total integer of web custom events resulting from engagements with your ad (save, closeup or carousel swipe)"
         },
         "TOTAL_WEB_ENGAGEMENT_CUSTOM_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total web engagement custom actions from your promoted Pins, in dollars"
         },
         "TOTAL_WEB_ENGAGEMENT_CUSTOM_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of web custom events resulting from engagements with your ad (save, closeup or carousel swipe)"
         },
         "TOTAL_WEB_ENGAGEMENT_LEAD": {
@@ -3406,11 +3406,11 @@
             "description": "Total integer of web lead events resulting from engagements with your ad (save, closeup or carousel swipe)"
         },
         "TOTAL_WEB_ENGAGEMENT_LEAD_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total web engagement lead actions from your promoted Pins, in dollars"
         },
         "TOTAL_WEB_ENGAGEMENT_LEAD_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of web lead events resulting from engagements with your ad (save, closeup or carousel swipe)"
         },
         "TOTAL_WEB_ENGAGEMENT_PAGE_VISIT": {
@@ -3418,11 +3418,11 @@
             "description": "Total integer of web page visit events resulting from engagements with your ad (save, closeup or carousel swipe)"
         },
         "TOTAL_WEB_ENGAGEMENT_PAGE_VISIT_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total web engagement page visit actions from your promoted Pins, in dollars"
         },
         "TOTAL_WEB_ENGAGEMENT_PAGE_VISIT_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of web page visit events resulting from engagements with your ad (save, closeup or carousel swipe)"
         },
         "TOTAL_WEB_ENGAGEMENT_SEARCH": {
@@ -3430,11 +3430,11 @@
             "description": "Total integer of web website search events resulting from engagements with your ad (save, closeup or carousel swipe)"
         },
         "TOTAL_WEB_ENGAGEMENT_SEARCH_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total web engagement search actions from your promoted Pins, in dollars"
         },
         "TOTAL_WEB_ENGAGEMENT_SEARCH_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of web website search events resulting from engagements with your ad (save, closeup or carousel swipe)"
         },
         "TOTAL_WEB_ENGAGEMENT_SIGNUP": {
@@ -3442,11 +3442,11 @@
             "description": "Total integer of web signup events resulting from engagements with your ad (save, closeup or carousel swipe)"
         },
         "TOTAL_WEB_ENGAGEMENT_SIGNUP_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total web engagement signup actions from your promoted Pins, in dollars"
         },
         "TOTAL_WEB_ENGAGEMENT_SIGNUP_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of web signup events resulting from engagements with your ad (save, closeup or carousel swipe)"
         },
         "TOTAL_WEB_ENGAGEMENT_UNKNOWN": {
@@ -3454,11 +3454,11 @@
             "description": "Total integer of web unknown events resulting from engagements with your ad (save, closeup or carousel swipe)"
         },
         "TOTAL_WEB_ENGAGEMENT_UNKNOWN_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total web engagement order actions from your promoted Pins, in dollars"
         },
         "TOTAL_WEB_ENGAGEMENT_UNKNOWN_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of web unknown events resulting from engagements with your ad (save, closeup or carousel swipe)"
         },
         "TOTAL_WEB_ENGAGEMENT_VIEW_CATEGORY": {
@@ -3466,11 +3466,11 @@
             "description": "Total integer of web category view events resulting from engagements with your ad (save, closeup or carousel swipe)"
         },
         "TOTAL_WEB_ENGAGEMENT_VIEW_CATEGORY_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total web engagement view category actions from your promoted Pins, in dollars"
         },
         "TOTAL_WEB_ENGAGEMENT_VIEW_CATEGORY_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of web category view events resulting from engagements with your ad (save, closeup or carousel swipe)"
         },
         "TOTAL_WEB_ENGAGEMENT_WATCH_VIDEO": {
@@ -3478,11 +3478,11 @@
             "description": "Total integer of web watch video events resulting from engagements with your ad (save, closeup or carousel swipe)"
         },
         "TOTAL_WEB_ENGAGEMENT_WATCH_VIDEO_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total web engagement watch video actions from your promoted Pins, in dollars"
         },
         "TOTAL_WEB_ENGAGEMENT_WATCH_VIDEO_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of web watch video events resulting from engagements with your ad (save, closeup or carousel swipe)"
         },
         "TOTAL_WEB_LEAD": {
@@ -3490,11 +3490,11 @@
             "description": "Total integer of web lead events resulting from clicks on your ad"
         },
         "TOTAL_WEB_LEAD_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total web lead actions from your promoted Pins, in dollars"
         },
         "TOTAL_WEB_LEAD_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of web lead events resulting from interactions with your ad"
         },
         "TOTAL_WEB_PAGE_VISIT": {
@@ -3502,11 +3502,11 @@
             "description": "Total integer of web page visit events resulting from clicks on your ad"
         },
         "TOTAL_WEB_PAGE_VISIT_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total web page visit actions from your promoted Pins, in dollars"
         },
         "TOTAL_WEB_PAGE_VISIT_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of web page visit events resulting from interactions with your ad"
         },
         "TOTAL_WEB_SEARCH": {
@@ -3514,11 +3514,11 @@
             "description": "Total integer of web website search events resulting from clicks on your ad"
         },
         "TOTAL_WEB_SEARCH_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total web search actions from your promoted Pins, in dollars"
         },
         "TOTAL_WEB_SEARCH_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of web website search events resulting from interactions with your ad"
         },
         "TOTAL_WEB_SESSIONS": {
@@ -3530,11 +3530,11 @@
             "description": "Total integer of web signup events resulting from clicks on your ad"
         },
         "TOTAL_WEB_SIGNUP_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total web signup actions from your promoted Pins, in dollars"
         },
         "TOTAL_WEB_SIGNUP_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of web signup events resulting from interactions with your ad"
         },
         "TOTAL_WEB_UNKNOWN": {
@@ -3542,11 +3542,11 @@
             "description": "Total integer of web unknown events resulting from clicks on your ad"
         },
         "TOTAL_WEB_UNKNOWN_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total web order actions from your promoted Pins, in dollars"
         },
         "TOTAL_WEB_UNKNOWN_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of web unknown events resulting from interactions with your ad"
         },
         "TOTAL_WEB_VIEW_ADD_TO_CART": {
@@ -3554,11 +3554,11 @@
             "description": "Total integer of web add to cart events resulting from views of your ad"
         },
         "TOTAL_WEB_VIEW_ADD_TO_CART_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total web view add to cart actions from your promoted Pins, in dollars"
         },
         "TOTAL_WEB_VIEW_ADD_TO_CART_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of web add to cart events resulting from views of your ad"
         },
         "TOTAL_WEB_VIEW_CATEGORY": {
@@ -3566,11 +3566,11 @@
             "description": "Total integer of web category view events resulting from clicks on your ad"
         },
         "TOTAL_WEB_VIEW_CATEGORY_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total web view category actions from your promoted Pins, in dollars"
         },
         "TOTAL_WEB_VIEW_CATEGORY_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of web category view events resulting from interactions with your ad"
         },
         "TOTAL_WEB_VIEW_CHECKOUT": {
@@ -3578,11 +3578,11 @@
             "description": "Total integer of web checkout events resulting from views of your ad"
         },
         "TOTAL_WEB_VIEW_CHECKOUT_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total web view checkout actions from your promoted Pins, in dollars"
         },
         "TOTAL_WEB_VIEW_CHECKOUT_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of web checkout events resulting from views of your ad"
         },
         "TOTAL_WEB_VIEW_CUSTOM": {
@@ -3590,11 +3590,11 @@
             "description": "Total integer of web custom events resulting from views of your ad"
         },
         "TOTAL_WEB_VIEW_CUSTOM_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total web view custom actions from your promoted Pins, in dollars"
         },
         "TOTAL_WEB_VIEW_CUSTOM_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of web custom events resulting from views of your ad"
         },
         "TOTAL_WEB_VIEW_LEAD": {
@@ -3602,11 +3602,11 @@
             "description": "Total integer of web lead events resulting from views of your ad"
         },
         "TOTAL_WEB_VIEW_LEAD_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total web view lead actions from your promoted Pins, in dollars"
         },
         "TOTAL_WEB_VIEW_LEAD_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of web lead events resulting from views of your ad"
         },
         "TOTAL_WEB_VIEW_PAGE_VISIT": {
@@ -3614,11 +3614,11 @@
             "description": "Total integer of web page visit events resulting from views of your ad"
         },
         "TOTAL_WEB_VIEW_PAGE_VISIT_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total web view page visit actions from your promoted Pins, in dollars"
         },
         "TOTAL_WEB_VIEW_PAGE_VISIT_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of web page visit events resulting from views of your ad"
         },
         "TOTAL_WEB_VIEW_SEARCH": {
@@ -3626,11 +3626,11 @@
             "description": "Total integer of web website search events resulting from views of your ad"
         },
         "TOTAL_WEB_VIEW_SEARCH_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total web view search actions from your promoted Pins, in dollars"
         },
         "TOTAL_WEB_VIEW_SEARCH_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of web website search events resulting from views of your ad"
         },
         "TOTAL_WEB_VIEW_SIGNUP": {
@@ -3638,11 +3638,11 @@
             "description": "Total integer of web signup events resulting from views of your ad"
         },
         "TOTAL_WEB_VIEW_SIGNUP_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total web view signup actions from your promoted Pins, in dollars"
         },
         "TOTAL_WEB_VIEW_SIGNUP_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of web signup events resulting from views of your ad"
         },
         "TOTAL_WEB_VIEW_UNKNOWN": {
@@ -3650,11 +3650,11 @@
             "description": "Total integer of web unknown events resulting from views of your ad"
         },
         "TOTAL_WEB_VIEW_UNKNOWN_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total web view order actions from your promoted Pins, in dollars"
         },
         "TOTAL_WEB_VIEW_UNKNOWN_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of web unknown events resulting from views of your ad"
         },
         "TOTAL_WEB_VIEW_VIEW_CATEGORY": {
@@ -3662,11 +3662,11 @@
             "description": "Total integer of web category view events resulting from views of your ad"
         },
         "TOTAL_WEB_VIEW_VIEW_CATEGORY_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total view view category actions from your promoted Pins, in dollars"
         },
         "TOTAL_WEB_VIEW_VIEW_CATEGORY_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of web category view events resulting from views of your ad"
         },
         "TOTAL_WEB_VIEW_WATCH_VIDEO": {
@@ -3674,11 +3674,11 @@
             "description": "Total integer of web watch video events resulting from views of your ad"
         },
         "TOTAL_WEB_VIEW_WATCH_VIDEO_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total web view watch video actions from your promoted Pins, in dollars"
         },
         "TOTAL_WEB_VIEW_WATCH_VIDEO_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of web watch video events resulting from views of your ad"
         },
         "TOTAL_WEB_WATCH_VIDEO": {
@@ -3686,11 +3686,11 @@
             "description": "Total integer of web watch video events resulting from clicks on your ad"
         },
         "TOTAL_WEB_WATCH_VIDEO_VALUE_IN_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "The value from total web watch video actions from your promoted Pins, in dollars"
         },
         "TOTAL_WEB_WATCH_VIDEO_VALUE_IN_MICRO_DOLLAR": {
-            "type": "integer",
+            "type": "number",
             "description": "Total value of web watch video events resulting from interactions with your ad"
         },
         "UNKNOWN_COST_PER_ACTION": {
