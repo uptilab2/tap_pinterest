@@ -50,7 +50,7 @@
             "description": "Campaign ID for your ad group"
         },
         "AD_GROUP_CAMPAIGN_NAME": {
-            "type": ["null", "number"],
+            "type": ["null", "string"],
             "description": "Campaign name for your ad group"
         },
         "AD_GROUP_CREATIVE_TYPE": {
@@ -66,7 +66,7 @@
             "description": "The integer of days an ad group has left to serve"
         },
         "AD_GROUP_END_DATE": {
-            "type": ["null", "number"],
+            "type": ["null", "date"],
             "description": "The end date of your ad group"
         },
         "AD_GROUP_HOLDOUT_EXPERIMENT": {
@@ -78,7 +78,7 @@
             "description": "Unique ID for your ad group"
         },
         "AD_GROUP_NAME": {
-            "type": ["null", "number"],
+            "type": ["null", "string"],
             "description": "Name, objective and ID of your ad group"
         },
         "AD_GROUP_PACING": {
@@ -94,11 +94,11 @@
             "description": "Surface where your ad was shown (browse, search or all)"
         },
         "AD_GROUP_START_DATE": {
-            "type": ["null", "number"],
+            "type": ["null", "date"],
             "description": "The start date of your ad group"
         },
         "AD_GROUP_STATUS": {
-            "type": ["null", "number"],
+            "type": ["null", "string"],
             "description": "Pause or activate your ad group"
         },
         "APP_INSTALL_COST_PER_ACTION": {
@@ -126,7 +126,7 @@
             "description": "The maximum amount you're willing to spend in one day"
         },
         "CAMPAIGN_END_DATE": {
-            "type": ["null", "number"],
+            "type": ["null", "date"],
             "description": "The end date and end time of your campaign in UTC. Available for campaigns using Campaign Budget."
         },
         "CAMPAIGN_ID": {
@@ -138,7 +138,7 @@
             "description": "The maximum amount you're willing to spend over the lifetime of your campaign"
         },
         "CAMPAIGN_NAME": {
-            "type": ["null", "number"],
+            "type": ["null", "string"],
             "description": "Name, objective and ID of your campaign"
         },
         "CAMPAIGN_OBJECTIVE_TYPE": {
@@ -146,11 +146,11 @@
             "description": "The objective you chose for your campaign (Awareness, Traffic, App installs, Catalog sales, Conversions or Video views)"
         },
         "CAMPAIGN_START_DATE": {
-            "type": ["null", "number"],
+            "type": ["null", "date"],
             "description": "The start date and start time of your campaign in UTC. Available for campaigns using Campaign Budget."
         },
         "CAMPAIGN_STATUS": {
-            "type": ["null", "number"],
+            "type": ["null", "string"],
             "description": "Pause or activate your campaign"
         },
         "CAROUSEL_SLOT_CLICKTHROUGH_1": {
@@ -1090,7 +1090,7 @@
             "description": "Ad group ID for your keyword"
         },
         "KEYWORD_AD_GROUP_NAME": {
-            "type": ["null", "number"],
+            "type": ["null", "string"],
             "description": "Ad group name for your keyword"
         },
         "KEYWORD_BID_IN_MICRO_CURRENCY": {
@@ -1102,7 +1102,7 @@
             "description": "Campaign ID for your keyword"
         },
         "KEYWORD_CAMPAIGN_NAME": {
-            "type": ["null", "number"],
+            "type": ["null", "string"],
             "description": "Campaign name for your keyword"
         },
         "KEYWORD_ID": {
@@ -1234,7 +1234,7 @@
             "description": "The id of the ad group for this promoted pin"
         },
         "PIN_PROMOTION_AD_GROUP_NAME": {
-            "type": ["null", "number"],
+            "type": ["null", "string"],
             "description": "Ad group name for your ad"
         },
         "PIN_PROMOTION_CAMPAIGN_ACTION_TYPE": {
@@ -1246,7 +1246,7 @@
             "description": "Campaign ID for your ad"
         },
         "PIN_PROMOTION_CAMPAIGN_NAME": {
-            "type": ["null", "number"],
+            "type": ["null", "string"],
             "description": "Campaign name for your ad"
         },
         "PIN_PROMOTION_CREATIVE_TYPE": {
@@ -1270,7 +1270,7 @@
             "description": "Unique ID for your ad"
         },
         "PIN_PROMOTION_NAME": {
-            "type": ["null", "number"],
+            "type": ["null", "string"],
             "description": "Name, objective and ID of your ad"
         },
         "PIN_PROMOTION_REJECTION_LABELS": {
@@ -1278,11 +1278,11 @@
             "description": "Reason your ad wasn't approved"
         },
         "PIN_PROMOTION_REVIEW_STATUS": {
-            "type": ["null", "number"],
+            "type": ["null", "string"],
             "description": "Ad status (approved, pending, paused, rejected, or archived)"
         },
         "PIN_PROMOTION_STATUS": {
-            "type": ["null", "number"],
+            "type": ["null", "string"],
             "description": "Pause or activate your Promoted Pin"
         },
         "PRODUCT_GROUP_AD_GROUP_ID": {
@@ -1290,7 +1290,7 @@
             "description": "Ad group ID for your product group"
         },
         "PRODUCT_GROUP_AD_GROUP_NAME": {
-            "type": ["null", "number"],
+            "type": ["null", "string"],
             "description": "Ad group name for your product group"
         },
         "PRODUCT_GROUP_BID_IN_MICRO_CURRENCY": {
@@ -1302,7 +1302,7 @@
             "description": "Campaign ID for your product group"
         },
         "PRODUCT_GROUP_CAMPAIGN_NAME": {
-            "type": ["null", "number"],
+            "type": ["null", "string"],
             "description": "Campaign name for your product group"
         },
         "PRODUCT_GROUP_CREATIVE_TYPE": {
@@ -1314,7 +1314,7 @@
             "description": "Name and ID of your product group"
         },
         "PRODUCT_GROUP_ENTITY_STATUS": {
-            "type": ["null", "number"],
+            "type": ["null", "string"],
             "description": "Pause or activate your product group"
         },
         "PRODUCT_GROUP_ID": {
@@ -1326,7 +1326,7 @@
             "description": "Indicates if product group bid is included"
         },
         "PRODUCT_GROUP_STATUS": {
-            "type": ["null", "number"],
+            "type": ["null", "string"],
             "description": "Product group status (active, paused, excluded or archived)"
         },
         "PRODUCT_ITEM_ID": {
@@ -1338,7 +1338,7 @@
             "description": "Promoted catalog product group id"
         },
         "PROMOTED_CATALOG_PRODUCT_GROUP_REFERENCE_NAME": {
-            "type": ["null", "number"],
+            "type": ["null", "string"],
             "description": "Promoted catalog product group name"
         },
         "PROMOTED_CATALOG_PRODUCT_GROUP_TRACKING_TEMPLATE_URL": {
