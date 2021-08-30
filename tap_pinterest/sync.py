@@ -54,7 +54,10 @@ def process_records(catalog, stream_name, records, time_extracted,
         for record in records:
             for key in schema['properties']:
                 if key not in record:
-                    record[key] = 0
+                    record[key] = None
+                elif isinstance(record[key], int) or (isinstance(record[key], str) and record[key].isdigit()):
+                    # Cast ints to floats to never have schema issues.
+                    record[key] = float(record[key])
 
             # If child object, add parent_id to record
             if parent_id and parent:
