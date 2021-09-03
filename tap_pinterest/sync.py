@@ -96,15 +96,34 @@ def get_advertiser_ids(client, url, owner_user_id=None):
 
 
 # Sync a specific parent or child endpoint.
-def sync_endpoint(client, catalog, state, start_date, stream_name, path, endpoint_config, parent_id=None):
+def sync_endpoint(client, catalog, state, start_date, stream_name, path, endpoint_config, parent_id=None, custom_reports=None):
 
     url = f'{BASE_URL}/{path}'
 
     # Two types of endpoints exist, each with their own logic.
     if (endpoint_config.get('async_report', False)):
-        total_records, max_bookmark_value = sync_async_endpoint(client, catalog, state, url, stream_name, start_date, endpoint_config, parent_id)
+        total_records, max_bookmark_value = sync_async_endpoint(
+            client,
+            catalog,
+            state,
+            url,
+            stream_name,
+            start_date,
+            endpoint_config,
+            parent_id,
+            custom_reports
+        )
     else:
-        total_records, max_bookmark_value = sync_rest_endpoint(client, catalog, state, url, stream_name, start_date, endpoint_config, parent_id)
+        total_records, max_bookmark_value = sync_rest_endpoint(
+            client,
+            catalog,
+            state,
+            url,
+            stream_name,
+            start_date,
+            endpoint_config,
+            parent_id
+        )
 
     return total_records, max_bookmark_value
 
@@ -242,7 +261,7 @@ def sync_rest_endpoint(client, catalog, state, url, stream_name, start_date, end
     return total_records, max_bookmark_value
 
 
-def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, endpoint_config, parent_id=None):
+def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, endpoint_config, parent_id=None, custom_reports=None):
     """ Sync endpoints using the fancy ansyc report method.
     https://developers.pinterest.com/docs/redoc/combined_reporting/#operation/ads_v3_create_advertiser_delivery_metrics_report_POST
     https://developers.pinterest.com/docs/redoc/combined_reporting/#tag/reports
@@ -251,6 +270,13 @@ def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, en
     # Request params
     # start_date and end_date are already defined in the endpoints dict    
     body = endpoint_config.get('params')
+
+    if custom_reports:
+        for custom_report in custom_reports:
+            if custom_report['stream'] == stream_name:
+                body.update(
+                    metrics=custom_report['columns']
+                )
 
     # Get the latest bookmark for the stream and set the last_datetime
     last_datetime = get_bookmark(state, stream_name, start_date)
@@ -291,10 +317,10 @@ def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, en
 
             LOGGER.info(f' -- Looking up data for advertiser: {advertiser_id} ---- segment: {start} --TO--> {end}')
 
-            body.update({
-                'start_date': start.strftime("%Y-%m-%d"),
-                'end_date': end.strftime("%Y-%m-%d")
-            })
+            body.update(dict(
+                start_date=start.strftime("%Y-%m-%d"),
+                end_date=end.strftime("%Y-%m-%d")
+            ))
 
             # Create request to generate report
             LOGGER.info(f'URL for {stream_name}: {url} -> body: {body.items()}')
@@ -415,7 +441,6 @@ def sync(client, config, catalog, state):
     last_stream = singer.get_currently_syncing(state)
     LOGGER.info(f'last/currently syncing stream: {last_stream}')
 
-    # TODO: Add all endpoints
     # endpoints: API URL endpoints to be called
     endpoints = {
         'advertisers': {
@@ -514,7 +539,8 @@ def sync(client, config, catalog, state):
                 start_date=datetime.strptime(config.get('start_date'), "%Y-%m-%dT%H:%M:%SZ"),
                 stream_name=stream_name,
                 path=path,
-                endpoint_config=endpoint_config
+                endpoint_config=endpoint_config,
+                custom_reports=config.get('custom_report')
             )
 
             # Write parent bookmarks

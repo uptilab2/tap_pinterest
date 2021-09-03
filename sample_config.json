@@ -4,5 +4,6 @@
   "client_secret": "xxx",
   "refresh_token": "xxx",
   "access_token": "xxx",
-  "owner_user_id": ""
+  "owner_user_id": "",
+  "custom_report": "[{\"stream\": \"advertiser_delivery_metrics\", \"columns\": [\"AD_GROUP_DAILY_SPEND_GOAL\", \"AD_GROUP_DAYS_REMAINING\"]}]"
 }
