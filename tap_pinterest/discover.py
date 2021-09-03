@@ -19,13 +19,13 @@ def discover(custom_reports=None):
             metadata=mdata
         ))
 
-        custom_reports = [custom_report for custom_report in custom_reports if stream_name == custom_report['name']]
+        custom_reports = [custom_report for custom_report in custom_reports if stream_name == custom_report['stream']]
 
         # If there are custom reports for this stream name, define a custom schema for this report.
         for custom_report in custom_reports:
             tmp_report = dict()
             for key, value in schema_dict.items():
-                if key in custom_report['schema']:
+                if key in custom_report['columns']:
                     tmp_report[key] = value
             catalog.streams.append(CatalogEntry(
                 stream=stream_name,
