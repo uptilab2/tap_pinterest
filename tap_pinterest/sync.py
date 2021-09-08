@@ -394,10 +394,10 @@ def retry_report(client, method, url, stream_name, key='token', **kwargs):
 
 
 # Review catalog and make a list of selected streams
-def get_selected_streams(catalog):
+def get_selected_streams(catalog, custom_reports=None):
     return [
         stream.tap_stream_id for stream in catalog.streams
-        if stream.schema.selected
+        if stream.schema.selected or stream.tap_stream_id in [custom_report['stream'] for custom_report in custom_reports]
     ]
 
 
@@ -431,7 +431,7 @@ def sync(client, config, catalog, state):
     date = datetime.strptime(config['start_date'], "%Y-%m-%dT%H:%M:%SZ")
     date_string = datetime.strftime(date, "%Y-%m-%d")
 
-    selected_streams = get_selected_streams(catalog)
+    selected_streams = get_selected_streams(catalog, config.get('custom_reports'))
     LOGGER.info(f'selected_streams: {selected_streams}')
 
     if not selected_streams:
