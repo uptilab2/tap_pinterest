@@ -39,15 +39,31 @@ def get_abs_path(path):
     return os.path.join(os.path.dirname(os.path.realpath(__file__)), path)
 
 
-def get_schemas():
+def get_schemas(custom_reports=None):
     schemas = {}
     field_metadata = {}
 
     for stream_name, stream_metadata in STREAMS.items():
+
+        filtered_custom_reports = [custom_report for custom_report in custom_reports if stream_name == custom_report['stream']]
+
         schema_path = get_abs_path(f'schemas/{stream_name}.json')
         with open(schema_path) as file:
             schema = json.load(file)
+
+        # If there are custom reports for this stream name, define a custom schema for this report.
+        for custom_report in filtered_custom_reports:
+            custom_schema = dict(type='object', properties={})
+
+            for key, value in schema['properties'].items():
+                if key in custom_report['columns']:
+                    custom_schema['properties'][key] = value
+
+            if custom_schema['properties']:
+                schema = custom_schema
+
         schemas[stream_name] = schema
+
         mdata = metadata.new()
 
         # Documentation:
