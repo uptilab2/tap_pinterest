@@ -5,7 +5,6 @@ from singer import metadata
 # Reference:
 #   https://github.com/singer-io/getting-started/blob/master/docs/DISCOVERY_MODE.md#Metadata
 
-# TODO: Fill STREAMS list
 STREAMS = {
     'advertisers': {
         'key_properties': ['id'],
@@ -20,12 +19,24 @@ STREAMS = {
     'advertiser_delivery_metrics': {
         'key_properties': ['ADVERTISER_ID'],
         'replication_method': 'INCREMENTAL',
-        'replication_keys': ['DATE']
+        'replication_keys': ['DATE'],
+        'entity_fields': [
+            'ADVERTISER_NAME',
+            'ADVERTISER_ID'
+        ]
     },
     'campaign_delivery_metrics': {
         'key_properties': ['CAMPAIGN_ID'],
         'replication_method': 'INCREMENTAL',
-        'replication_keys': ['DATE']
+        'replication_keys': ['DATE'],
+        'entity_fields': [
+            'ADVERTISER_NAME',
+            'CAMPAIGN_NAME',
+            'CAMPAIGN_ID',
+            'CAMPAIGN_STATUS',
+            'CAMPAIGN_START_DATE',
+            'CAMPAIGN_END_DATE',
+        ]
     },
     'campaign_ad_groups': {
         'key_properties': ['id'],
@@ -56,7 +67,7 @@ def get_schemas(custom_reports=None):
             custom_schema = dict(type='object', properties={})
 
             for key, value in schema['properties'].items():
-                if key in custom_report['columns']:
+                if key in custom_report['columns'] or key in stream_metadata.get('entity_fields', []):
                     custom_schema['properties'][key] = value
 
             if custom_schema['properties']:

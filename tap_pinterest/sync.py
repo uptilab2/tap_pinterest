@@ -2,6 +2,7 @@ import singer
 import backoff
 from singer import metrics, utils
 from datetime import datetime, timezone, timedelta, date
+from tap_pinterest.schema import STREAMS
 
 LOGGER = singer.get_logger()
 API_VERSION = 'v3'
@@ -271,12 +272,22 @@ def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, en
     """
 
     # Request params
-    # start_date and end_date are already defined in the endpoints dict    
+    # start_date and end_date are already defined in the endpoints dict
     body = endpoint_config.get('params')
 
     if custom_reports:
         for custom_report in custom_reports:
             if custom_report['stream'] == stream_name:
+                entity_fields = []
+                for entity in STREAMS[stream_name].get('entity_fields', []):
+                    if entity in custom_report['columns']:
+                        entity_fields.append(entity)
+                        custom_report['columns'].remove(entity)
+                if entity_fields:
+                    body.update(
+                        entity_fields=entity_fields
+                    )
+
                 body.update(
                     metrics=custom_report['columns']
                 )
