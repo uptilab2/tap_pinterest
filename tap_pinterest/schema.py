@@ -22,7 +22,20 @@ STREAMS = {
         'replication_keys': ['DATE'],
         'entity_fields': [
             'ADVERTISER_NAME',
-            'ADVERTISER_ID'
+            'ADVERTISER_ID',
+            'AD_GROUP_ID',
+            'AD_GROUP_NAME',
+            'AD_GROUP_STATUS',
+            'CAMPAIGN_NAME',
+            'CAMPAIGN_ID',
+            'CAMPAIGN_STATUS',
+            'CAMPAIGN_MANAGED_STATUS',
+            'CAMPAIGN_START_DATE',
+            'CAMPAIGN_END_DATE',
+            'PRODUCT_GROUP_ID',
+            'PIN_PROMOTION_ID',
+            'PIN_PROMOTION_NAME',
+            'PIN_PROMOTION_STATUS',
         ]
     },
     'campaign_delivery_metrics': {
@@ -30,12 +43,19 @@ STREAMS = {
         'replication_method': 'INCREMENTAL',
         'replication_keys': ['DATE'],
         'entity_fields': [
-            'ADVERTISER_NAME',
+            'AD_GROUP_ID',
+            'AD_GROUP_NAME',
+            'AD_GROUP_STATUS',
             'CAMPAIGN_NAME',
             'CAMPAIGN_ID',
             'CAMPAIGN_STATUS',
+            'CAMPAIGN_MANAGED_STATUS',
             'CAMPAIGN_START_DATE',
             'CAMPAIGN_END_DATE',
+            'PRODUCT_GROUP_ID',
+            'PIN_PROMOTION_ID',
+            'PIN_PROMOTION_NAME',
+            'PIN_PROMOTION_STATUS',
         ]
     },
     'campaign_ad_groups': {
