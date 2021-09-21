@@ -288,10 +288,6 @@ def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, en
                         entity_fields=entity_fields
                     )
 
-                body.update(
-                    metrics=custom_report['columns']
-                )
-
     # Get the latest bookmark for the stream and set the last_datetime
     last_datetime = get_bookmark(state, stream_name, start_date)
     max_bookmark_value = last_datetime
