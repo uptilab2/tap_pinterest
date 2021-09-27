@@ -61,7 +61,7 @@ def process_records(catalog, stream_name, records, time_extracted,
                     record[key] = float(record[key])
 
             # Remove all entries that are not in the schema. This is used for custom reports.
-            record = {key: record[key] for key in record if key in schema['properties']}
+            record = {key: value for key, value in record.items() if key in schema['properties']}
 
             # If child object, add parent_id to record
             if parent_id and parent:
