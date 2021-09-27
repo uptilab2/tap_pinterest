@@ -67,7 +67,10 @@ def process_records(catalog, stream_name, records, time_extracted,
             if parent_id and parent:
                 record[parent + '_id'] = parent_id
 
-            bookmark_dttm = datetime.strptime(record[bookmark_field], '%Y-%m-%d') or datetime.now()
+            if bookmark_field in record:
+                bookmark_dttm = datetime.strptime(record[bookmark_field], '%Y-%m-%d')
+            else:
+                bookmark_dttm = datetime.now()
 
             if isinstance(max_bookmark_value, str):
                 max_bookmark_value = datetime.strptime(max_bookmark_value, "%Y-%m-%dT%H:%M:%SZ")
