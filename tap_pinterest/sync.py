@@ -60,6 +60,9 @@ def process_records(catalog, stream_name, records, time_extracted,
                     # Cast ints to floats to never have schema issues.
                     record[key] = float(record[key])
 
+            # Remove all entries that are not in the schema. This is used for custom reports.
+            record = {key: record[key] for key in record if key in schema['properties']}
+
             # If child object, add parent_id to record
             if parent_id and parent:
                 record[parent + '_id'] = parent_id
@@ -282,15 +285,10 @@ def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, en
                 for entity in STREAMS[stream_name].get('entity_fields', []):
                     if entity in custom_report['columns']:
                         entity_fields.append(entity)
-                        custom_report['columns'].remove(entity)
                 if entity_fields:
                     body.update(
                         entity_fields=entity_fields
                     )
-
-                body.update(
-                    metrics=custom_report['columns']
-                )
 
     # Get the latest bookmark for the stream and set the last_datetime
     last_datetime = get_bookmark(state, stream_name, start_date)
