@@ -625,6 +625,10 @@
             "type": ["null", "number"],
             "description": "Average return on spend for custom events"
         },
+        "DATE": {
+            "type": ["null", "date"],
+            "description": "The date for the current line."
+        },
         "DESTINATION_VIEWS_1": {
             "type": ["null", "number"],
             "description": "The integer of times your destination was seen after a click on your ads"

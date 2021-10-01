@@ -91,6 +91,7 @@ def get_schemas(custom_reports=None):
                     custom_schema['properties'][key] = value
 
             if custom_schema['properties']:
+                custom_schema['properties']['DATE'] = schema['properties'].get('DATE', None)
                 schema = custom_schema
 
         schemas[stream_name] = schema
