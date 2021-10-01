@@ -358,6 +358,8 @@ def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, en
             else:
                 report_url = retry_report(client, 'get', url, stream_name, params=dict(token=token), key='url')
 
+            LOGGER.info(f'REPORT URL -> {report_url}')
+
             # Now that we have the report, we need to dowload the link to the file.
             data = client.download_report(report_url)
             total_records = 0
