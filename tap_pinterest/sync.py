@@ -321,7 +321,10 @@ def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, en
             segments.append((segment_start, now))
 
     path = f'{BASE_URL}/advertisers'
-    advertiser_ids = endpoint_config['advertiser_ids'] or get_advertiser_ids(client, path, endpoint_config.get('owner_user_id'))
+    if endpoint_config.get('advertiser_ids'):
+        advertiser_ids = [endpoint_config['advertiser_ids']]
+    else:
+        advertiser_ids = get_advertiser_ids(client, path, endpoint_config.get('owner_user_id'))
 
     LOGGER.info(f' -- advertiser_ids = {advertiser_ids}')
 
