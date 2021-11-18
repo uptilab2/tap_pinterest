@@ -176,7 +176,7 @@ def sync_rest_endpoint(client, catalog, state, url, stream_name, start_date, end
 
     path = f'{BASE_URL}/advertisers'
     if endpoint_config.get('advertiser_ids'):
-        advertiser_ids = [endpoint_config['advertiser_ids']]
+        advertiser_ids = [a_id.strip() for a_id in endpoint_config['advertiser_ids'].split(',')]
     else:
         advertiser_ids = get_advertiser_ids(client, path, endpoint_config.get('owner_user_id'))
 
@@ -322,7 +322,7 @@ def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, en
 
     path = f'{BASE_URL}/advertisers'
     if endpoint_config.get('advertiser_ids'):
-        advertiser_ids = [endpoint_config['advertiser_ids']]
+        advertiser_ids = [a_id.strip() for a_id in endpoint_config['advertiser_ids'].split(',')]
     else:
         advertiser_ids = get_advertiser_ids(client, path, endpoint_config.get('owner_user_id'))
 
