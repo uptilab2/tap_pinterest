@@ -518,7 +518,7 @@ def sync(client, config, catalog, state):
             'params': {
                 'granularity': 'DAY',  # This returns one record per day, no need to iterate on days like some other taps
                 'level': 'CAMPAIGN',
-                'entity_fields': 'CAMPAIGN_MANAGED_STATUS,CAMPAIGN_NAME,CAMPAIGN_STATUS'
+                'entity_fields': ['CAMPAIGN_NAME', 'CAMPAIGN_STATUS', 'CAMPAIGN_MANAGED_STATUS']
             },
             'bookmark_field': 'DATE',
             'id_fields': ['CAMPAIGN_ID'],
@@ -532,7 +532,7 @@ def sync(client, config, catalog, state):
             'params': {
                 'granularity': 'DAY',  # This returns one record per day, no need to iterate on days like some other taps
                 'level': 'AD_GROUP',
-                'entity_fields': 'AD_GROUP_STATUS,AD_GROUP_NAME'
+                'entity_fields': ['AD_GROUP_NAME', 'AD_GROUP_STATUS', 'CAMPAIGN_ID', 'CAMPAIGN_NAME', 'CAMPAIGN_STATUS', 'CAMPAIGN_MANAGED_STATUS']
             },
             'bookmark_field': 'DATE',
             'id_fields': ['CAMPAIGN_ID'],
