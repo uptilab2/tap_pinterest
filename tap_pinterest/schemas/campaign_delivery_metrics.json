@@ -73,11 +73,11 @@
             "type": ["null", "number"],
             "description": "The holdout experiment for this ad group"
         },
-        "AD_GROUP_ID": {
+        "CAMPAIGN_AD_GROUP_ID": {
             "type": ["null", "number"],
             "description": "Unique ID for your ad group"
         },
-        "AD_GROUP_NAME": {
+        "CAMPAIGN_AD_GROUP_NAME": {
             "type": ["null", "string"],
             "description": "Name, objective and ID of your ad group"
         },
@@ -97,7 +97,7 @@
             "type": ["null", "date"],
             "description": "The start date of your ad group"
         },
-        "AD_GROUP_STATUS": {
+        "CAMPAIGN_AD_GROUP_STATUS": {
             "type": ["null", "string"],
             "description": "Pause or activate your ad group"
         },
@@ -1269,11 +1269,11 @@
             "type": ["null", "number"],
             "description": "The holdout experiment for this pin"
         },
-        "PIN_PROMOTION_ID": {
+        "CAMPAIGN_PIN_PROMOTION_ID": {
             "type": ["null", "number"],
             "description": "Unique ID for your ad"
         },
-        "PIN_PROMOTION_NAME": {
+        "CAMPAIGN_PIN_PROMOTION_NAME": {
             "type": ["null", "string"],
             "description": "Name, objective and ID of your ad"
         },
@@ -1285,7 +1285,7 @@
             "type": ["null", "string"],
             "description": "Ad status (approved, pending, paused, rejected, or archived)"
         },
-        "PIN_PROMOTION_STATUS": {
+        "CAMPAIGN_PIN_PROMOTION_STATUS": {
             "type": ["null", "string"],
             "description": "Pause or activate your Promoted Pin"
         },
@@ -1315,13 +1315,13 @@
         },
         "PRODUCT_GROUP_DEFINITION": {
             "type": ["null", "number"],
-            "description": "Name and ID of your product group"
+            "description": " Name and ID of your product group"
         },
         "PRODUCT_GROUP_ENTITY_STATUS": {
             "type": ["null", "string"],
             "description": "Pause or activate your product group"
         },
-        "PRODUCT_GROUP_ID": {
+        "CAMPAIGN_PRODUCT_GROUP_ID": {
             "type": ["null", "number"],
             "description": "Unique ID for your product group"
         },

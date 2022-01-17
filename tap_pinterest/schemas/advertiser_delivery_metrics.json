@@ -73,11 +73,11 @@
             "type": ["null", "number"],
             "description": "The holdout experiment for this ad group"
         },
-        "AD_GROUP_ID": {
+        "ADVERTISER_AD_GROUP_ID": {
             "type": ["null", "number"],
             "description": "Unique ID for your ad group"
         },
-        "AD_GROUP_NAME": {
+        "ADVERTISER_AD_GROUP_NAME": {
             "type": ["null", "string"],
             "description": "Name, objective and ID of your ad group"
         },
@@ -97,7 +97,7 @@
             "type": ["null", "date"],
             "description": "The start date of your ad group"
         },
-        "AD_GROUP_STATUS": {
+        "ADVERTISER_AD_GROUP_STATUS": {
             "type": ["null", "string"],
             "description": "Pause or activate your ad group"
         },
@@ -129,7 +129,7 @@
             "type": ["null", "date"],
             "description": "The end date and end time of your campaign in UTC. Available for campaigns using Campaign Budget."
         },
-        "CAMPAIGN_ID": {
+        "ADVERTISER_CAMPAIGN_ID": {
             "type": ["null", "number"],
             "description": "Unique ID for your campaign"
         },
@@ -137,7 +137,7 @@
             "type": ["null", "number"],
             "description": "The maximum amount you're willing to spend over the lifetime of your campaign"
         },
-        "CAMPAIGN_NAME": {
+        "ADVERTISER_CAMPAIGN_NAME": {
             "type": ["null", "string"],
             "description": "Name, objective and ID of your campaign"
         },
@@ -149,7 +149,7 @@
             "type": ["null", "date"],
             "description": "The start date and start time of your campaign in UTC. Available for campaigns using Campaign Budget."
         },
-        "CAMPAIGN_STATUS": {
+        "ADVERTISER_CAMPAIGN_STATUS": {
             "type": ["null", "string"],
             "description": "Pause or activate your campaign"
         },
@@ -1269,11 +1269,11 @@
             "type": ["null", "number"],
             "description": "The holdout experiment for this pin"
         },
-        "PIN_PROMOTION_ID": {
+        "ADVERTISER_PIN_PROMOTION_ID": {
             "type": ["null", "number"],
             "description": "Unique ID for your ad"
         },
-        "PIN_PROMOTION_NAME": {
+        "ADVERTISER_PIN_PROMOTION_NAME": {
             "type": ["null", "string"],
             "description": "Name, objective and ID of your ad"
         },
@@ -1285,7 +1285,7 @@
             "type": ["null", "string"],
             "description": "Ad status (approved, pending, paused, rejected, or archived)"
         },
-        "PIN_PROMOTION_STATUS": {
+        "ADVERTISER_PIN_PROMOTION_STATUS": {
             "type": ["null", "string"],
             "description": "Pause or activate your Promoted Pin"
         },
@@ -1321,7 +1321,7 @@
             "type": ["null", "string"],
             "description": "Pause or activate your product group"
         },
-        "PRODUCT_GROUP_ID": {
+        "ADVERTISER_PRODUCT_GROUP_ID": {
             "type": ["null", "number"],
             "description": "Unique ID for your product group"
         },
