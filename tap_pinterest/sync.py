@@ -524,7 +524,7 @@ def sync(client, config, catalog, state):
             'id_fields': ['CAMPAIGN_ID'],
             'async_report': True
         },
-        'ad_groups_delivery_report': {
+        'ad_group_delivery_metrics': {
             # https://developers.pinterest.com/docs/redoc/combined_reporting/#operation/ads_v3_create_advertiser_delivery_metrics_report_POST
             'path': 'reports/async/{advertiser_id}/delivery_metrics',
             'advertiser_ids': config.get('advertiser_ids'),
@@ -537,7 +537,21 @@ def sync(client, config, catalog, state):
             'bookmark_field': 'DATE',
             'id_fields': ['CAMPAIGN_ID'],
             'async_report': True
-        }
+        },
+        'pin_promotion_delivery_metrics': {
+            # https://developers.pinterest.com/docs/redoc/combined_reporting/#operation/ads_v3_create_advertiser_delivery_metrics_report_POST
+            'path': 'reports/async/{advertiser_id}/delivery_metrics',
+            'advertiser_ids': config.get('advertiser_ids'),
+            'owner_user_id': config.get('owner_user_id'),
+            'params': {
+                'granularity': 'DAY',  # This returns one record per day, no need to iterate on days like some other taps
+                'level': 'PIN_PROMOTION',
+                'entity_fields': ['PIN_PROMOTION_NAME', 'PIN_PROMOTION_STATUS', 'CAMPAIGN_ID', 'CAMPAIGN_NAME', 'CAMPAIGN_STATUS', 'CAMPAIGN_MANAGED_STATUS']
+            },
+            'bookmark_field': 'DATE',
+            'id_fields': ['CAMPAIGN_ID'],
+            'async_report': True
+        },
     }
 
     # For each endpoint (above), determine if the stream should be streamed

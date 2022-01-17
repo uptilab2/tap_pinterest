@@ -58,6 +58,33 @@ STREAMS = {
             'PIN_PROMOTION_STATUS',
         ]
     },
+    'ad_group_delivery_metrics': {
+        'key_properties': ['AD_GROUP_ID'],
+        'replication_method': 'INCREMENTAL',
+        'replication_keys': ['DATE'],
+        'entity_fields': [
+            'AD_GROUP_ID',
+            'AD_GROUP_NAME',
+            'AD_GROUP_STATUS',
+            'CAMPAIGN_NAME',
+            'CAMPAIGN_ID',
+            'CAMPAIGN_STATUS',
+            'CAMPAIGN_MANAGED_STATUS',
+        ]
+    },
+    'pin_promotion_delivery_metrics': {
+        'key_properties': ['PIN_PROMOTION_ID'],
+        'replication_method': 'INCREMENTAL',
+        'replication_keys': ['DATE'],
+        'entity_fields': [
+            'PIN_PROMOTION_NAME',
+            'PIN_PROMOTION_STATUS',
+            'CAMPAIGN_ID',
+            'CAMPAIGN_NAME',
+            'CAMPAIGN_STATUS',
+            'CAMPAIGN_MANAGED_STATUS'
+        ]
+    },
     'campaign_ad_groups': {
         'key_properties': ['id'],
         'replication_method': 'INCREMENTAL',
