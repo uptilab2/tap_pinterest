@@ -289,7 +289,7 @@ def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, en
             if custom_report['stream'] == stream_name:
                 entity_fields = []
                 for entity in STREAMS[stream_name].get('entity_fields', []):
-                    if entity in custom_report['columns']:
+                    if f"{STREAMS[stream_name].get('entity_prefix', '')}{entity}" in custom_report['columns']:
                         entity_fields.append(entity)
                 if entity_fields:
                     body.update(

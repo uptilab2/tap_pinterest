@@ -36,7 +36,8 @@ STREAMS = {
             'PIN_PROMOTION_ID',
             'PIN_PROMOTION_NAME',
             'PIN_PROMOTION_STATUS',
-        ]
+        ],
+        'entity_prefix': 'ADVERTISER_'
     },
     'campaign_delivery_metrics': {
         'key_properties': ['CAMPAIGN_ID'],
@@ -56,7 +57,8 @@ STREAMS = {
             'PIN_PROMOTION_ID',
             'PIN_PROMOTION_NAME',
             'PIN_PROMOTION_STATUS',
-        ]
+        ],
+        'entity_prefix': 'CAMPAIGN_'
     },
     'ad_group_delivery_metrics': {
         'key_properties': ['AD_GROUP_ID'],
@@ -70,7 +72,8 @@ STREAMS = {
             'CAMPAIGN_ID',
             'CAMPAIGN_STATUS',
             'CAMPAIGN_MANAGED_STATUS',
-        ]
+        ],
+        'entity_prefix': 'AD_GROUP_'
     },
     'pin_promotion_delivery_metrics': {
         'key_properties': ['PIN_PROMOTION_ID'],
@@ -83,7 +86,8 @@ STREAMS = {
             'CAMPAIGN_NAME',
             'CAMPAIGN_STATUS',
             'CAMPAIGN_MANAGED_STATUS'
-        ]
+        ],
+        'entity_prefix': 'PIN_PROMOTION_'
     },
     'campaign_ad_groups': {
         'key_properties': ['id'],
@@ -114,7 +118,7 @@ def get_schemas(custom_reports=None):
             custom_schema = dict(type='object', properties={})
 
             for key, value in schema['properties'].items():
-                if key in custom_report['columns'] or key in stream_metadata.get('entity_fields', []):
+                if key in custom_report['columns'] or f"{stream_metadata.get('entity_prefix', '')}{key}" in stream_metadata.get('entity_fields', []):
                     custom_schema['properties'][key] = value
 
             if custom_schema['properties']:
