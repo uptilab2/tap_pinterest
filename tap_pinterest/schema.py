@@ -121,12 +121,13 @@ def get_schemas(custom_reports=None):
 
             for key, value in schema['properties'].items():
                 if key in custom_report['columns']:
-                    custom_schema['properties'][key] = value
-                elif key in entity_fields:
-                    for column in custom_report['columns']:
-                        custom_entity_field = f"{stream_metadata.get('entity_prefix', '')}{column}"
-                        if custom_entity_field in entity_fields:
-                            custom_schema['properties'][custom_entity_field] = value
+                    if key in entity_fields:
+                        for column in custom_report['columns']:
+                            custom_entity_field = f"{stream_metadata.get('entity_prefix', '')}{column}"
+                            if custom_entity_field in entity_fields:
+                                custom_schema['properties'][custom_entity_field] = value
+                    else:
+                        custom_schema['properties'][key] = value                
 
             if custom_schema['properties']:
                 custom_schema['properties']['DATE'] = schema['properties'].get('DATE', None)
