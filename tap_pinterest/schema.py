@@ -148,13 +148,13 @@ def get_schemas(custom_reports=None):
                         {custom_entity_field}
                         
                         """)
-                        if custom_entity_field in prefixed_entity_fields:
+                        if custom_entity_field == key:
                             logger.info(f"""
-                            --- --- column in   --- --- ---
-                            {value}
+                            --- --- found  --- --- ---
+                            {key}
                             
                             """)
-                            custom_schema['properties'][custom_entity_field] = value
+                            custom_schema['properties'][key] = value
                         
             if custom_schema['properties']:
                 custom_schema['properties']['DATE'] = schema['properties'].get('DATE', None)
