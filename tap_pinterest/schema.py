@@ -117,9 +117,16 @@ def get_schemas(custom_reports=None):
         for custom_report in filtered_custom_reports:
             custom_schema = dict(type='object', properties={})
 
+            entity_fields = stream_metadata.get('entity_fields', [])
+
             for key, value in schema['properties'].items():
-                if key in custom_report['columns'] or f"{stream_metadata.get('entity_prefix', '')}{key}" in stream_metadata.get('entity_fields', []):
+                if key in custom_report['columns']:
                     custom_schema['properties'][key] = value
+                elif key in entity_fields:
+                    for column in custom_report['columns']:
+                        custom_entity_field = f"{stream_metadata.get('entity_prefix', '')}{column}"
+                        if custom_entity_field in entity_fields:
+                            custom_schema['properties'][custom_entity_field] = value
 
             if custom_schema['properties']:
                 custom_schema['properties']['DATE'] = schema['properties'].get('DATE', None)
