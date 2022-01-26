@@ -1,6 +1,7 @@
 import os
 import json
 from singer import metadata
+import logging
 
 # Reference:
 #   https://github.com/singer-io/getting-started/blob/master/docs/DISCOVERY_MODE.md#Metadata
@@ -105,9 +106,13 @@ def get_schemas(custom_reports=None):
     schemas = {}
     field_metadata = {}
 
+    logger = logging.getLogger(__name__)
+
     for stream_name, stream_metadata in STREAMS.items():
 
         filtered_custom_reports = [custom_report for custom_report in custom_reports if stream_name == custom_report['stream']]
+        entity_prefix = stream_metadata.get('entity_prefix', '')
+        prefixed_entity_fields = [f"{entity_prefix}{entity_field}" for entity_field in stream_metadata.get('entity_fields', [])]
 
         schema_path = get_abs_path(f'schemas/{stream_name}.json')
         with open(schema_path) as file:
@@ -117,18 +122,40 @@ def get_schemas(custom_reports=None):
         for custom_report in filtered_custom_reports:
             custom_schema = dict(type='object', properties={})
 
-            entity_fields = stream_metadata.get('entity_fields', [])
+            logger.info(f"""
+            --- --- custom_report --- --- ---
+            {custom_report}
+            
+            """)
 
             for key, value in schema['properties'].items():
                 if key in custom_report['columns']:
-                    if key in entity_fields:
-                        for column in custom_report['columns']:
-                            custom_entity_field = f"{stream_metadata.get('entity_prefix', '')}{column}"
-                            if custom_entity_field in entity_fields:
-                                custom_schema['properties'][custom_entity_field] = value
-                    else:
-                        custom_schema['properties'][key] = value                
-
+                    logger.info(f"""
+                    --- --- key in custom_report --- --- ---
+                    {key}
+                    
+                    """)
+                    custom_schema['properties'][key] = value
+                elif key in prefixed_entity_fields:
+                    logger.info(f"""
+                    --- --- key in entity_fields --- --- ---
+                    {key}
+                    
+                    """)
+                    for custom_entity_field in [f"{entity_prefix}{column}" for column in custom_report['columns']]:
+                        logger.info(f"""
+                        --- --- entity_field name with prefix --- --- ---
+                        {custom_entity_field}
+                        
+                        """)
+                        if custom_entity_field in prefixed_entity_fields:
+                            logger.info(f"""
+                            --- --- column in   --- --- ---
+                            {value}
+                            
+                            """)
+                            custom_schema['properties'][custom_entity_field] = value
+                        
             if custom_schema['properties']:
                 custom_schema['properties']['DATE'] = schema['properties'].get('DATE', None)
                 schema = custom_schema
