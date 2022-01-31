@@ -295,7 +295,7 @@ def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, en
                         entity_fields.append(entity)
                 if entity_fields:
                     body.update(
-                        entity_fields=entity_fields
+                        entity_fields=entity_fields.join(',')
                     )
 
     # Get the latest bookmark for the stream and set the last_datetime
@@ -376,12 +376,6 @@ def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, en
 
             if not data:
                 LOGGER.info(f' -- No data for report at : {report_url}')
-
-            logger.info(f"""
-            --- --- --- --- ---
-            {data.values()}
-            
-            """)  
 
             # time_extracted: datetime when the data was extracted from the API
             time_extracted = utils.now()
