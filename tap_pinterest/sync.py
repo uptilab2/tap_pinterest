@@ -3,6 +3,8 @@ import backoff
 from singer import metrics, utils
 from datetime import datetime, timezone, timedelta, date
 from tap_pinterest.schema import STREAMS
+import logging
+logger = logging.getLogger(__name__)
 
 LOGGER = singer.get_logger()
 API_VERSION = 'v3'
@@ -374,6 +376,12 @@ def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, en
 
             if not data:
                 LOGGER.info(f' -- No data for report at : {report_url}')
+
+            logger.info(f"""
+            --- --- --- --- ---
+            {data.values()}
+            
+            """)  
 
             # time_extracted: datetime when the data was extracted from the API
             time_extracted = utils.now()
