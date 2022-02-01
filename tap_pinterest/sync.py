@@ -288,11 +288,26 @@ def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, en
 
     if custom_reports:
         for custom_report in custom_reports:
+            logger.info(f"""
+            --- --- --- --- ---
+            {custom_report}
+            
+            """)  
             if custom_report['stream'] == stream_name:
                 entity_fields = []
                 for entity in STREAMS[stream_name].get('entity_fields', []):
+                    logger.info(f"""
+                    --- --- --- --- ---
+                    {entity}
+                    
+                    """)  
                     if f"{STREAMS[stream_name].get('entity_prefix', '')}{entity}" in custom_report['columns']:
                         entity_fields.append(entity)
+                    logger.info(f"""
+                    --- --- --- --- ---
+                    {entity_fields}
+                    
+                    """)  
                 if entity_fields:
                     body.update(dict(
                         entity_fields=entity_fields.join(',')
