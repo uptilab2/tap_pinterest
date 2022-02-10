@@ -295,10 +295,10 @@ def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, en
                         entity_fields.append(entity)
                 if entity_fields:
                     body.update(dict(
-                        entity_fields=','.join(entity_fields)
+                        entity_fields=entity_fields
                     ))
                 body.update(dict(
-                    metrics=','.join(list(set(custom_report['columns']) - set(entity_fields)))
+                    metrics=list(set(custom_report['columns']) - set(entity_fields))
                 ))
     else:
         body.update(dict(
