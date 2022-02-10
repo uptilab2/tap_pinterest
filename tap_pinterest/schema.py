@@ -80,6 +80,7 @@ STREAMS = {
         'replication_method': 'INCREMENTAL',
         'replication_keys': ['DATE'],
         'entity_fields': [
+            'PIN_PROMOTION_ID',
             'PIN_PROMOTION_NAME',
             'PIN_PROMOTION_STATUS',
             'CAMPAIGN_ID',
