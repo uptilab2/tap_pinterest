@@ -3,6 +3,8 @@ import requests
 import json
 
 import singer
+from tap_pinterest.sync import BASE_URL
+
 
 LOGGER = singer.get_logger()
 
@@ -112,7 +114,7 @@ class PinterestClient:
     def get_access_token(self):
         """ Get a fresh access token using the refresh token provided in the config file
         """
-        url = 'https://api.pinterest.com/v3/oauth/access_token'
+        url = f'{BASE_URL}/oauth/access_token'
         response = self.__session.post(url, data={
             'grant_type': 'refresh_token',
             'client_id': self.__client_id,
@@ -128,7 +130,7 @@ class PinterestClient:
                           (Server5xxError, requests.exceptions.ConnectionError, Server429Error),
                           max_tries=5,
                           factor=2)
-    def request(self, method, url='https://api.pinterest.com/ads/v3', path=None, **kwargs):
+    def request(self, method, url=BASE_URL, path=None, **kwargs):
 
         if path:
             url = f'{url}/{path}'

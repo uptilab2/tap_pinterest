@@ -7,7 +7,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 LOGGER = singer.get_logger()
-API_VERSION = 'v3'
+API_VERSION = 'v4'
 BASE_URL = f'https://api.pinterest.com/ads/{API_VERSION}'
 
 
@@ -507,7 +507,7 @@ def sync(client, config, catalog, state):
         },
         'advertiser_delivery_metrics': {
             # https://developers.pinterest.com/docs/redoc/combined_reporting/#operation/ads_v3_create_advertiser_delivery_metrics_report_POST
-            'path': 'reports/async/{advertiser_id}/delivery_metrics',
+            'path': 'advertisers/{advertiser_id}/delivery_metrics/async',
             'account_filter': None,
             'advertiser_ids': config.get('advertiser_ids'),
             'owner_user_id': config.get('owner_user_id'),
@@ -521,7 +521,7 @@ def sync(client, config, catalog, state):
         },
         'campaign_delivery_metrics': {
             # https://developers.pinterest.com/docs/redoc/combined_reporting/#operation/ads_v3_create_advertiser_delivery_metrics_report_POST
-            'path': 'reports/async/{advertiser_id}/delivery_metrics',
+            'path': 'advertisers/{advertiser_id}/delivery_metrics/async',
             'advertiser_ids': config.get('advertiser_ids'),
             'owner_user_id': config.get('owner_user_id'),
             'params': {
@@ -535,7 +535,7 @@ def sync(client, config, catalog, state):
         },
         'ad_group_delivery_metrics': {
             # https://developers.pinterest.com/docs/redoc/combined_reporting/#operation/ads_v3_create_advertiser_delivery_metrics_report_POST
-            'path': 'reports/async/{advertiser_id}/delivery_metrics',
+            'path': 'advertisers/{advertiser_id}/delivery_metrics/async',
             'advertiser_ids': config.get('advertiser_ids'),
             'owner_user_id': config.get('owner_user_id'),
             'params': {
@@ -549,7 +549,7 @@ def sync(client, config, catalog, state):
         },
         'pin_promotion_delivery_metrics': {
             # https://developers.pinterest.com/docs/redoc/combined_reporting/#operation/ads_v3_create_advertiser_delivery_metrics_report_POST
-            'path': 'reports/async/{advertiser_id}/delivery_metrics',
+            'path': 'advertisers/{advertiser_id}/async',
             'advertiser_ids': config.get('advertiser_ids'),
             'owner_user_id': config.get('owner_user_id'),
             'params': {

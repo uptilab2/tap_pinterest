@@ -125,7 +125,7 @@ def get_schemas(custom_reports=None):
                     for custom_entity_field in [f"{entity_prefix}{column}" for column in custom_report['columns']]:
                         if custom_entity_field == key:
                             custom_schema['properties'][key] = value
-                        
+
             if custom_schema['properties']:
                 custom_schema['properties']['DATE'] = schema['properties'].get('DATE', None)
                 schema = custom_schema
