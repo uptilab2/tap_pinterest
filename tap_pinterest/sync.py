@@ -289,7 +289,7 @@ def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, en
         for custom_report in custom_reports:
             if custom_report['stream'] == stream_name:
                 body.update(dict(
-                    columns=list(set(custom_report['columns'].strip()))
+                    columns=list(set(custom_report['columns']))
                 ))
     else:
         body.update(dict(
