@@ -4224,6 +4224,54 @@
         "WEB_WATCH_VIDEO_ROAS": {
             "type": ["null", "number"],
             "description": "Average return on ad spend for web watch video events"
+        },
+        "CAMPAIGN_NAME": {
+            "type": ["null", "string"],
+            "description": "The name of the campaign"
+        },
+        "CAMPAIGN_ID": {
+            "type": ["null", "string"],
+            "description": "The id of the campaign"
+        },
+        "CAMPAIGN_STATUS": {
+            "type": ["null", "string"],
+            "description": "The status of the campaign"
+        },
+        "CAMPAIGN_MANAGED_STATUS": {
+            "type": ["null", "string"],
+            "description": "The managed status of the campaign"
+        },
+        "ADVERTISER_ID": {
+            "type": ["null", "string"],
+            "description": "The id of the advertiser"
+        },
+        "AD_GROUP_ID": {
+            "type": ["null", "string"],
+            "description": "The id of the ad group"
+        },
+        "AD_GROUP_NAME": {
+            "type": ["null", "string"],
+            "description": "The name of the ad group"
+        },
+        "AD_GROUP_STATUS": {
+            "type": ["null", "string"],
+            "description": "The status of the ad group"
+        },
+        "PRODUCT_GROUP_ID": {
+            "type": ["null", "string"],
+            "description": "The id of the product group"
+        },
+        "PIN_PROMOTION_ID": {
+            "type": ["null", "string"],
+            "description": "The id of the promotion"
+        },
+        "PIN_PROMOTION_NAME": {
+            "type": ["null", "string"],
+            "description": "The name of the promotion"
+        },
+        "PIN_PROMOTION_STATUS": {
+            "type": ["null", "string"],
+            "description": "The status of the promotion"
         }
     }
 }
