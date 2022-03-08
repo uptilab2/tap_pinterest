@@ -20,74 +20,21 @@ STREAMS = {
         'key_properties': ['ADVERTISER_ID'],
         'replication_method': 'INCREMENTAL',
         'replication_keys': ['DATE'],
-        'entity_fields': [
-            'ADVERTISER_NAME',
-            'ADVERTISER_ID',
-            'AD_GROUP_ID',
-            'AD_GROUP_NAME',
-            'AD_GROUP_STATUS',
-            'CAMPAIGN_NAME',
-            'CAMPAIGN_ID',
-            'CAMPAIGN_STATUS',
-            'CAMPAIGN_MANAGED_STATUS',
-            'CAMPAIGN_START_DATE',
-            'CAMPAIGN_END_DATE',
-            'PRODUCT_GROUP_ID',
-            'PIN_PROMOTION_ID',
-            'PIN_PROMOTION_NAME',
-            'PIN_PROMOTION_STATUS',
-        ],
-        'entity_prefix': 'ADVERTISER_'
     },
     'campaign_delivery_metrics': {
         'key_properties': ['CAMPAIGN_ID'],
         'replication_method': 'INCREMENTAL',
         'replication_keys': ['DATE'],
-        'entity_fields': [
-            'AD_GROUP_ID',
-            'AD_GROUP_NAME',
-            'AD_GROUP_STATUS',
-            'CAMPAIGN_NAME',
-            'CAMPAIGN_ID',
-            'CAMPAIGN_STATUS',
-            'CAMPAIGN_MANAGED_STATUS',
-            'CAMPAIGN_START_DATE',
-            'CAMPAIGN_END_DATE',
-            'PRODUCT_GROUP_ID',
-            'PIN_PROMOTION_ID',
-            'PIN_PROMOTION_NAME',
-            'PIN_PROMOTION_STATUS',
-        ],
-        'entity_prefix': 'CAMPAIGN_'
     },
     'ad_group_delivery_metrics': {
         'key_properties': ['AD_GROUP_ID'],
         'replication_method': 'INCREMENTAL',
         'replication_keys': ['DATE'],
-        'entity_fields': [
-            'AD_GROUP_ID',
-            'AD_GROUP_NAME',
-            'AD_GROUP_STATUS',
-            'CAMPAIGN_NAME',
-            'CAMPAIGN_ID',
-            'CAMPAIGN_STATUS',
-            'CAMPAIGN_MANAGED_STATUS',
-        ],
-        'entity_prefix': 'AD_GROUP_'
     },
     'pin_promotion_delivery_metrics': {
         'key_properties': ['PIN_PROMOTION_ID'],
         'replication_method': 'INCREMENTAL',
         'replication_keys': ['DATE'],
-        'entity_fields': [
-            'PIN_PROMOTION_NAME',
-            'PIN_PROMOTION_STATUS',
-            'CAMPAIGN_ID',
-            'CAMPAIGN_NAME',
-            'CAMPAIGN_STATUS',
-            'CAMPAIGN_MANAGED_STATUS'
-        ],
-        'entity_prefix': 'PIN_PROMOTION_'
     },
     'campaign_ad_groups': {
         'key_properties': ['id'],
@@ -108,8 +55,6 @@ def get_schemas(custom_reports=None):
     for stream_name, stream_metadata in STREAMS.items():
 
         filtered_custom_reports = [custom_report for custom_report in custom_reports if stream_name == custom_report['stream']]
-        entity_prefix = stream_metadata.get('entity_prefix', '')
-        prefixed_entity_fields = [f"{entity_prefix}{entity_field}" for entity_field in stream_metadata.get('entity_fields', [])]
 
         schema_path = get_abs_path(f'schemas/{stream_name}.json')
         with open(schema_path) as file:
@@ -121,10 +66,6 @@ def get_schemas(custom_reports=None):
             for key, value in schema['properties'].items():
                 if key in custom_report['columns']:
                     custom_schema['properties'][key] = value
-                elif key in prefixed_entity_fields:
-                    for custom_entity_field in [f"{entity_prefix}{column}" for column in custom_report['columns']]:
-                        if custom_entity_field == key:
-                            custom_schema['properties'][key] = value
 
             if custom_schema['properties']:
                 custom_schema['properties']['DATE'] = schema['properties'].get('DATE', None)

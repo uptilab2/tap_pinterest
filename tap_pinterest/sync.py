@@ -2,7 +2,6 @@ import singer
 import backoff
 from singer import metrics, utils
 from datetime import datetime, timezone, timedelta, date
-from tap_pinterest.schema import STREAMS
 import logging
 logger = logging.getLogger(__name__)
 
@@ -289,20 +288,12 @@ def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, en
     if custom_reports:
         for custom_report in custom_reports:
             if custom_report['stream'] == stream_name:
-                entity_fields = []
-                for entity in STREAMS[stream_name].get('entity_fields', []):
-                    if entity in custom_report['columns']:
-                        entity_fields.append(entity)
-                if entity_fields:
-                    body.update(dict(
-                        entity_fields=entity_fields
-                    ))
                 body.update(dict(
-                    metrics=list(set(custom_report['columns']) - set(entity_fields))
+                    columns=list(set(custom_report['columns'].strip()))
                 ))
     else:
         body.update(dict(
-            metrics='ALL'
+            columns='ALL'
         ))
 
     # Get the latest bookmark for the stream and set the last_datetime
@@ -356,13 +347,13 @@ def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, en
 
             # Create request to generate report
             LOGGER.info(f'URL for {stream_name}: {url} -> body: {body.items()}')
-            res = client.post(url=url, endpoint=stream_name, data=body)
+            res = client.post(url=url, endpoint=stream_name, json=body)
 
             # If the report generates instantly
             if res['data'].get('report_status') == 'FINISHED':
                 token = res['data'].get('token')
             else:
-                token = retry_report(client, 'post', url, stream_name, data=body, key='token')
+                token = retry_report(client, 'post', url, stream_name, json=body, key='token')
 
             # GET the report data using the token
             LOGGER.info(f'Getting report with token: {token}')
@@ -527,7 +518,6 @@ def sync(client, config, catalog, state):
             'params': {
                 'granularity': 'DAY',  # This returns one record per day, no need to iterate on days like some other taps
                 'level': 'CAMPAIGN',
-                'entity_fields': ['CAMPAIGN_NAME', 'CAMPAIGN_STATUS', 'CAMPAIGN_MANAGED_STATUS']
             },
             'bookmark_field': 'DATE',
             'id_fields': ['CAMPAIGN_ID'],
@@ -541,7 +531,6 @@ def sync(client, config, catalog, state):
             'params': {
                 'granularity': 'DAY',  # This returns one record per day, no need to iterate on days like some other taps
                 'level': 'AD_GROUP',
-                'entity_fields': ['AD_GROUP_NAME', 'AD_GROUP_STATUS', 'CAMPAIGN_ID', 'CAMPAIGN_NAME', 'CAMPAIGN_STATUS', 'CAMPAIGN_MANAGED_STATUS']
             },
             'bookmark_field': 'DATE',
             'id_fields': ['CAMPAIGN_ID'],
@@ -555,7 +544,6 @@ def sync(client, config, catalog, state):
             'params': {
                 'granularity': 'DAY',  # This returns one record per day, no need to iterate on days like some other taps
                 'level': 'PIN_PROMOTION',
-                'entity_fields': ['PIN_PROMOTION_NAME', 'PIN_PROMOTION_STATUS', 'CAMPAIGN_ID', 'CAMPAIGN_NAME', 'CAMPAIGN_STATUS', 'CAMPAIGN_MANAGED_STATUS']
             },
             'bookmark_field': 'DATE',
             'id_fields': ['CAMPAIGN_ID'],
