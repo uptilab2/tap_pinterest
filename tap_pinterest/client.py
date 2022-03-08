@@ -147,7 +147,6 @@ class PinterestClient:
         kwargs['headers']['Authorization'] = f'Bearer {self.__access_token}'
 
         if method == 'POST':
-            kwargs['headers']['Content-Type'] = 'application/x-www-form-urlencoded'
             kwargs['headers']['Accept'] = '*/*'
         else:
             kwargs['headers']['Accept'] = 'application/json'

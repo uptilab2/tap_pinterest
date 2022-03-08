@@ -347,7 +347,7 @@ def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, en
 
             # Create request to generate report
             LOGGER.info(f'URL for {stream_name}: {url} -> body: {body.items()}')
-            res = client.post(url=url, endpoint=stream_name, json=body, headers={"Content-Type": "application/json"})
+            res = client.post(url=url, endpoint=stream_name, json=body)
 
             # If the report generates instantly
             if res['data'].get('report_status') == 'FINISHED':
