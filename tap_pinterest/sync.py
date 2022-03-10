@@ -594,7 +594,7 @@ def sync(client, config, catalog, state):
                 path=path,
                 endpoint_config=endpoint_config,
                 custom_reports=config.get('custom_report'),
-                window_size=config.get('window_size', 0)
+                window_size=int(config.get('window_size', 0))
             )
 
             # Write parent bookmarks
