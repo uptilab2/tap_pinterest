@@ -43,10 +43,12 @@ def main():
         if parsed_args.discover:
             do_discover(parsed_args.config.get('custom_report'))
         elif parsed_args.catalog:
-            sync(client=client,
-                 config=parsed_args.config,
-                 catalog=parsed_args.catalog,
-                 state=state)
+            sync(
+                client=client,
+                config=parsed_args.config,
+                catalog=parsed_args.catalog,
+                state=state
+            )
 
 
 if __name__ == '__main__':

@@ -107,7 +107,7 @@ def get_advertiser_ids(client, url, owner_user_id=None):
 
 
 # Sync a specific parent or child endpoint.
-def sync_endpoint(client, catalog, state, start_date, stream_name, path, endpoint_config, parent_id=None, custom_reports=None):
+def sync_endpoint(client, catalog, state, start_date, stream_name, path, endpoint_config, parent_id=None, custom_reports=None, window_size=0):
 
     url = f'{BASE_URL}/{path}'
 
@@ -122,7 +122,8 @@ def sync_endpoint(client, catalog, state, start_date, stream_name, path, endpoin
             start_date,
             endpoint_config,
             parent_id,
-            custom_reports
+            custom_reports,
+            window_size
         )
     else:
         total_records, max_bookmark_value = sync_rest_endpoint(
@@ -275,7 +276,7 @@ def sync_rest_endpoint(client, catalog, state, url, stream_name, start_date, end
     return total_records, max_bookmark_value
 
 
-def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, endpoint_config, parent_id=None, custom_reports=None):
+def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, endpoint_config, parent_id=None, custom_reports=None, window_size=0):
     """ Sync endpoints using the fancy ansyc report method.
     https://developers.pinterest.com/docs/redoc/combined_reporting/#operation/ads_v3_create_advertiser_delivery_metrics_report_POST
     https://developers.pinterest.com/docs/redoc/combined_reporting/#tag/reports
@@ -308,17 +309,16 @@ def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, en
     if type(last_datetime) is str:
         last_datetime = datetime.strptime(last_datetime, "%Y-%m-%dT%H:%M:%SZ")
 
+    last_datetime -= timedelta(days=window_size)
+
     segment_start = last_datetime.date()
     segment_end = segment_start + timedelta(days=30)
+    while segment_end <= now:
+        segments.append((segment_start, segment_end))
+        segment_start = segment_end + timedelta(days=1)
+        segment_end = segment_end + timedelta(days=30)
     if segment_end > now:
         segments.append((segment_start, now))
-    else:
-        while segment_end <= now:
-            segments.append((segment_start, segment_end))
-            segment_start = segment_end + timedelta(days=1)
-            segment_end = segment_end + timedelta(days=30)
-        if segment_end > now:
-            segments.append((segment_start, now))
 
     path = f'{BASE_URL}/advertisers'
     if endpoint_config.get('advertiser_ids'):
@@ -568,6 +568,22 @@ def sync(client, config, catalog, state):
                     should_sync, _ = should_sync_stream(selected_streams, None, child_stream_name)
                     if should_sync:
                         write_schema(catalog, child_stream_name)
+
+            if config.get('attribution_types'):
+                endpoint_config['params']['attribution_types'] = config['attribution_types']
+
+            if config.get('conversion_report_time'):
+                endpoint_config['params']['conversion_report_time'] = config['conversion_report_time']
+
+            if config.get('click_window_days'):
+                endpoint_config['params']['click_window_days'] = f"DAYS_{config['click_window_days']}"
+
+            if config.get('engagement_window_days'):
+                endpoint_config['params']['engagement_window_days'] = f"DAYS_{config['engagement_window_days']}"
+
+            if config.get('view_window_days'):
+                endpoint_config['params']['view_window_days'] = f"DAYS_{config['view_window_days']}"
+
             total_records, max_bookmark_value = sync_endpoint(
                 client=client,
                 catalog=catalog,
@@ -576,7 +592,8 @@ def sync(client, config, catalog, state):
                 stream_name=stream_name,
                 path=path,
                 endpoint_config=endpoint_config,
-                custom_reports=config.get('custom_report')
+                custom_reports=config.get('custom_report'),
+                window_size=config.get('window_size', 0)
             )
 
             # Write parent bookmarks

@@ -5,5 +5,13 @@
   "refresh_token": "xxx",
   "access_token": "xxx",
   "owner_user_id": "",
+  "attribution_types": [
+    "INDIVIDUAL"
+  ],
+  "conversion_report_time": "TIME_OF_AD_ACTION",
+  "click_window_days": 30,
+  "engagement_window_days": 30,
+  "view_window_days": 1,
+  "window_size": 7,
   "custom_report": "[{\"stream\": \"advertiser_delivery_metrics\", \"columns\": [\"AD_GROUP_DAILY_SPEND_GOAL\", \"AD_GROUP_DAYS_REMAINING\"]}]"
 }
