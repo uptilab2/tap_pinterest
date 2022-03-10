@@ -585,7 +585,7 @@ def sync(client, config, catalog, state):
                 if config.get('view_window_days'):
                     endpoint_config['params']['view_window_days'] = f"DAYS_{config['view_window_days']}"
 
-            if config.get('window_size').isNumeric():
+            if config.get('window_size').isnumeric():
                 window_size = int(config['window_size'])
             else:
                 window_size = 0
