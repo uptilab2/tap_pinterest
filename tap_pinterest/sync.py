@@ -569,20 +569,21 @@ def sync(client, config, catalog, state):
                     if should_sync:
                         write_schema(catalog, child_stream_name)
 
-            if config.get('attribution_types'):
-                endpoint_config['params']['attribution_types'] = config['attribution_types']
+            if endpoint_config.get('async_report'):
+                if config.get('attribution_types'):
+                    endpoint_config['params']['attribution_types'] = [string.strip() for string in config['attribution_types'].split(',')]
 
-            if config.get('conversion_report_time'):
-                endpoint_config['params']['conversion_report_time'] = config['conversion_report_time']
+                if config.get('conversion_report_time'):
+                    endpoint_config['params']['conversion_report_time'] = config['conversion_report_time']
 
-            if config.get('click_window_days'):
-                endpoint_config['params']['click_window_days'] = f"DAYS_{config['click_window_days']}"
+                if config.get('click_window_days'):
+                    endpoint_config['params']['click_window_days'] = f"DAYS_{config['click_window_days']}"
 
-            if config.get('engagement_window_days'):
-                endpoint_config['params']['engagement_window_days'] = f"DAYS_{config['engagement_window_days']}"
+                if config.get('engagement_window_days'):
+                    endpoint_config['params']['engagement_window_days'] = f"DAYS_{config['engagement_window_days']}"
 
-            if config.get('view_window_days'):
-                endpoint_config['params']['view_window_days'] = f"DAYS_{config['view_window_days']}"
+                if config.get('view_window_days'):
+                    endpoint_config['params']['view_window_days'] = f"DAYS_{config['view_window_days']}"
 
             total_records, max_bookmark_value = sync_endpoint(
                 client=client,
