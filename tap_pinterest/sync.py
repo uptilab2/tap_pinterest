@@ -585,6 +585,11 @@ def sync(client, config, catalog, state):
                 if config.get('view_window_days'):
                     endpoint_config['params']['view_window_days'] = f"DAYS_{config['view_window_days']}"
 
+            if config.get('window_size').isNumeric():
+                window_size = int(config['window_size'])
+            else:
+                window_size = 0
+
             total_records, max_bookmark_value = sync_endpoint(
                 client=client,
                 catalog=catalog,
@@ -594,7 +599,7 @@ def sync(client, config, catalog, state):
                 path=path,
                 endpoint_config=endpoint_config,
                 custom_reports=config.get('custom_report'),
-                window_size=int(config.get('window_size', 0))
+                window_size=window_size
             )
 
             # Write parent bookmarks
