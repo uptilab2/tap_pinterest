@@ -1,8 +1,10 @@
-import singer
-import backoff
-from singer import metrics, utils
-from datetime import datetime, timezone, timedelta, date
 import logging
+from datetime import date, datetime, timedelta, timezone
+
+import backoff
+import singer
+from singer import metrics, utils
+
 logger = logging.getLogger(__name__)
 
 LOGGER = singer.get_logger()
@@ -293,9 +295,12 @@ def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, en
                     columns=list(set(custom_report['columns']))
                 ))
     else:
-        body.update(dict(
-            columns='ALL'
-        ))
+        for stream in catalog.streams:
+            if stream.name == stream_name:
+                body.update(dict(
+                    columns=list(set(stream.schema.get('properties', dict()).keys()))
+                ))
+                break
 
     # Get the latest bookmark for the stream and set the last_datetime
     last_datetime = get_bookmark(state, stream_name, start_date)
