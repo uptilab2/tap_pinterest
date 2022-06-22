@@ -97,14 +97,11 @@ def process_records(catalog, stream_name, records, time_extracted,
 
 def get_advertiser_ids(client, url, owner_user_id=None):
 
-    if not owner_user_id:
-        res = client.get(f'https://api.pinterest.com/{API_VERSION}/users/me/')
-        if res['data']:
-            owner_user_id = res['data']['id']
-        else:
-            return {''}
+    params = dict(include_acl=True)
+    if owner_user_id:
+        params.update(owner_user_id=owner_user_id)
 
-    res = client.get(url=url, endpoint='advertisers', params=dict(owner_user_id=owner_user_id, include_acl=True))
+    res = client.get(url=url, endpoint='advertisers', params=params)
     return [adveriser['id'] for adveriser in res['data']]
 
 
