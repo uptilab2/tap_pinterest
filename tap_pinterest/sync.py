@@ -293,7 +293,7 @@ def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, en
                 ))
     else:
         for stream in catalog.streams:
-            if stream.name == stream_name:
+            if stream.stream == stream_name:
                 body.update(dict(
                     columns=list(set(stream.schema.get('properties', dict()).keys()))
                 ))
