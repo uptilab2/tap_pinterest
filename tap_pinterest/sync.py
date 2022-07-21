@@ -45,6 +45,15 @@ def write_bookmark(state, stream, value):
     singer.write_state(state)
 
 
+def decode_bookmark_field(bookmark_field):
+    if isinstance(bookmark_field, str): # TODO a lot of type-checking in this file, will be nice to refactor later
+        return datetime.strptime(bookmark_field, '%Y-%m-%d')
+    elif isinstance(bookmark_field, float):
+        return datetime.fromtimestamp(bookmark_field).replace(hour=0,minute=0,second=0) 
+    else:
+        return None
+
+
 def process_records(catalog, stream_name, records, time_extracted,
                     bookmark_field=None,
                     max_bookmark_value=None,
@@ -71,7 +80,7 @@ def process_records(catalog, stream_name, records, time_extracted,
                 record[parent + '_id'] = parent_id
 
             if bookmark_field in record:
-                bookmark_dttm = datetime.strptime(record[bookmark_field], '%Y-%m-%d')
+                bookmark_dttm = decode_bookmark_field(record[bookmark_field])
             else:
                 bookmark_dttm = datetime.now()
 
@@ -83,9 +92,9 @@ def process_records(catalog, stream_name, records, time_extracted,
                 max_bookmark_value = bookmark_dttm
 
             if bookmark_field and (bookmark_field in record):
-                last_dttm = last_datetime
+                last_dttm = date(year = last_datetime.year, month = last_datetime.month, day = last_datetime.day)
                 # Keep only records whose bookmark is after the last_datetime
-                if (bookmark_dttm.date() >= last_dttm):
+                if (bookmark_dttm.date() >= last_dttm ):
                     write_record(stream_name, record, time_extracted=time_extracted)
                     counter.increment()
             else:
