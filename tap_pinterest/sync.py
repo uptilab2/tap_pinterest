@@ -26,15 +26,7 @@ def get_endpoints(config):
             'bookmark_field': 'updated_time',
             'id_fields': ['id'],
             'advertiser_ids': config.get('advertiser_ids'),
-            'params': {},
-            'children': {
-                # 'campaign_ad_groups': {  # TODO: Replace this with advertiser_ad_groups, if possible.
-                #    'path': 'campaigns/{id}/ad_groups',
-                #    'data_key': 'data',
-                #    'bookmark_field': 'updated_time',
-                #    'id_fields': ['id']
-                # }
-            }
+            'params': {}
         },
         'advertiser_delivery_metrics': {
             # https://developers.pinterest.com/docs/redoc/combined_reporting/#operation/ads_v3_create_advertiser_delivery_metrics_report_POST
@@ -137,9 +129,7 @@ def write_bookmark(state, stream, value):
 def process_records(catalog, stream_name, records, time_extracted,
                     bookmark_field=None,
                     max_bookmark_value=None,
-                    last_datetime=None,
-                    parent=None,
-                    parent_id=None):
+                    last_datetime=None):
     stream = catalog.get_stream(stream_name)
     schema = stream.schema.to_dict()
 
@@ -154,10 +144,6 @@ def process_records(catalog, stream_name, records, time_extracted,
 
             # Remove all entries that are not in the schema. This is used for custom reports.
             record = {key: value for key, value in record.items() if key in schema['properties']}
-
-            # If child object, add parent_id to record
-            if parent_id and parent:
-                record[parent + '_id'] = parent_id
 
             if bookmark_field in record:
                 bookmark_dttm = decode_bookmark_field(record[bookmark_field])
@@ -204,8 +190,8 @@ def get_advertiser_ids(client, url, owner_user_id=None):
     return res
 
 
-# Sync a specific parent or child endpoint.
-def sync_endpoint(client, catalog, state, start_date, stream_name, path, endpoint_config, parent_id=None, custom_reports=None, window_size=0):
+# Sync a specific endpoint.
+def sync_endpoint(client, catalog, state, start_date, stream_name, path, endpoint_config, custom_reports=None, window_size=0):
 
     url = f'{BASE_URL}/{path}'
 
@@ -219,7 +205,6 @@ def sync_endpoint(client, catalog, state, start_date, stream_name, path, endpoin
             stream_name,
             start_date,
             endpoint_config,
-            parent_id,
             custom_reports,
             window_size
         )
@@ -231,22 +216,20 @@ def sync_endpoint(client, catalog, state, start_date, stream_name, path, endpoin
             url,
             stream_name,
             start_date,
-            endpoint_config,
-            parent_id
+            endpoint_config
         )
 
     return total_records, max_bookmark_value
 
 
-def sync_rest_endpoint(client, catalog, state, url, stream_name, start_date, endpoint_config, parent_id=None):
+def sync_rest_endpoint(client, catalog, state, url, stream_name, start_date, endpoint_config):
     """ Sync endpoints using the traditional REST API method.
     This handles getting the endpoint and pagination.
     """
 
     # Pagination params
     page_size = endpoint_config.get('count', 100)  # Batch size; Number of records per API call, default = 100
-    page = 1
-
+    
     # Request params
     params = {
         'page_size': page_size,
@@ -262,31 +245,20 @@ def sync_rest_endpoint(client, catalog, state, url, stream_name, start_date, end
     if bookmark_query_field:
         params[bookmark_query_field] = datetime.strptime(last_datetime, "%Y-%m-%d")
 
-    # Initialize child_max_bookmarks
-    child_max_bookmarks = {}
-    children = endpoint_config.get('children')
-    if children:
-        for child_stream_name, child_endpoint_config in children.items():
-            should_stream, _ = should_sync_stream(get_selected_streams(catalog), None, child_stream_name)
-            if should_stream:
-                child_bookmark_field = child_endpoint_config.get('bookmark_field')
-                if child_bookmark_field:
-                    child_last_datetime = get_bookmark(state, stream_name, start_date)
-                    child_max_bookmarks[child_stream_name] = child_last_datetime
-
     if endpoint_config.get('advertiser_ids'):
         advertiser_ids = [a_id.strip() for a_id in endpoint_config['advertiser_ids'].split(',')]
     else:
         advertiser_ids = get_advertiser_ids(client, API_ENDPOINT_BASE_PATH, endpoint_config.get('owner_user_id'))
 
-    total_records = 0
 
-    # Get urls with ad_account_ids 
+    # Customise the url with ad_account ids
     custom_urls = set([url.format(advertiser_id=advertiser_id) for advertiser_id in advertiser_ids ])
+    total_records, current_page = 0, 0
 
     for url in custom_urls:
         pagination = True
         while pagination:
+            current_page+=1
             LOGGER.info(f'URL for {stream_name}: {url} -> params: {params.items()}')
 
             # Get data, API request
@@ -312,66 +284,15 @@ def sync_rest_endpoint(client, catalog, state, url, stream_name, start_date, end
                 time_extracted=time_extracted,
                 bookmark_field=endpoint_config.get('bookmark_field'),
                 max_bookmark_value=max_bookmark_value,
-                last_datetime=last_datetime,
-                parent=endpoint_config.get('parent'),
-                parent_id=parent_id)
-            LOGGER.info(f'{stream_name}, records processed: {record_count}')
-            total_records = total_records + record_count
+                last_datetime=last_datetime)
 
-            # Loop thru parent batch records for each children objects (if should stream)
-            if children:
-                for child_stream_name, child_endpoint_config in children.items():
-                    should_stream, _ = should_sync_stream(get_selected_streams(catalog), None, child_stream_name)
-                    if should_stream:
-                        # For each parent record
-                        for record in data:
-                            i = 0
-                            # Set parent_id
-                            for id_field in endpoint_config.get('id_fields'):
-                                if i == 0:
-                                    parent_id_field = id_field
-                                if id_field == 'id':
-                                    parent_id_field = id_field
-                                i = i + 1
-                            parent_id = record.get(parent_id_field)
-
-                            child_path = child_endpoint_config.get('path').format(id=parent_id)
-                            child_total_records, child_batch_bookmark_value = sync_endpoint(
-                                client=client,
-                                catalog=catalog,
-                                state=state,
-                                start_date=start_date,
-                                stream_name=child_stream_name,
-                                path=child_path,
-                                endpoint_config=child_endpoint_config,
-                                parent_id=parent_id)
-
-                            child_batch_bookmark_dttm = datetime.strptime(child_batch_bookmark_value, "%Y-%m-%dT%H:%M:%SZ")
-                            child_max_bookmark = child_max_bookmarks.get(child_stream_name)
-
-                            # Handle case where bookmark comes from a unix timestamp OR a datetime string
-                            if type(child_max_bookmark) is str and child_max_bookmark.isdigit():
-                                child_max_bookmark_dttm = datetime.utcfromtimestamp(child_max_bookmark)
-                            else:
-                                child_max_bookmark_dttm = datetime.strptime(child_max_bookmark, "%Y-%m-%dT%H:%M:%SZ")
-
-                            if child_batch_bookmark_dttm > child_max_bookmark_dttm:
-                                child_batch_bookmark_dttm = child_batch_bookmark_dttm.replace(tzinfo=timezone.utc)
-                                child_max_bookmarks[child_stream_name] = datetime.strftime(child_batch_bookmark_dttm, "%Y-%m-%dT%H:%M:%SZ")
-
-                            LOGGER.info(f'Synced: {child_stream_name}, parent_id: {parent_id}, total_records: {child_total_records}')
-
-            LOGGER.info(f'{stream_name}: Synced page {page}, this page: {record_count}. Total records processed: {total_records}')
-            page = page + 1
-
-    # Write child bookmarks
-    for stream, timestamp in list(child_max_bookmarks.items()):
-        write_bookmark(state, stream, timestamp)
+            total_records += record_count
+            LOGGER.info(f'{stream_name}: Synced page number {current_page}, this page contains: {record_count} records. Total records processed: {total_records}')
 
     return total_records, max_bookmark_value
 
 
-def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, endpoint_config, parent_id=None, custom_reports=None, window_size=0):
+def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, endpoint_config, custom_reports=None, window_size=0):
     """ Sync endpoints using the fancy ansyc report method.
     https://developers.pinterest.com/docs/redoc/combined_reporting/#operation/ads_v3_create_advertiser_delivery_metrics_report_POST
     https://developers.pinterest.com/docs/redoc/combined_reporting/#tag/reports
@@ -486,9 +407,7 @@ def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, en
                     time_extracted=time_extracted,
                     bookmark_field=endpoint_config.get('bookmark_field'),
                     max_bookmark_value=max_bookmark_value,
-                    last_datetime=start,
-                    parent=endpoint_config.get('parent'),
-                    parent_id=parent_id)
+                    last_datetime=start)
                 LOGGER.info(f'{stream_name}: Synced report. Total records processed: {record_count}')
                 total_records = total_records + record_count
 
@@ -576,13 +495,6 @@ def sync(client, config, catalog, state):
             path = endpoint_config.get('path')
             bookmark_field = endpoint_config.get('bookmark_field')
             write_schema(catalog, stream_name)
-            # prevent children schema to be rewrite after each iteration, unstead write it when writing the parent
-            children = endpoint_config.get('children')
-            if children:
-                for child_stream_name, _ in children.items():
-                    should_sync, _ = should_sync_stream(selected_streams, None, child_stream_name)
-                    if should_sync:
-                        write_schema(catalog, child_stream_name)
 
             if endpoint_config.get('async_report'):
                 if config.get('attribution_types'):
@@ -617,7 +529,7 @@ def sync(client, config, catalog, state):
                 window_size=window_size
             )
 
-            # Write parent bookmarks
+            # Write bookmarks
             if bookmark_field:
                 if type(max_bookmark_value) is datetime:
                     max_bookmark_value = max_bookmark_value.strftime("%Y-%m-%dT%H:%M:%SZ")
