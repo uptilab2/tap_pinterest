@@ -4,6 +4,7 @@ import json
 
 import singer
 from tap_pinterest.sync import BASE_URL
+import base64
 
 
 LOGGER = singer.get_logger()
@@ -107,6 +108,12 @@ class PinterestClient:
     def __exit__(self, exception_type, exception_value, traceback):
         self.__session.close()
 
+    def _make_base64_string(text):
+        res = text.encode('ascii')
+        res = base64.b64encode(res)
+        res = res.decode('ascii')
+        return res
+
     @backoff.on_exception(backoff.expo,
                           Server5xxError,
                           max_tries=5,
@@ -114,13 +121,20 @@ class PinterestClient:
     def get_access_token(self):
         """ Get a fresh access token using the refresh token provided in the config file
         """
-        url = f'{BASE_URL}/oauth/access_token'
-        response = self.__session.post(url, data={
+        url = f'{BASE_URL}/oauth/token'
+        client_secret_string = self._make_base64_string(':'.join([self.__client_id, self.__client_secret]))
+
+        response = self.__session.post(url, 
+            data={
             'grant_type': 'refresh_token',
-            'client_id': self.__client_id,
-            'client_secret': self.__client_secret,
-            'refresh_token': self.__refresh_token
-        })
+            'refresh_token': self.__refresh_token,
+            'scope': 'ads:read,user_accounts:read,boards:read,pins:read,catalogs:read'
+            },
+            headers={
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': f'basic {client_secret_string}'
+            }
+        )
         if response.status_code != 200:
             LOGGER.error('Error status_code = %s', response.status_code)
             raise_for_error(response)

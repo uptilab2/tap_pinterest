@@ -5,12 +5,93 @@ import backoff
 import singer
 from singer import metrics, utils
 
-logger = logging.getLogger(__name__)
 
 LOGGER = singer.get_logger()
-API_VERSION = 'v4'
-BASE_URL = f'https://api.pinterest.com/ads/{API_VERSION}'
+API_VERSION = 'v5'
+BASE_URL = f'https://api.pinterest.com/{API_VERSION}'
+API_ENDPOINT_BASE_PATH = f'{BASE_URL}/ad_accounts'
 
+
+def get_endpoints(config): 
+    # endpoints: API URL endpoints to be called
+    endpoints = {
+        'ad_accounts': {
+            'path': 'ad_accounts',
+            'data_key': 'items',
+            'params': {}
+        },
+        'campaigns': {
+            'path': 'ad_accounts/{advertiser_id}/campaigns',
+            'data_key': 'items',
+            'bookmark_field': 'updated_time',
+            'id_fields': ['id'],
+            'advertiser_ids': config.get('advertiser_ids'),
+            'params': {},
+            'children': {
+                # 'campaign_ad_groups': {  # TODO: Replace this with advertiser_ad_groups, if possible.
+                #    'path': 'campaigns/{id}/ad_groups',
+                #    'data_key': 'data',
+                #    'bookmark_field': 'updated_time',
+                #    'id_fields': ['id']
+                # }
+            }
+        },
+        'advertiser_delivery_metrics': {
+            # https://developers.pinterest.com/docs/redoc/combined_reporting/#operation/ads_v3_create_advertiser_delivery_metrics_report_POST
+            'path': 'ad_accounts/{advertiser_id}/delivery_metrics/async',
+            'account_filter': None,
+            'advertiser_ids': config.get('advertiser_ids'),
+            'owner_user_id': config.get('owner_user_id'),
+            'params': {
+                'granularity': 'DAY',  # This returns one record per day, no need to iterate on days like some other taps
+                'level': 'ADVERTISER',
+            },
+            'bookmark_field': 'DATE',
+            'id_fields': ['ADVERTISER_ID'],
+            'async_report': True
+        },
+        'campaign_delivery_metrics': {
+            # https://developers.pinterest.com/docs/redoc/combined_reporting/#operation/ads_v3_create_advertiser_delivery_metrics_report_POST
+            'path': 'ad_accounts/{advertiser_id}/delivery_metrics/async',
+            'advertiser_ids': config.get('advertiser_ids'),
+            'owner_user_id': config.get('owner_user_id'),
+            'params': {
+                'granularity': 'DAY',  # This returns one record per day, no need to iterate on days like some other taps
+                'level': 'CAMPAIGN',
+            },
+            'bookmark_field': 'DATE',
+            'id_fields': ['CAMPAIGN_ID'],
+            'async_report': True
+        },
+        'ad_group_delivery_metrics': {
+            # https://developers.pinterest.com/docs/redoc/combined_reporting/#operation/ads_v3_create_advertiser_delivery_metrics_report_POST
+            'path': 'ad_accounts/{advertiser_id}/delivery_metrics/async',
+            'advertiser_ids': config.get('advertiser_ids'),
+            'owner_user_id': config.get('owner_user_id'),
+            'params': {
+                'granularity': 'DAY',  # This returns one record per day, no need to iterate on days like some other taps
+                'level': 'AD_GROUP',
+            },
+            'bookmark_field': 'DATE',
+            'id_fields': ['CAMPAIGN_ID'],
+            'async_report': True
+        },
+        'pin_promotion_delivery_metrics': {
+            # https://developers.pinterest.com/docs/redoc/combined_reporting/#operation/ads_v3_create_advertiser_delivery_metrics_report_POST
+            'path': 'ad_accounts/{advertiser_id}/delivery_metrics/async',
+            'advertiser_ids': config.get('advertiser_ids'),
+            'owner_user_id': config.get('owner_user_id'),
+            'params': {
+                'granularity': 'DAY',  # This returns one record per day, no need to iterate on days like some other taps
+                'level': 'PIN_PROMOTION',
+            },
+            'bookmark_field': 'DATE',
+            'id_fields': ['CAMPAIGN_ID'],
+            'async_report': True
+        },
+    }
+
+    return endpoints
 
 def write_schema(catalog, stream_name):
     stream = catalog.get_stream(stream_name)
@@ -36,6 +117,14 @@ def get_bookmark(state, stream, default):
         return default
     return state.get('bookmarks', {}).get(stream, default)
 
+
+def decode_bookmark_field(bookmark_field):
+    if isinstance(bookmark_field, str): # TODO a lot of type-checking in this file, will be nice to refactor later
+        return datetime.strptime(bookmark_field, '%Y-%m-%d')
+    elif isinstance(bookmark_field, float):
+        return datetime.fromtimestamp(bookmark_field).replace(hour=0,minute=0,second=0) 
+    else:
+        return None
 
 def write_bookmark(state, stream, value):
     if 'bookmarks' not in state:
@@ -71,7 +160,7 @@ def process_records(catalog, stream_name, records, time_extracted,
                 record[parent + '_id'] = parent_id
 
             if bookmark_field in record:
-                bookmark_dttm = datetime.strptime(record[bookmark_field], '%Y-%m-%d')
+                bookmark_dttm = decode_bookmark_field(record[bookmark_field])
             else:
                 bookmark_dttm = datetime.now()
 
@@ -83,7 +172,7 @@ def process_records(catalog, stream_name, records, time_extracted,
                 max_bookmark_value = bookmark_dttm
 
             if bookmark_field and (bookmark_field in record):
-                last_dttm = last_datetime
+                last_dttm = date(year = last_datetime.year, month = last_datetime.month, day = last_datetime.day)
                 # Keep only records whose bookmark is after the last_datetime
                 if (bookmark_dttm.date() >= last_dttm):
                     write_record(stream_name, record, time_extracted=time_extracted)
@@ -97,12 +186,22 @@ def process_records(catalog, stream_name, records, time_extracted,
 
 def get_advertiser_ids(client, url, owner_user_id=None):
 
-    params = dict(include_acl=True)
+    page_size = 100
+    params = dict(include_acl=True, page_size=page_size)
     if owner_user_id:
         params.update(owner_user_id=owner_user_id)
 
-    res = client.get(url=url, endpoint='advertisers', params=params)
-    return [adveriser['id'] for adveriser in res['data']]
+    res = []    
+    pagination = True
+    while pagination:
+        response = client.get(url=url, endpoint='ad_accounts', params=params)
+        if response.get('bookmark'):
+            params.update(dict(bookmark=response['bookmark']))
+        else:
+            pagination = False
+        res += [adveriser['id'] for adveriser in response['items']]
+
+    return res
 
 
 # Sync a specific parent or child endpoint.
@@ -175,38 +274,35 @@ def sync_rest_endpoint(client, catalog, state, url, stream_name, start_date, end
                     child_last_datetime = get_bookmark(state, stream_name, start_date)
                     child_max_bookmarks[child_stream_name] = child_last_datetime
 
-    path = f'{BASE_URL}/advertisers'
     if endpoint_config.get('advertiser_ids'):
         advertiser_ids = [a_id.strip() for a_id in endpoint_config['advertiser_ids'].split(',')]
     else:
-        advertiser_ids = get_advertiser_ids(client, path, endpoint_config.get('owner_user_id'))
+        advertiser_ids = get_advertiser_ids(client, API_ENDPOINT_BASE_PATH, endpoint_config.get('owner_user_id'))
 
     total_records = 0
 
-    original_url = url
-    for advertiser_id in advertiser_ids:
+    # Get urls with ad_account_ids 
+    custom_urls = set([url.format(advertiser_id=advertiser_id) for advertiser_id in advertiser_ids ])
 
-        # Set advertiser ID, if present in string.
-        url = original_url.format(advertiser_id=advertiser_id)
-
+    for url in custom_urls:
         pagination = True
         while pagination:
             LOGGER.info(f'URL for {stream_name}: {url} -> params: {params.items()}')
 
             # Get data, API request
-            data = client.get(url=url, endpoint=stream_name, params=params)
+            response = client.get(url=url, endpoint=stream_name, params=params)
             # time_extracted: datetime when the data was extracted from the API
             time_extracted = utils.now()
 
             # Pagination reference:
             # https://developers.pinterest.com/docs/redoc/#tag/Pagination
             # Pagination is done via a cursor that is returned every time we make a request.
-            if data.get('bookmark'):
+            if response.get('bookmark'):
                 params.update(dict(bookmark=data['bookmark']))
             else:
                 pagination = False
 
-            data = data[endpoint_config.get('data_key', 'data')]
+            data = response[endpoint_config.get('data_key', 'items')]
 
             # Process records and get the max_bookmark_value and record_count for the set of records
             max_bookmark_value, record_count = process_records(
@@ -322,11 +418,11 @@ def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, en
     if segment_end > now:
         segments.append((segment_start, now))
 
-    path = f'{BASE_URL}/advertisers'
+
     if endpoint_config.get('advertiser_ids'):
         advertiser_ids = [a_id.strip() for a_id in endpoint_config['advertiser_ids'].split(',')]
     else:
-        advertiser_ids = get_advertiser_ids(client, path, endpoint_config.get('owner_user_id'))
+        advertiser_ids = get_advertiser_ids(client, API_ENDPOINT_BASE_PATH, endpoint_config.get('owner_user_id'))
 
     LOGGER.info(f' -- advertiser_ids = {advertiser_ids}')
 
@@ -468,90 +564,7 @@ def sync(client, config, catalog, state):
     last_stream = singer.get_currently_syncing(state)
     LOGGER.info(f'last/currently syncing stream: {last_stream}')
 
-    # endpoints: API URL endpoints to be called
-    endpoints = {
-        'advertisers': {
-            'path': 'advertisers',
-            'params': {
-                'owner_user_id': config.get('owner_user_id'),
-                'include_acl': True
-            },
-            'bookmark_field': 'updated_time',
-        },
-        'advertisers_campaigns': {
-            'path': 'advertisers/{advertiser_id}/campaigns',
-            'params': {
-                'campaign_status': 'ALL',
-                'managed_status': 'ALL'
-            },
-            'data_key': 'data',
-            'bookmark_field': 'updated_time',
-            'id_fields': ['id'],
-            'advertiser_ids': config.get('advertiser_ids'),
-            'owner_user_id': config.get('owner_user_id'),
-            'children': {
-                # 'campaign_ad_groups': {  # TODO: Replace this with advertiser_ad_groups, if possible.
-                #    'path': 'campaigns/{id}/ad_groups',
-                #    'data_key': 'data',
-                #    'bookmark_field': 'updated_time',
-                #    'id_fields': ['id']
-                # }
-            }
-        },
-        'advertiser_delivery_metrics': {
-            # https://developers.pinterest.com/docs/redoc/combined_reporting/#operation/ads_v3_create_advertiser_delivery_metrics_report_POST
-            'path': 'advertisers/{advertiser_id}/delivery_metrics/async',
-            'account_filter': None,
-            'advertiser_ids': config.get('advertiser_ids'),
-            'owner_user_id': config.get('owner_user_id'),
-            'params': {
-                'granularity': 'DAY',  # This returns one record per day, no need to iterate on days like some other taps
-                'level': 'ADVERTISER',
-            },
-            'bookmark_field': 'DATE',
-            'id_fields': ['ADVERTISER_ID'],
-            'async_report': True
-        },
-        'campaign_delivery_metrics': {
-            # https://developers.pinterest.com/docs/redoc/combined_reporting/#operation/ads_v3_create_advertiser_delivery_metrics_report_POST
-            'path': 'advertisers/{advertiser_id}/delivery_metrics/async',
-            'advertiser_ids': config.get('advertiser_ids'),
-            'owner_user_id': config.get('owner_user_id'),
-            'params': {
-                'granularity': 'DAY',  # This returns one record per day, no need to iterate on days like some other taps
-                'level': 'CAMPAIGN',
-            },
-            'bookmark_field': 'DATE',
-            'id_fields': ['CAMPAIGN_ID'],
-            'async_report': True
-        },
-        'ad_group_delivery_metrics': {
-            # https://developers.pinterest.com/docs/redoc/combined_reporting/#operation/ads_v3_create_advertiser_delivery_metrics_report_POST
-            'path': 'advertisers/{advertiser_id}/delivery_metrics/async',
-            'advertiser_ids': config.get('advertiser_ids'),
-            'owner_user_id': config.get('owner_user_id'),
-            'params': {
-                'granularity': 'DAY',  # This returns one record per day, no need to iterate on days like some other taps
-                'level': 'AD_GROUP',
-            },
-            'bookmark_field': 'DATE',
-            'id_fields': ['CAMPAIGN_ID'],
-            'async_report': True
-        },
-        'pin_promotion_delivery_metrics': {
-            # https://developers.pinterest.com/docs/redoc/combined_reporting/#operation/ads_v3_create_advertiser_delivery_metrics_report_POST
-            'path': 'advertisers/{advertiser_id}/delivery_metrics/async',
-            'advertiser_ids': config.get('advertiser_ids'),
-            'owner_user_id': config.get('owner_user_id'),
-            'params': {
-                'granularity': 'DAY',  # This returns one record per day, no need to iterate on days like some other taps
-                'level': 'PIN_PROMOTION',
-            },
-            'bookmark_field': 'DATE',
-            'id_fields': ['CAMPAIGN_ID'],
-            'async_report': True
-        },
-    }
+    endpoints = get_endpoints(config)
 
     # For each endpoint (above), determine if the stream should be streamed
     #   (based on the catalog and last_stream), then sync those streams.
