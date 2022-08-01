@@ -28,9 +28,17 @@ def get_endpoints(config):
             'advertiser_ids': config.get('advertiser_ids'),
             'params': {}
         },
+        'ad_groups': {
+            'path': 'ad_accounts/{advertiser_id}/ad_groups',
+            'data_key': 'items',
+            'bookmark_field': 'updated_time',
+            'id_fields': ['id'],
+            'advertiser_ids': config.get('advertiser_ids'),
+            'params': {}
+        },
         'advertiser_delivery_metrics': {
             # https://developers.pinterest.com/docs/redoc/combined_reporting/#operation/ads_v3_create_advertiser_delivery_metrics_report_POST
-            'path': 'ad_accounts/{advertiser_id}/delivery_metrics/async',
+            'path': 'ad_accounts/{advertiser_id}/reports',   
             'account_filter': None,
             'advertiser_ids': config.get('advertiser_ids'),
             'owner_user_id': config.get('owner_user_id'),
@@ -44,7 +52,7 @@ def get_endpoints(config):
         },
         'campaign_delivery_metrics': {
             # https://developers.pinterest.com/docs/redoc/combined_reporting/#operation/ads_v3_create_advertiser_delivery_metrics_report_POST
-            'path': 'ad_accounts/{advertiser_id}/delivery_metrics/async',
+            'path': 'ad_accounts/{advertiser_id}/reports',
             'advertiser_ids': config.get('advertiser_ids'),
             'owner_user_id': config.get('owner_user_id'),
             'params': {
@@ -57,7 +65,7 @@ def get_endpoints(config):
         },
         'ad_group_delivery_metrics': {
             # https://developers.pinterest.com/docs/redoc/combined_reporting/#operation/ads_v3_create_advertiser_delivery_metrics_report_POST
-            'path': 'ad_accounts/{advertiser_id}/delivery_metrics/async',
+            'path': 'ad_accounts/{advertiser_id}/reports',
             'advertiser_ids': config.get('advertiser_ids'),
             'owner_user_id': config.get('owner_user_id'),
             'params': {
@@ -70,7 +78,7 @@ def get_endpoints(config):
         },
         'pin_promotion_delivery_metrics': {
             # https://developers.pinterest.com/docs/redoc/combined_reporting/#operation/ads_v3_create_advertiser_delivery_metrics_report_POST
-            'path': 'ad_accounts/{advertiser_id}/delivery_metrics/async',
+            'path': 'ad_accounts/{advertiser_id}/reports',
             'advertiser_ids': config.get('advertiser_ids'),
             'owner_user_id': config.get('owner_user_id'),
             'params': {
@@ -270,7 +278,7 @@ def sync_rest_endpoint(client, catalog, state, url, stream_name, start_date, end
             # https://developers.pinterest.com/docs/redoc/#tag/Pagination
             # Pagination is done via a cursor that is returned every time we make a request.
             if response.get('bookmark'):
-                params.update(dict(bookmark=data['bookmark']))
+                params.update(dict(bookmark=response['bookmark']))
             else:
                 pagination = False
 
@@ -314,6 +322,8 @@ def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, en
                 body.update(dict(
                     columns=list(set(stream.schema.to_dict()['properties'].keys()))
                 ))
+                body['columns'].remove('DATE')
+
                 break
 
     # Get the latest bookmark for the stream and set the last_datetime
@@ -366,11 +376,13 @@ def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, en
 
             # Create request to generate report
             LOGGER.info(f'URL for {stream_name}: {url} -> body: {body.items()}')
+
+
             res = client.post(url=url, endpoint=stream_name, json=body)
 
             # If the report generates instantly
-            if res['data'].get('report_status') == 'FINISHED':
-                token = res['data'].get('token')
+            if res.get('report_status') == 'FINISHED':
+                token = res.get('token')
             else:
                 token = retry_report(client, 'post', url, stream_name, json=body, key='token')
 
@@ -380,8 +392,8 @@ def sync_async_endpoint(client, catalog, state, url, stream_name, start_date, en
 
             # Here we do the same retry.
             # Normally this should never be used as we wait in the first step, but lets be safe.
-            if res['data'].get('report_status') == 'FINISHED':
-                report_url = res['data'].get('url')
+            if res.get('report_status') == 'FINISHED':
+                report_url = res.get('url')
             else:
                 report_url = retry_report(client, 'get', url, stream_name, params=dict(token=token), key='url')
 
@@ -428,10 +440,10 @@ def retry_report(client, method, url, stream_name, key='token', **kwargs):
         res = client.get(url=url, endpoint=stream_name, **kwargs)
 
     # If the report generates instantly
-    if res['data'].get('report_status') == 'FINISHED':
-        return res['data'].get(key)
+    if res.get('report_status') == 'FINISHED':
+        return res.get(key)
     else:
-        LOGGER.info(f' -- -- REPORT STATUS: {res["data"].get("report_status")}')
+        LOGGER.info(f' -- -- REPORT STATUS: {res.get("report_status")}')
         raise TokenNotReadyException
 
 
