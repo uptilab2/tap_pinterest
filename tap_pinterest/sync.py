@@ -86,7 +86,7 @@ def get_endpoints(config):
                 'level': 'PIN_PROMOTION',
             },
             'bookmark_field': 'DATE',
-            'id_fields': ['CAMPAIGN_ID'],
+            'id_fields': ['PIN_PROMOTION_ID'],
             'async_report': True
         },
     }
