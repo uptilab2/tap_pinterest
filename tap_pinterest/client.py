@@ -50,6 +50,10 @@ class PinterestInternalServiceError(PinterestError):
     pass
 
 
+class TokenNotReadyException(Exception):
+    pass
+
+
 ERROR_CODE_EXCEPTION_MAPPING = {
     400: PinterestBadRequestError,
     401: PinterestUnauthorizedError,
@@ -140,6 +144,22 @@ class PinterestClient:
             raise_for_error(response)
         return response.json()['access_token']
 
+    @backoff.on_exception(backoff.expo, TokenNotReadyException, max_time=120, factor=2)
+    def retry_report(self, method, url, stream_name, key='token', **kwargs):
+        # Get status of report generating proccess
+        LOGGER.info(f' -- REPORT NOT READY -> retrying: {url} -> {kwargs.items()}')
+        if method == 'post':
+            res = self.post(url=url, endpoint=stream_name, **kwargs)
+        else:
+            res = self.get(url=url, endpoint=stream_name, **kwargs)
+
+        # If the report generates instantly
+        if res.get('report_status') == 'FINISHED':
+            return res.get(key)
+        else:
+            LOGGER.info(f' -- -- REPORT STATUS: {res.get("report_status")}')
+            raise TokenNotReadyException
+
     @backoff.on_exception(backoff.expo,
                           (Server5xxError, requests.exceptions.ConnectionError, Server429Error),
                           max_tries=5,
@@ -193,3 +213,22 @@ class PinterestClient:
             raise_for_error(res)
 
         return json.loads(res.content.decode())
+
+    def get_advertiser_ids(self):
+        '''Get all the ad accounts availible'''
+
+        AD_ACCOUNTS_URL = f'{BASE_URL}/ad_accounts'
+        page_size = 100
+        params = dict(include_acl=True, page_size=page_size)
+
+        res = []    
+        pagination = True
+        while pagination:
+            response = self.get(url=AD_ACCOUNTS_URL, endpoint='ad_accounts', params=params)
+            if response.get('bookmark'):
+                params.update(dict(bookmark=response['bookmark']))
+            else:
+                pagination = False
+            res += [adveriser['id'] for adveriser in response['items']]
+
+        return res

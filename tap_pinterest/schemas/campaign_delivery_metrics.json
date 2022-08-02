@@ -8,91 +8,13 @@
             ],
             "description": "The date for the current line."
         },
-        "ADVERTISER_ID": {
+        "SPEND_IN_MICRO_DOLLAR": {
             "type": [
                 "null",
                 "number"
             ]
         },
-        "PIN_PROMOTION_ID": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "AD_ACCOUNT_ID": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "AD_GROUP_ENTITY_STATUS": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "AD_GROUP_ID": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "AD_ID": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "CAMPAIGN_DAILY_SPEND_CAP": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "CAMPAIGN_ENTITY_STATUS": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "CAMPAIGN_ID": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "CAMPAIGN_LIFETIME_SPEND_CAP": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "CAMPAIGN_NAME": {
-            "type": [
-                "null",
-                "string"
-            ]
-        },
-        "CHECKOUT_ROAS": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "CLICKTHROUGH_1": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "CLICKTHROUGH_1_GROSS": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "CLICKTHROUGH_2": {
+        "PAID_IMPRESSION": {
             "type": [
                 "null",
                 "number"
@@ -104,13 +26,7 @@
                 "number"
             ]
         },
-        "CPM_IN_DOLLAR": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "CPM_IN_MICRO_DOLLAR": {
+        "ECPC_IN_MICRO_DOLLAR": {
             "type": [
                 "null",
                 "number"
@@ -122,61 +38,43 @@
                 "number"
             ]
         },
-        "CTR_2": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "ECPCV_IN_DOLLAR": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "ECPCV_P95_IN_DOLLAR": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "ECPC_IN_DOLLAR": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "ECPC_IN_MICRO_DOLLAR": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "ECPE_IN_DOLLAR": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "ECPM_IN_MICRO_DOLLAR": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "ECPV_IN_DOLLAR": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
         "ECTR": {
             "type": [
                 "null",
                 "number"
             ]
         },
-        "EENGAGEMENT_RATE": {
+        "CAMPAIGN_NAME": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "CAMPAIGN_STATUS": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "AD_STATUS": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "PIN_PROMOTION_STATUS": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "PIN_ID": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_ENGAGEMENT": {
             "type": [
                 "null",
                 "number"
@@ -194,19 +92,91 @@
                 "number"
             ]
         },
-        "ENGAGEMENT_RATE": {
+        "ECPM_IN_MICRO_DOLLAR": {
             "type": [
                 "null",
                 "number"
             ]
         },
-        "IDEA_PIN_PRODUCT_TAG_VISIT_1": {
+        "CTR_2": {
             "type": [
                 "null",
                 "number"
             ]
         },
-        "IDEA_PIN_PRODUCT_TAG_VISIT_2": {
+        "CAMPAIGN_ID": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "ADVERTISER_ID": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "AD_ACCOUNT_ID": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "PIN_PROMOTION_ID": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "AD_ID": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "AD_GROUP_ID": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "CAMPAIGN_MANAGED_STATUS": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "CPM_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "AD_GROUP_NAME": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "AD_GROUP_STATUS": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "PRODUCT_GROUP_ID": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "CLICKTHROUGH_1": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "REPIN_1": {
             "type": [
                 "null",
                 "number"
@@ -224,13 +194,7 @@
                 "number"
             ]
         },
-        "IMPRESSION_2": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "INAPP_CHECKOUT_COST_PER_ACTION": {
+        "CLICKTHROUGH_1_GROSS": {
             "type": [
                 "null",
                 "number"
@@ -242,37 +206,7 @@
                 "number"
             ]
         },
-        "OUTBOUND_CLICK_2": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "PAGE_VISIT_COST_PER_ACTION": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "PAGE_VISIT_ROAS": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "PAID_IMPRESSION": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "PIN_ID": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "REPIN_1": {
+        "CLICKTHROUGH_2": {
             "type": [
                 "null",
                 "number"
@@ -284,133 +218,13 @@
                 "number"
             ]
         },
-        "REPIN_RATE": {
+        "IMPRESSION_2": {
             "type": [
                 "null",
                 "number"
             ]
         },
-        "SPEND_IN_DOLLAR": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "SPEND_IN_MICRO_DOLLAR": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "TOTAL_CHECKOUT": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "TOTAL_CHECKOUT_VALUE_IN_MICRO_DOLLAR": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "TOTAL_CLICKTHROUGH": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "TOTAL_CLICK_ADD_TO_CART": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "TOTAL_CLICK_CHECKOUT": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "TOTAL_CLICK_CHECKOUT_VALUE_IN_MICRO_DOLLAR": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "TOTAL_CLICK_LEAD": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "TOTAL_CLICK_SIGNUP": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "TOTAL_CLICK_SIGNUP_VALUE_IN_MICRO_DOLLAR": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "TOTAL_CONVERSIONS": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "TOTAL_CUSTOM": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "TOTAL_ENGAGEMENT": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "TOTAL_ENGAGEMENT_CHECKOUT": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "TOTAL_ENGAGEMENT_CHECKOUT_VALUE_IN_MICRO_DOLLAR": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "TOTAL_ENGAGEMENT_LEAD": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "TOTAL_ENGAGEMENT_SIGNUP": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "TOTAL_ENGAGEMENT_SIGNUP_VALUE_IN_MICRO_DOLLAR": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "TOTAL_IDEA_PIN_PRODUCT_TAG_VISIT": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
-        "TOTAL_IMPRESSION_FREQUENCY": {
+        "OUTBOUND_CLICK_2": {
             "type": [
                 "null",
                 "number"
@@ -422,115 +236,145 @@
                 "number"
             ]
         },
-        "TOTAL_LEAD": {
+        "TOTAL_IMPRESSION_FREQUENCY": {
             "type": [
                 "null",
                 "number"
             ]
         },
-        "TOTAL_OFFLINE_CHECKOUT": {
+        "TOTAL_ENGAGEMENT_PAGE_VISIT": {
             "type": [
                 "null",
                 "number"
             ]
         },
-        "TOTAL_PAGE_VISIT": {
+        "TOTAL_ENGAGEMENT_SIGNUP": {
             "type": [
                 "null",
                 "number"
             ]
         },
-        "TOTAL_REPIN_RATE": {
+        "TOTAL_ENGAGEMENT_CHECKOUT": {
             "type": [
                 "null",
                 "number"
             ]
         },
-        "TOTAL_SIGNUP": {
+        "TOTAL_ENGAGEMENT_CUSTOM": {
             "type": [
                 "null",
                 "number"
             ]
         },
-        "TOTAL_SIGNUP_VALUE_IN_MICRO_DOLLAR": {
+        "TOTAL_ENGAGEMENT_ADD_TO_CART": {
             "type": [
                 "null",
                 "number"
             ]
         },
-        "TOTAL_VIDEO_3SEC_VIEWS": {
+        "TOTAL_ENGAGEMENT_LEAD": {
             "type": [
                 "null",
                 "number"
             ]
         },
-        "TOTAL_VIDEO_AVG_WATCHTIME_IN_SECOND": {
+        "TOTAL_ENGAGEMENT_SEARCH": {
             "type": [
                 "null",
                 "number"
             ]
         },
-        "TOTAL_VIDEO_MRC_VIEWS": {
+        "TOTAL_ENGAGEMENT_WATCH_VIDEO": {
             "type": [
                 "null",
                 "number"
             ]
         },
-        "TOTAL_VIDEO_P0_COMBINED": {
+        "TOTAL_ENGAGEMENT_VIEW_CATEGORY": {
             "type": [
                 "null",
                 "number"
             ]
         },
-        "TOTAL_VIDEO_P100_COMPLETE": {
+        "TOTAL_ENGAGEMENT_APP_INSTALL": {
             "type": [
                 "null",
                 "number"
             ]
         },
-        "TOTAL_VIDEO_P25_COMBINED": {
+        "TOTAL_ENGAGEMENT_UNKNOWN": {
             "type": [
                 "null",
                 "number"
             ]
         },
-        "TOTAL_VIDEO_P50_COMBINED": {
+        "TOTAL_CLICK_PAGE_VISIT": {
             "type": [
                 "null",
                 "number"
             ]
         },
-        "TOTAL_VIDEO_P75_COMBINED": {
+        "TOTAL_CLICK_SIGNUP": {
             "type": [
                 "null",
                 "number"
             ]
         },
-        "TOTAL_VIDEO_P95_COMBINED": {
+        "TOTAL_CLICK_CHECKOUT": {
             "type": [
                 "null",
                 "number"
             ]
         },
-        "TOTAL_VIEW_ADD_TO_CART": {
+        "TOTAL_CLICK_CUSTOM": {
             "type": [
                 "null",
                 "number"
             ]
         },
-        "TOTAL_VIEW_CHECKOUT": {
+        "TOTAL_CLICK_ADD_TO_CART": {
             "type": [
                 "null",
                 "number"
             ]
         },
-        "TOTAL_VIEW_CHECKOUT_VALUE_IN_MICRO_DOLLAR": {
+        "TOTAL_CLICK_LEAD": {
             "type": [
                 "null",
                 "number"
             ]
         },
-        "TOTAL_VIEW_LEAD": {
+        "TOTAL_CLICK_SEARCH": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CLICK_WATCH_VIDEO": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CLICK_VIEW_CATEGORY": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CLICK_APP_INSTALL": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CLICK_UNKNOWN": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIEW_PAGE_VISIT": {
             "type": [
                 "null",
                 "number"
@@ -542,7 +386,1279 @@
                 "number"
             ]
         },
+        "TOTAL_VIEW_CHECKOUT": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIEW_CUSTOM": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIEW_ADD_TO_CART": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIEW_LEAD": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIEW_SEARCH": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIEW_WATCH_VIDEO": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIEW_VIEW_CATEGORY": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIEW_APP_INSTALL": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIEW_UNKNOWN": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CONVERSIONS": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_ENGAGEMENT_PAGE_VISIT_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_ENGAGEMENT_SIGNUP_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_ENGAGEMENT_CHECKOUT_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_ENGAGEMENT_CUSTOM_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_ENGAGEMENT_ADD_TO_CART_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_ENGAGEMENT_LEAD_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_ENGAGEMENT_SEARCH_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_ENGAGEMENT_WATCH_VIDEO_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_ENGAGEMENT_VIEW_CATEGORY_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_ENGAGEMENT_APP_INSTALL_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_ENGAGEMENT_UNKNOWN_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CLICK_PAGE_VISIT_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CLICK_SIGNUP_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CLICK_CHECKOUT_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CLICK_CUSTOM_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CLICK_ADD_TO_CART_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CLICK_LEAD_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CLICK_SEARCH_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CLICK_WATCH_VIDEO_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CLICK_VIEW_CATEGORY_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CLICK_APP_INSTALL_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CLICK_UNKNOWN_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIEW_PAGE_VISIT_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
         "TOTAL_VIEW_SIGNUP_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIEW_CHECKOUT_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIEW_CUSTOM_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIEW_ADD_TO_CART_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIEW_LEAD_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIEW_SEARCH_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIEW_WATCH_VIDEO_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIEW_VIEW_CATEGORY_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIEW_APP_INSTALL_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIEW_UNKNOWN_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CONVERSIONS_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_ENGAGEMENT_PAGE_VISIT_QUANTITY": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_ENGAGEMENT_SIGNUP_QUANTITY": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_ENGAGEMENT_CHECKOUT_QUANTITY": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_ENGAGEMENT_CUSTOM_QUANTITY": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_ENGAGEMENT_ADD_TO_CART_QUANTITY": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_ENGAGEMENT_LEAD_QUANTITY": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_ENGAGEMENT_SEARCH_QUANTITY": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_ENGAGEMENT_WATCH_VIDEO_QUANTITY": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_ENGAGEMENT_VIEW_CATEGORY_QUANTITY": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_ENGAGEMENT_UNKNOWN_QUANTITY": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CLICK_PAGE_VISIT_QUANTITY": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CLICK_SIGNUP_QUANTITY": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CLICK_CHECKOUT_QUANTITY": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CLICK_CUSTOM_QUANTITY": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CLICK_ADD_TO_CART_QUANTITY": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CLICK_LEAD_QUANTITY": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CLICK_SEARCH_QUANTITY": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CLICK_WATCH_VIDEO_QUANTITY": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CLICK_VIEW_CATEGORY_QUANTITY": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CLICK_UNKNOWN_QUANTITY": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIEW_PAGE_VISIT_QUANTITY": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIEW_SIGNUP_QUANTITY": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIEW_CHECKOUT_QUANTITY": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIEW_CUSTOM_QUANTITY": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIEW_ADD_TO_CART_QUANTITY": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIEW_LEAD_QUANTITY": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIEW_SEARCH_QUANTITY": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIEW_WATCH_VIDEO_QUANTITY": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIEW_VIEW_CATEGORY_QUANTITY": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIEW_UNKNOWN_QUANTITY": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CONVERSIONS_QUANTITY": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "ONSITE_CHECKOUTS_1": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "PIN_PROMOTION_NAME": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "AD_NAME": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "CAMPAIGN_LIFETIME_SPEND_CAP": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "CAMPAIGN_DAILY_SPEND_CAP": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_PAGE_VISIT_DESKTOP_ACTION_TO_DESKTOP_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_PAGE_VISIT_DESKTOP_ACTION_TO_MOBILE_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_PAGE_VISIT_DESKTOP_ACTION_TO_TABLET_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_PAGE_VISIT_MOBILE_ACTION_TO_DESKTOP_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_PAGE_VISIT_MOBILE_ACTION_TO_MOBILE_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_PAGE_VISIT_MOBILE_ACTION_TO_TABLET_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_PAGE_VISIT_TABLET_ACTION_TO_DESKTOP_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_PAGE_VISIT_TABLET_ACTION_TO_MOBILE_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_PAGE_VISIT_TABLET_ACTION_TO_TABLET_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_SIGNUP_DESKTOP_ACTION_TO_DESKTOP_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_SIGNUP_DESKTOP_ACTION_TO_MOBILE_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_SIGNUP_DESKTOP_ACTION_TO_TABLET_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_SIGNUP_MOBILE_ACTION_TO_DESKTOP_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_SIGNUP_MOBILE_ACTION_TO_MOBILE_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_SIGNUP_MOBILE_ACTION_TO_TABLET_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_SIGNUP_TABLET_ACTION_TO_DESKTOP_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_SIGNUP_TABLET_ACTION_TO_MOBILE_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_SIGNUP_TABLET_ACTION_TO_TABLET_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CHECKOUT_DESKTOP_ACTION_TO_DESKTOP_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CHECKOUT_DESKTOP_ACTION_TO_MOBILE_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CHECKOUT_DESKTOP_ACTION_TO_TABLET_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CHECKOUT_MOBILE_ACTION_TO_DESKTOP_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CHECKOUT_MOBILE_ACTION_TO_MOBILE_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CHECKOUT_MOBILE_ACTION_TO_TABLET_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CHECKOUT_TABLET_ACTION_TO_DESKTOP_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CHECKOUT_TABLET_ACTION_TO_MOBILE_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CHECKOUT_TABLET_ACTION_TO_TABLET_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CUSTOM_DESKTOP_ACTION_TO_DESKTOP_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CUSTOM_DESKTOP_ACTION_TO_MOBILE_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CUSTOM_DESKTOP_ACTION_TO_TABLET_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CUSTOM_MOBILE_ACTION_TO_DESKTOP_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CUSTOM_MOBILE_ACTION_TO_MOBILE_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CUSTOM_MOBILE_ACTION_TO_TABLET_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CUSTOM_TABLET_ACTION_TO_DESKTOP_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CUSTOM_TABLET_ACTION_TO_MOBILE_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CUSTOM_TABLET_ACTION_TO_TABLET_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_ADD_TO_CART_DESKTOP_ACTION_TO_DESKTOP_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_ADD_TO_CART_DESKTOP_ACTION_TO_MOBILE_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_ADD_TO_CART_DESKTOP_ACTION_TO_TABLET_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_ADD_TO_CART_MOBILE_ACTION_TO_DESKTOP_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_ADD_TO_CART_MOBILE_ACTION_TO_MOBILE_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_ADD_TO_CART_MOBILE_ACTION_TO_TABLET_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_ADD_TO_CART_TABLET_ACTION_TO_DESKTOP_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_ADD_TO_CART_TABLET_ACTION_TO_MOBILE_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_ADD_TO_CART_TABLET_ACTION_TO_TABLET_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_LEAD_DESKTOP_ACTION_TO_DESKTOP_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_LEAD_DESKTOP_ACTION_TO_MOBILE_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_LEAD_DESKTOP_ACTION_TO_TABLET_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_LEAD_MOBILE_ACTION_TO_DESKTOP_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_LEAD_MOBILE_ACTION_TO_MOBILE_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_LEAD_MOBILE_ACTION_TO_TABLET_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_LEAD_TABLET_ACTION_TO_DESKTOP_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_LEAD_TABLET_ACTION_TO_MOBILE_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_LEAD_TABLET_ACTION_TO_TABLET_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_SEARCH_DESKTOP_ACTION_TO_DESKTOP_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_SEARCH_DESKTOP_ACTION_TO_MOBILE_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_SEARCH_DESKTOP_ACTION_TO_TABLET_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_SEARCH_MOBILE_ACTION_TO_DESKTOP_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_SEARCH_MOBILE_ACTION_TO_MOBILE_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_SEARCH_MOBILE_ACTION_TO_TABLET_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_SEARCH_TABLET_ACTION_TO_DESKTOP_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_SEARCH_TABLET_ACTION_TO_MOBILE_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_SEARCH_TABLET_ACTION_TO_TABLET_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WATCH_VIDEO_DESKTOP_ACTION_TO_DESKTOP_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WATCH_VIDEO_DESKTOP_ACTION_TO_MOBILE_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WATCH_VIDEO_DESKTOP_ACTION_TO_TABLET_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WATCH_VIDEO_MOBILE_ACTION_TO_DESKTOP_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WATCH_VIDEO_MOBILE_ACTION_TO_MOBILE_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WATCH_VIDEO_MOBILE_ACTION_TO_TABLET_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WATCH_VIDEO_TABLET_ACTION_TO_DESKTOP_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WATCH_VIDEO_TABLET_ACTION_TO_MOBILE_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WATCH_VIDEO_TABLET_ACTION_TO_TABLET_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIEW_CATEGORY_DESKTOP_ACTION_TO_DESKTOP_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIEW_CATEGORY_DESKTOP_ACTION_TO_MOBILE_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIEW_CATEGORY_DESKTOP_ACTION_TO_TABLET_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIEW_CATEGORY_MOBILE_ACTION_TO_DESKTOP_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIEW_CATEGORY_MOBILE_ACTION_TO_MOBILE_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIEW_CATEGORY_MOBILE_ACTION_TO_TABLET_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIEW_CATEGORY_TABLET_ACTION_TO_DESKTOP_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIEW_CATEGORY_TABLET_ACTION_TO_MOBILE_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIEW_CATEGORY_TABLET_ACTION_TO_TABLET_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_APP_INSTALL_DESKTOP_ACTION_TO_DESKTOP_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_APP_INSTALL_DESKTOP_ACTION_TO_MOBILE_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_APP_INSTALL_DESKTOP_ACTION_TO_TABLET_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_APP_INSTALL_MOBILE_ACTION_TO_DESKTOP_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_APP_INSTALL_MOBILE_ACTION_TO_MOBILE_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_APP_INSTALL_MOBILE_ACTION_TO_TABLET_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_APP_INSTALL_TABLET_ACTION_TO_DESKTOP_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_APP_INSTALL_TABLET_ACTION_TO_MOBILE_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_APP_INSTALL_TABLET_ACTION_TO_TABLET_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_UNKNOWN_DESKTOP_ACTION_TO_DESKTOP_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_UNKNOWN_DESKTOP_ACTION_TO_MOBILE_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_UNKNOWN_DESKTOP_ACTION_TO_TABLET_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_UNKNOWN_MOBILE_ACTION_TO_DESKTOP_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_UNKNOWN_MOBILE_ACTION_TO_MOBILE_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_UNKNOWN_MOBILE_ACTION_TO_TABLET_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_UNKNOWN_TABLET_ACTION_TO_DESKTOP_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_UNKNOWN_TABLET_ACTION_TO_MOBILE_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_UNKNOWN_TABLET_ACTION_TO_TABLET_CONVERSION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CHECKOUT": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CUSTOM": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_LEAD": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_APP_INSTALL": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CHECKOUT_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_APP_INSTALL_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CHECKOUT_QUANTITY": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "APP_INSTALL_COST_PER_ACTION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "VIDEO_3SEC_VIEWS_1": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "VIDEO_P100_COMPLETE_1": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "VIDEO_P0_COMBINED_1": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "VIDEO_P25_COMBINED_1": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "VIDEO_P50_COMBINED_1": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "VIDEO_P75_COMBINED_1": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "VIDEO_P95_COMBINED_1": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "VIDEO_MRC_VIEWS_1": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "VIDEO_3SEC_VIEWS_2": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "VIDEO_P100_COMPLETE_2": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "VIDEO_P0_COMBINED_2": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "VIDEO_P25_COMBINED_2": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "VIDEO_P50_COMBINED_2": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "VIDEO_P75_COMBINED_2": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "VIDEO_P95_COMBINED_2": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "VIDEO_MRC_VIEWS_2": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "VIDEO_LENGTH": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "CPV_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "CPCV_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "CPCV_P95_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIDEO_3SEC_VIEWS": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "VIDEO_AVG_WATCHTIME_IN_SECOND_1": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "VIDEO_AVG_WATCHTIME_IN_SECOND_2": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIDEO_AVG_WATCHTIME_IN_SECOND": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "WEB_CHECKOUT_COST_PER_ACTION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "WEB_CHECKOUT_ROAS": {
             "type": [
                 "null",
                 "number"
@@ -584,12 +1700,6 @@
                 "number"
             ]
         },
-        "TOTAL_WEB_SESSIONS": {
-            "type": [
-                "null",
-                "number"
-            ]
-        },
         "TOTAL_WEB_VIEW_CHECKOUT": {
             "type": [
                 "null",
@@ -602,67 +1712,1381 @@
                 "number"
             ]
         },
-        "VIDEO_3SEC_VIEWS_2": {
+        "INAPP_CHECKOUT_COST_PER_ACTION": {
             "type": [
                 "null",
                 "number"
             ]
         },
-        "VIDEO_LENGTH": {
+        "INAPP_CHECKOUT_ROAS": {
             "type": [
                 "null",
                 "number"
             ]
         },
-        "VIDEO_MRC_VIEWS_2": {
+        "TOTAL_INAPP_CHECKOUT": {
             "type": [
                 "null",
                 "number"
             ]
         },
-        "VIDEO_P0_COMBINED_2": {
+        "TOTAL_INAPP_CHECKOUT_VALUE_IN_MICRO_DOLLAR": {
             "type": [
                 "null",
                 "number"
             ]
         },
-        "VIDEO_P100_COMPLETE_2": {
+        "TOTAL_INAPP_CLICK_CHECKOUT": {
             "type": [
                 "null",
                 "number"
             ]
         },
-        "VIDEO_P25_COMBINED_2": {
+        "TOTAL_INAPP_CLICK_CHECKOUT_VALUE_IN_MICRO_DOLLAR": {
             "type": [
                 "null",
                 "number"
             ]
         },
-        "VIDEO_P50_COMBINED_2": {
+        "TOTAL_INAPP_ENGAGEMENT_CHECKOUT": {
             "type": [
                 "null",
                 "number"
             ]
         },
-        "VIDEO_P75_COMBINED_2": {
+        "TOTAL_INAPP_ENGAGEMENT_CHECKOUT_VALUE_IN_MICRO_DOLLAR": {
             "type": [
                 "null",
                 "number"
             ]
         },
-        "VIDEO_P95_COMBINED_2": {
+        "TOTAL_INAPP_VIEW_CHECKOUT": {
             "type": [
                 "null",
                 "number"
             ]
         },
-        "WEB_CHECKOUT_COST_PER_ACTION": {
+        "TOTAL_INAPP_VIEW_CHECKOUT_VALUE_IN_MICRO_DOLLAR": {
             "type": [
                 "null",
                 "number"
             ]
         },
-        "WEB_CHECKOUT_ROAS": {
+        "OFFLINE_CHECKOUT_COST_PER_ACTION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "OFFLINE_CHECKOUT_ROAS": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_OFFLINE_CHECKOUT": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_OFFLINE_CHECKOUT_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_OFFLINE_CLICK_CHECKOUT": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_OFFLINE_CLICK_CHECKOUT_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_OFFLINE_ENGAGEMENT_CHECKOUT": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_OFFLINE_ENGAGEMENT_CHECKOUT_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_OFFLINE_VIEW_CHECKOUT": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_OFFLINE_VIEW_CHECKOUT_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "WEB_ADD_TO_CART_COST_PER_ACTION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "WEB_ADD_TO_CART_ROAS": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_ADD_TO_CART": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_ADD_TO_CART_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_CLICK_ADD_TO_CART": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_CLICK_ADD_TO_CART_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_ENGAGEMENT_ADD_TO_CART": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_ENGAGEMENT_ADD_TO_CART_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_VIEW_ADD_TO_CART": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_VIEW_ADD_TO_CART_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "INAPP_ADD_TO_CART_COST_PER_ACTION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "INAPP_ADD_TO_CART_ROAS": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_INAPP_ADD_TO_CART": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_INAPP_ADD_TO_CART_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_INAPP_CLICK_ADD_TO_CART": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_INAPP_CLICK_ADD_TO_CART_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_INAPP_ENGAGEMENT_ADD_TO_CART": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_INAPP_ENGAGEMENT_ADD_TO_CART_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_INAPP_VIEW_ADD_TO_CART": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_INAPP_VIEW_ADD_TO_CART_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "WEB_PAGE_VISIT_COST_PER_ACTION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "WEB_PAGE_VISIT_ROAS": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_PAGE_VISIT": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_PAGE_VISIT_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_CLICK_PAGE_VISIT": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_CLICK_PAGE_VISIT_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_ENGAGEMENT_PAGE_VISIT": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_ENGAGEMENT_PAGE_VISIT_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_VIEW_PAGE_VISIT": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_VIEW_PAGE_VISIT_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "WEB_SIGNUP_COST_PER_ACTION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "WEB_SIGNUP_ROAS": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_SIGNUP": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_SIGNUP_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_CLICK_SIGNUP": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_CLICK_SIGNUP_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_ENGAGEMENT_SIGNUP": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_ENGAGEMENT_SIGNUP_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_VIEW_SIGNUP": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_VIEW_SIGNUP_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "INAPP_SIGNUP_COST_PER_ACTION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "INAPP_SIGNUP_ROAS": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_INAPP_SIGNUP": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_INAPP_SIGNUP_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_INAPP_CLICK_SIGNUP": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_INAPP_CLICK_SIGNUP_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_INAPP_ENGAGEMENT_SIGNUP": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_INAPP_ENGAGEMENT_SIGNUP_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_INAPP_VIEW_SIGNUP": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_INAPP_VIEW_SIGNUP_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "OFFLINE_SIGNUP_COST_PER_ACTION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "OFFLINE_SIGNUP_ROAS": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_OFFLINE_SIGNUP": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_OFFLINE_SIGNUP_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_OFFLINE_CLICK_SIGNUP": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_OFFLINE_CLICK_SIGNUP_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_OFFLINE_ENGAGEMENT_SIGNUP": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_OFFLINE_ENGAGEMENT_SIGNUP_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_OFFLINE_VIEW_SIGNUP": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_OFFLINE_VIEW_SIGNUP_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "WEB_WATCH_VIDEO_COST_PER_ACTION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "WEB_WATCH_VIDEO_ROAS": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_WATCH_VIDEO": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_WATCH_VIDEO_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_CLICK_WATCH_VIDEO": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_CLICK_WATCH_VIDEO_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_ENGAGEMENT_WATCH_VIDEO": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_ENGAGEMENT_WATCH_VIDEO_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_VIEW_WATCH_VIDEO": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_VIEW_WATCH_VIDEO_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "WEB_LEAD_COST_PER_ACTION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "WEB_LEAD_ROAS": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_LEAD": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_LEAD_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_CLICK_LEAD": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_CLICK_LEAD_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_ENGAGEMENT_LEAD": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_ENGAGEMENT_LEAD_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_VIEW_LEAD": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_VIEW_LEAD_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "OFFLINE_LEAD_COST_PER_ACTION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "OFFLINE_LEAD_ROAS": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_OFFLINE_LEAD": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_OFFLINE_LEAD_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_OFFLINE_CLICK_LEAD": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_OFFLINE_CLICK_LEAD_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_OFFLINE_ENGAGEMENT_LEAD": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_OFFLINE_ENGAGEMENT_LEAD_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_OFFLINE_VIEW_LEAD": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_OFFLINE_VIEW_LEAD_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "WEB_SEARCH_COST_PER_ACTION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "WEB_SEARCH_ROAS": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_SEARCH": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_SEARCH_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_CLICK_SEARCH": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_CLICK_SEARCH_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_ENGAGEMENT_SEARCH": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_ENGAGEMENT_SEARCH_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_VIEW_SEARCH": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_VIEW_SEARCH_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "INAPP_SEARCH_COST_PER_ACTION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "INAPP_SEARCH_ROAS": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_INAPP_SEARCH": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_INAPP_SEARCH_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_INAPP_CLICK_SEARCH": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_INAPP_CLICK_SEARCH_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_INAPP_ENGAGEMENT_SEARCH": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_INAPP_ENGAGEMENT_SEARCH_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_INAPP_VIEW_SEARCH": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_INAPP_VIEW_SEARCH_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "WEB_VIEW_CATEGORY_COST_PER_ACTION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "WEB_VIEW_CATEGORY_ROAS": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_VIEW_CATEGORY": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_VIEW_CATEGORY_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_CLICK_VIEW_CATEGORY": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_CLICK_VIEW_CATEGORY_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_ENGAGEMENT_VIEW_CATEGORY": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_ENGAGEMENT_VIEW_CATEGORY_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_VIEW_VIEW_CATEGORY": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_VIEW_VIEW_CATEGORY_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "WEB_CUSTOM_COST_PER_ACTION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "WEB_CUSTOM_ROAS": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_CUSTOM": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_CUSTOM_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_CLICK_CUSTOM": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_CLICK_CUSTOM_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_ENGAGEMENT_CUSTOM": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_ENGAGEMENT_CUSTOM_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_VIEW_CUSTOM": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_VIEW_CUSTOM_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "OFFLINE_CUSTOM_COST_PER_ACTION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "OFFLINE_CUSTOM_ROAS": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_OFFLINE_CUSTOM": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_OFFLINE_CUSTOM_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_OFFLINE_CLICK_CUSTOM": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_OFFLINE_CLICK_CUSTOM_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_OFFLINE_ENGAGEMENT_CUSTOM": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_OFFLINE_ENGAGEMENT_CUSTOM_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_OFFLINE_VIEW_CUSTOM": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_OFFLINE_VIEW_CUSTOM_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "WEB_UNKNOWN_COST_PER_ACTION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "WEB_UNKNOWN_ROAS": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_UNKNOWN": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_UNKNOWN_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_CLICK_UNKNOWN": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_CLICK_UNKNOWN_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_ENGAGEMENT_UNKNOWN": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_ENGAGEMENT_UNKNOWN_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_VIEW_UNKNOWN": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_VIEW_UNKNOWN_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "INAPP_UNKNOWN_COST_PER_ACTION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "INAPP_UNKNOWN_ROAS": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_INAPP_UNKNOWN": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_INAPP_UNKNOWN_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_INAPP_CLICK_UNKNOWN": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_INAPP_CLICK_UNKNOWN_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_INAPP_ENGAGEMENT_UNKNOWN": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_INAPP_ENGAGEMENT_UNKNOWN_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_INAPP_VIEW_UNKNOWN": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_INAPP_VIEW_UNKNOWN_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "OFFLINE_UNKNOWN_COST_PER_ACTION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "OFFLINE_UNKNOWN_ROAS": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_OFFLINE_UNKNOWN": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_OFFLINE_UNKNOWN_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_OFFLINE_CLICK_UNKNOWN": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_OFFLINE_CLICK_UNKNOWN_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_OFFLINE_ENGAGEMENT_UNKNOWN": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_OFFLINE_ENGAGEMENT_UNKNOWN_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_OFFLINE_VIEW_UNKNOWN": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_OFFLINE_VIEW_UNKNOWN_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "INAPP_APP_INSTALL_COST_PER_ACTION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "INAPP_APP_INSTALL_ROAS": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_INAPP_APP_INSTALL": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_INAPP_APP_INSTALL_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_INAPP_CLICK_APP_INSTALL": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_INAPP_CLICK_APP_INSTALL_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_INAPP_ENGAGEMENT_APP_INSTALL": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_INAPP_ENGAGEMENT_APP_INSTALL_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_INAPP_VIEW_APP_INSTALL": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_INAPP_VIEW_APP_INSTALL_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "IDEA_PIN_PRODUCT_TAG_VISIT_1": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "IDEA_PIN_PRODUCT_TAG_VISIT_2": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "REPIN_RATE": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIDEO_P95_COMBINED": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "AD_GROUP_ENTITY_STATUS": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "ECPCV_P95_IN_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "ENGAGEMENT_RATE": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "PAGE_VISIT_COST_PER_ACTION": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_PAGE_VISIT": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "CHECKOUT_ROAS": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_SIGNUP_VALUE_IN_MICRO_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "ECPCV_IN_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIDEO_P75_COMBINED": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIDEO_P50_COMBINED": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_SIGNUP": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIDEO_P0_COMBINED": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "SPEND_IN_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "EENGAGEMENT_RATE": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIDEO_P25_COMBINED": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "CPM_IN_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "ECPV_IN_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_CLICKTHROUGH": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "ECPE_IN_DOLLAR": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIDEO_P100_COMPLETE": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "CAMPAIGN_ENTITY_STATUS": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "PAGE_VISIT_ROAS": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_REPIN_RATE": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_VIDEO_MRC_VIEWS": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_IDEA_PIN_PRODUCT_TAG_VISIT": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "ECPC_IN_DOLLAR": {
             "type": [
                 "null",
                 "number"
@@ -675,6 +3099,12 @@
             ]
         },
         "WEB_SESSIONS_2": {
+            "type": [
+                "null",
+                "number"
+            ]
+        },
+        "TOTAL_WEB_SESSIONS": {
             "type": [
                 "null",
                 "number"
