@@ -301,6 +301,7 @@
                 "null",
                 "object"
             ],
+            "additionalProperties": true,
             "properties": {
                 "username": {
                     "description": "Public username for the user account",
