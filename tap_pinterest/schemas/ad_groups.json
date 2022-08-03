@@ -2,11 +2,11 @@
     "type": "object",
     "properties": {
         "name": {
-            "type": "string",
+            "type": ["null", "number"],
             "description": "Ad group name."
         },
         "status": {
-            "type": "string",
+            "type": ["null", "string"],
             "enum": [
                 "ACTIVE",
                 "PAUSED",
@@ -15,15 +15,15 @@
             "description": "Ad group/entity status."
         },
         "budget_in_micro_currency": {
-            "type": "integer",
+            "type": ["null", "number"],
             "description": "Budget in micro currency. This field is REQUIRED for non-CBO (campaign budget optimization) campaigns. A CBO campaign automatically generates ad group budgets from its campaign budget to maximize campaign outcome. A CBO campaign is limited to 70 or less ad groups."
         },
         "bid_in_micro_currency": {
-            "type": "integer",
+            "type": ["null", "number"],
             "description": "Bid price in micro currency. This field is REQUIRED for the following campaign objective_type/billable_event combinations: AWARENESS/IMPRESSION, CONSIDERATION/CLICKTHROUGH, CATALOG_SALES/CLICKTHROUGH, VIDEO_VIEW/VIDEO_V_50_MRC."
         },
         "bid_strategy_type": {
-            "type": "string",
+            "type": ["null", "string"],
             "enum": [
                 "AUTOMATIC_BID",
                 "MAX_BID",
@@ -31,7 +31,7 @@
             ]
         },
         "budget_type": {
-            "type": "string",
+            "type": ["null", "string"],
             "enum": [
                 "DAILY",
                 "LIFETIME",
@@ -40,31 +40,31 @@
             "description": "Budget type. If DAILY, an ad group's daily spend will not exceed the budget parameter value. If LIFETIME, the end_time parameter is REQUIRED, and the ad group spend is spread evenly between the ad group start_time and end_time range. A CBO campaign automatically generates ad group budgets from its campaign budget to maximize campaign outcome."
         },
         "start_time": {
-            "type": "integer",
+            "type": ["null", "number"],
             "description": "Ad group start time. Unix timestamp in seconds. Defaults to current time."
         },
         "end_time": {
-            "type": "integer",
+            "type": ["null", "number"],
             "description": "Ad group end time. Unix timestamp in seconds."
         },
         "targeting_spec": {
-            "type": "object",
+            "type": ["null", "object"],
             "description": "Ad group targeting specification defining the ad group target audience. For example, {'APPTYPE':['iphone'], 'GENDER':['male'], 'LOCALE':['en-US'], 'LOCATION':['501'], 'AGE_BUCKET':[25-34]}"
         },
         "lifetime_frequency_cap": {
-            "type": "integer",
+            "type": ["null", "number"],
             "description": "Set a limit to the number of times a promoted pin from this campaign can be impressed by a pinner within the past rolling 30 days. Only available for CPM (cost per mille (1000 impressions)) ad groups. A CPM ad group has an IMPRESSION billable_event value. This field REQUIRES the end_time field."
         },
         "tracking_urls": {
-            "type": "object",
+            "type": ["null", "object"],
             "description": "Third-party tracking URLs. Up to three tracking URLs are supported for each event type. Tracking URLs set at the ad group or ad level can override those set at the campaign level. For more information, see https://help.pinterest.com/en/business/article/third-party-and-dynamic-tracking"
         },
         "auto_targeting_enabled": {
-            "type": "string",
+            "type": ["null", "number"],
             "description": "Enable auto-targeting for ad group. Also known as 'expanded' 'targeting'."
         },
         "placement_group": {
-            "type": "string",
+            "type": ["null", "string"],
             "enum": [
                 "ALL",
                 "SEARCH",
@@ -74,7 +74,7 @@
             "description": "Placement group."
         },
         "pacing_delivery_type": {
-            "type": "string",
+            "type": ["null", "string"],
             "enum": [
                 "STANDARD",
                 "ACCELERATED"
@@ -82,11 +82,11 @@
             "description": "Pacing delivery type. With ACCELERATED, an ad group budget is spent as fast as possible. With STANDARD, an ad group budget is spent smoothly over a day."
         },
         "campaign_id": {
-            "type": "string",
+            "type": ["null", "number"],
             "description": "Campaign ID of the ad group."
         },
         "billable_event": {
-            "type": "string",
+            "type": ["null", "string"],
             "enum": [
                 "CLICKTHROUGH",
                 "IMPRESSION",
@@ -96,27 +96,27 @@
             "description": "Ad group billable event type."
         },
         "id": {
-            "type": "string",
+            "type": "number",
             "description": "Ad group ID."
         },
         "ad_account_id": {
-            "type": "string",
+            "type": ["null", "number"],
             "description": "Advertiser ID."
         },
         "created_time": {
-            "type": "integer",
+            "type": ["null", "number"],
             "description": "Ad group creation time. Unix timestamp in seconds."
         },
         "updated_time": {
-            "type": "integer",
+            "type": ["null", "number"],
             "description": "Ad group last update time. Unix timestamp in seconds."
         },
         "type": {
-            "type": "string",
+            "type": ["null", "string"],
             "description": "Always 'adgroup'."
         },
         "conversion_learning_mode_type": {
-            "type": "string",
+            "type": ["null", "string"],
             "enum": [
                 "NOT_ACTIVE",
                 "ACTIVE",
@@ -125,7 +125,7 @@
             "description": "oCPM learn mode"
         },
         "summary_status": {
-            "type": "string",
+            "type": ["null", "string"],
             "enum": [
                 "RUNNING",
                 "PAUSED",
@@ -137,11 +137,11 @@
             "description": "Ad group summary status."
         },
         "feed_profile_id": {
-            "type": "string",
+            "type": ["null", "number"],
             "description": "Feed Profile ID associated to the adgroup."
         },
         "dca_assets": {
-            "type": "string",
+            "type": ["null", "string"],
             "description": "[DCA] The Dynamic creative assets to use for DCA. Dynamic Creative Assembly (DCA) accepts basic creative assets of an ad (image, video, title, call to action, logo etc). Then it automatically generates optimized ad combinations based on these assets."
         }
     }
