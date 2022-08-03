@@ -3,7 +3,10 @@
         "ad_account_id": {
             "description": "Campaign's Advertiser ID.",
             "example": "549755885175",
-            "type": ["number", "null"]
+            "type": [
+                "number",
+                "null"
+            ]
         },
         "id": {
             "description": "Campaign ID.",
@@ -13,7 +16,10 @@
         "name": {
             "description": "Campaign name.",
             "example": "ACME Tools",
-            "type": ["string", "null"]
+            "type": [
+                "string",
+                "null"
+            ]
         },
         "status": {
             "description": "Entity status",
@@ -23,33 +29,50 @@
                 "PAUSED"
             ],
             "example": "ACTIVE",
-            "type": ["string", "null"]
+            "type": [
+                "string",
+                "null"
+            ]
         },
         "lifetime_spend_cap": {
             "description": "Campaign total spending cap.",
             "example": 1432744744,
-            "type": ["number", "null"]
+            "type": [
+                "number",
+                "null"
+            ]
         },
         "daily_spend_cap": {
             "description": "Campaign daily spending cap. ",
             "example": 1432744744,
-            "type": ["number", "null"]
+            "type": [
+                "number",
+                "null"
+            ]
         },
-
         "order_line_id": {
             "description": "Order line ID that appears on the invoice.",
             "example": "549755885175",
-            "type": ["number", "null"]
+            "type": [
+                "number",
+                "null"
+            ]
         },
         "start_time": {
             "description": "Campaign start time. Unix timestamp in seconds. Only used for Campaign Budget Optimization (CBO) campaigns.",
             "example": 1432744744,
-            "type": ["number", "null"]
+            "type": [
+                "number",
+                "null"
+            ]
         },
         "end_time": {
             "description": "Campaign end time. Unix timestamp in seconds. Only used for Campaign Budget Optimization (CBO) campaigns.",
             "example": 1432744744,
-            "type": ["number", "null"]
+            "type": [
+                "number",
+                "null"
+            ]
         },
         "objective_type": {
             "description": "Campaign objective type.",
@@ -62,35 +85,88 @@
                 "WEB_SESSIONS"
             ],
             "example": "AWARENESS",
-            "type": ["string", "null"]
+            "type": [
+                "string",
+                "null"
+            ]
         },
         "created_time": {
             "description": "Campaign creation time. Unix timestamp in seconds.",
             "example": 1432744744,
-            "type": ["number", "null"]
+            "type": [
+                "number",
+                "null"
+            ]
         },
         "updated_time": {
             "description": "UTC timestamp. Last update time.",
             "example": 1432744744,
-            "type": ["number", "null"]
+            "type": [
+                "number",
+                "null"
+            ]
         },
         "type": {
             "description": "Always \"campaign\".",
             "example": "campaign",
-            "type": ["string", "null"]
+            "type": [
+                "string",
+                "null"
+            ]
         },
         "is_flexible_daily_budgets": {
             "description": "Determines if a campaign has flexible daily budgets setup.",
-            "type": ["number", "null"]
+            "type": [
+                "number",
+                "null"
+            ]
         },
-        "is_campaign_budget_optimization":{
+        "is_campaign_budget_optimization": {
             "description": "Determines if a campaign automatically generate ad-group level budgets given a campaign budget to maximize campaign outcome. When transitioning from non-cbo to cbo, all previous child ad group budget will be cleared.",
-            "type": ["number", "null"]
+            "type": [
+                "number",
+                "null"
+            ]
         },
         "tracking_urls": {
             "description": "Third-party tracking URLs.<br> JSON object with the format: {\"<a href=\"/docs/redoc/#section/Tracking-URL-event\">Tracking event enum</a>\":[URL string array],...}<br>For example: {\"impression\": [\"URL1\", \"URL2\"], \"click\": [\"URL1\", \"URL2\", \"URL3\"]}.<br>Up to three tracking URLs are supported for each event type. Tracking URLs set at the ad group or pin promotion level can override those set at the campaign level. May be null.<br><br>For more information, see <a href=\"https://help.pinterest.com/en/business/article/third-party-and-dynamic-tracking\" target=\"_blank\">Third-party and dynamic tracking</a>.",
             "example": "// TrackingUrls\n{\"impression\": [\"URL1\", \"URL2\"]}",
-            "type": ["string", "null"]
+            "type": [
+                "object",
+                "null"
+            ],
+            "properties": {
+                "impression": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": ["array", "null"]
+                },
+                "click": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": ["array", "null"]
+                },
+                "engagement": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": ["array", "null"]
+                },
+                "buyable_button": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": ["array", "null"]
+                },
+                "audience_verification": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": ["array", "null"]
+                }
+            }
         }
     }
 }

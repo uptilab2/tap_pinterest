@@ -297,10 +297,17 @@
             "type": "string"
         },
         "owner": {
+            "type": [
+                "null",
+                "object"
+            ],
             "properties": {
                 "username": {
                     "description": "Public username for the user account",
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 }
             }
         },
@@ -310,7 +317,10 @@
             "items": {
                 "type": "string"
             },
-            "type": "array"
+            "type": [
+                "array",
+                "null"
+            ]
         }
-}
+    }
 }
