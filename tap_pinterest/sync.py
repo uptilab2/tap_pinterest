@@ -53,13 +53,13 @@ def sync(client, config, catalog, state):
                     stream.params['conversion_report_time'] = config['conversion_report_time']
 
                 if config.get('click_window_days'):
-                    stream.params['click_window_days'] = f"DAYS_{config['click_window_days']}"
+                    stream.params['click_window_days'] = f"{config['click_window_days']}"
 
                 if config.get('engagement_window_days'):
-                    stream.params['engagement_window_days'] = f"DAYS_{config['engagement_window_days']}"
+                    stream.params['engagement_window_days'] = f"{config['engagement_window_days']}"
 
                 if config.get('view_window_days'):
-                    stream.params['view_window_days'] = f"DAYS_{config['view_window_days']}"
+                    stream.params['view_window_days'] = f"{config['view_window_days']}"
 
             if config.get('window_size').isnumeric():
                 window_size = int(config['window_size'])
