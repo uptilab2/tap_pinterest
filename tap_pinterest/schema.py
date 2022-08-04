@@ -107,6 +107,58 @@ STREAMS = [
             'level': 'PIN_PROMOTION',
         },
         async_report = True 
+    ),
+    stream (
+        name = 'pin_promotion_targeting_delivery_metrics',
+        key_properties = ['PIN_PROMOTION_ID'],
+        replication_method = 'INCREMENTAL',
+        replication_keys = ['DATE'],
+        path = 'ad_accounts/{advertiser_id}/reports', 
+        data_key = 'items' ,
+        params = {
+            'granularity': 'DAY',
+            'level': 'PIN_PROMOTION_TARGETING',
+        },
+        async_report = True 
+    ),
+    stream (
+        name = 'campaign_targeting_delivery_metrics',
+        key_properties = ['CAMPAIGN_ID'],
+        replication_method = 'INCREMENTAL',
+        replication_keys = ['DATE'],
+        path = 'ad_accounts/{advertiser_id}/reports', 
+        data_key = 'items' ,
+        params = {
+            'granularity': 'DAY',
+            'level': 'CAMPAIGN_TARGETING',
+        },
+        async_report = True 
+    ),
+    stream (
+        name = 'advertiser_targeting_delivery_metrics',
+        key_properties = ['ADVERTISER_ID'],
+        replication_method = 'INCREMENTAL',
+        replication_keys = ['DATE'],
+        path = 'ad_accounts/{advertiser_id}/reports', 
+        data_key = 'items' ,
+        params = {
+            'granularity': 'DAY',
+            'level': 'ADVERTISER_TARGETING',
+        },
+        async_report = True 
+    ),
+    stream (
+        name = 'ad_group_targeting_delivery_metrics',
+        key_properties = ['AD_GROUP_ID'],
+        replication_method = 'INCREMENTAL',
+        replication_keys = ['DATE'],
+        path = 'ad_accounts/{advertiser_id}/reports', 
+        data_key = 'items' ,
+        params = {
+            'granularity': 'DAY',
+            'level': 'AD_GROUP_TARGETING',
+        },
+        async_report = True 
     )
 ]
 

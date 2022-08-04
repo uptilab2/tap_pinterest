@@ -26,9 +26,12 @@ def write_record(stream_name, record, time_extracted):
 
 def get_bookmark(state, stream, default):
     if (state is None) or ('bookmarks' not in state):
-        return default
-    last_datetime_str = state.get('bookmarks', {}).get(stream, default)
-    return datetime.strptime(last_datetime_str, "%Y-%m-%dT%H:%M:%SZ")
+        res = default
+    else:
+        res = state.get('bookmarks', {}).get(stream, default)
+    if isinstance(res, str):
+        res = datetime.strptime(res, "%Y-%m-%dT%H:%M:%SZ")
+    return res
 
 
 def write_bookmark(state, stream, value):
