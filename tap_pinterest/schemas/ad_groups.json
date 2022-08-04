@@ -161,7 +161,21 @@
                 },
                 "SHOPPING_RETARGETING": {
                     "items": {
-                        "type": "object"
+                        "type": "object",
+                        "properties": {
+                            "lookback_window": {
+                                "type": "number"
+                            },
+                            "tag_types": {
+                                "type": "array",
+                                "items": {
+                                    "type": "number"
+                                }
+                            },
+                            "exclusion_window": {
+                                "type": "number"
+                            }
+                        }
                     },
                     "type": [
                         "array",
@@ -175,6 +189,11 @@
                     "type": [
                         "array",
                         "null"
+                    ],
+                    "enum": [
+                        "CHOOSE_YOUR_OWN",
+                        "FIND_NEW_CUSTOMERS",
+                        "RECONNECT_WITH_USERS"
                     ]
                 }
             }
