@@ -160,27 +160,24 @@
                     ]
                 },
                 "SHOPPING_RETARGETING": {
+                    "type": ["null","array"],
                     "items": {
-                        "type": "object",
+                        "type": ["object", "null"],
                         "properties": {
                             "lookback_window": {
-                                "type": "number"
+                                "type": ["null", "number"]
                             },
                             "tag_types": {
-                                "type": "array",
+                                "type": ["null", "array"],
                                 "items": {
                                     "type": "number"
                                 }
                             },
                             "exclusion_window": {
-                                "type": "number"
+                                "type": ["null", "number"]
                             }
                         }
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
+                    }
                 },
                 "TARGETING_STRATEGY": {
                     "items": {
