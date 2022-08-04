@@ -170,7 +170,7 @@
                 },
                 "TARGETING_STRATEGY": {
                     "items": {
-                        "type": "any"
+                        "type": "string"
                     },
                     "type": [
                         "array",
