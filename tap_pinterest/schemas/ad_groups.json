@@ -4,7 +4,7 @@
         "name": {
             "type": [
                 "null",
-                "number"
+                "string"
             ],
             "description": "Ad group name."
         },

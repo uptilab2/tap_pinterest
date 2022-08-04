@@ -1,5 +1,6 @@
 ''' This is a file with geenric helper functions for working with catalog, state and custom report objects'''
 import singer
+from datetime import datetime
 
 LOGGER = singer.get_logger()
 
@@ -26,7 +27,8 @@ def write_record(stream_name, record, time_extracted):
 def get_bookmark(state, stream, default):
     if (state is None) or ('bookmarks' not in state):
         return default
-    return state.get('bookmarks', {}).get(stream, default)
+    last_datetime_str = state.get('bookmarks', {}).get(stream, default)
+    return datetime.strptime(last_datetime_str, "%Y-%m-%dT%H:%M:%SZ")
 
 
 def write_bookmark(state, stream, value):

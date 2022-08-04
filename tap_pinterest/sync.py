@@ -191,11 +191,9 @@ def sync_async_endpoint(client, catalog, state, url, start_date, stream, custom_
 
     # Get the latest bookmark for the stream and set the last_datetime
     last_datetime = helpers.get_bookmark(state, stream.name, start_date)
+    LOGGER.info(f'{stream.name}: bookmark last_datetime = {last_datetime}')
+    
     max_bookmark_value = last_datetime
-    LOGGER.info(f'{stream.name}: bookmark last_datetime = {max_bookmark_value}')
-
-    if type(last_datetime) is str:
-        last_datetime = datetime.strptime(last_datetime, "%Y-%m-%dT%H:%M:%SZ")
     last_datetime -= timedelta(days=window_size)
 
     # NOTE: Documentation specifies start_date and end_date cannot be more than 30 days appart.
@@ -291,7 +289,8 @@ def process_records(catalog, stream_name, records, time_extracted,
                 if key not in record:
                     record[key] = None
                 elif isinstance(record[key], int) or (isinstance(record[key], str) and record[key].isdigit()):
-                    # Cast ints to floats to never have schema issues.
+                    # Cast ints to floats to never have schema issues. 
+                    # !!! this also converts strings with digits and booleans
                     record[key] = float(record[key])
 
             # Remove all entries that are not in the schema. This is used for custom reports.
