@@ -159,26 +159,6 @@
                         "null"
                     ]
                 },
-                "SHOPPING_RETARGETING": {
-                    "type": ["null","array"],
-                    "items": {
-                        "type": ["object", "null"],
-                        "properties": {
-                            "lookback_window": {
-                                "type": ["null", "number"]
-                            },
-                            "tag_types": {
-                                "type": ["null", "array"],
-                                "items": {
-                                    "type": "number"
-                                }
-                            },
-                            "exclusion_window": {
-                                "type": ["null", "number"]
-                            }
-                        }
-                    }
-                },
                 "TARGETING_STRATEGY": {
                     "items": {
                         "type": "string"
@@ -209,6 +189,7 @@
                 "object",
                 "null"
             ],
+            "additionalProperties": true,
             "properties": {
                 "impression": {
                     "items": {
