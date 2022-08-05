@@ -240,7 +240,7 @@ def sync_async_endpoint(client, catalog, state, url, start_date, stream, custom_
                     time_extracted=time_extracted,
                     bookmark_field=stream.bookmark_field,
                     max_bookmark_value=max_bookmark_value,
-                    last_datetime=start)
+                    last_date=start)
                 LOGGER.info(f'{stream.name}: Synced report. Total records processed: {record_count}')
                 total_records += record_count
 
