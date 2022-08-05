@@ -5,24 +5,11 @@ from singer import metrics, utils
 from tap_pinterest.schema import STREAMS, BASE_URL
 import tap_pinterest.helpers as helpers
 
-
 LOGGER = singer.get_logger()
 
 
-def decode_bookmark_field(bookmark_field):
-    '''Return a datetime object from either a yyyy-dd-mm string or unix timestamp'''
-
-    if isinstance(bookmark_field, str): # TODO a lot of type-checking in this file, will be nice to refactor later
-        return datetime.strptime(bookmark_field, '%Y-%m-%d')
-    elif isinstance(bookmark_field, float):
-        return datetime.fromtimestamp(bookmark_field).replace(hour=0,minute=0,second=0) 
-    else:
-        return None
-
-
 def sync(client, config, catalog, state):
-    date = datetime.strptime(config['start_date'], "%Y-%m-%dT%H:%M:%SZ")
-    date_string = datetime.strftime(date, "%Y-%m-%d")
+    start_date = datetime.strptime(config.get('start_date'), "%Y-%m-%dT%H:%M:%SZ").date()
 
     selected_streams = helpers.get_selected_streams(catalog, config.get('custom_report'))
     LOGGER.info(f'selected_streams: {selected_streams}')
@@ -39,7 +26,7 @@ def sync(client, config, catalog, state):
     for stream in STREAMS:
         should_stream, last_stream = helpers.should_sync_stream(selected_streams, last_stream, stream.name)
         if should_stream:
-            LOGGER.info(f'START Syncing: {stream.name} for date {date_string}')
+            LOGGER.info(f'START Syncing: {stream.name} for date {datetime.strftime(start_date, "%Y-%m-%d")}')
             helpers.update_currently_syncing(state, stream.name)
             path = stream.path
             bookmark_field = stream.bookmark_field
@@ -76,7 +63,7 @@ def sync(client, config, catalog, state):
                 client=client,
                 catalog=catalog,
                 state=state,
-                start_date=datetime.strptime(config.get('start_date'), "%Y-%m-%dT%H:%M:%SZ"),
+                start_date=start_date,
                 path=path,
                 stream = stream,
                 custom_reports=config.get('custom_report'),
@@ -86,8 +73,6 @@ def sync(client, config, catalog, state):
 
             # Write bookmarks
             if bookmark_field:
-                if type(max_bookmark_value) is datetime:
-                    max_bookmark_value = max_bookmark_value.strftime("%Y-%m-%dT%H:%M:%SZ")
                 helpers.write_bookmark(state, stream.name, max_bookmark_value)
 
             helpers.update_currently_syncing(state, None)
@@ -138,13 +123,13 @@ def sync_rest_endpoint(client, catalog, state, url, start_date, stream, advertis
         params['page_size'] = 100
 
     # Get the latest bookmark for the stream and set the last_datetime
-    last_datetime = helpers.get_bookmark(state, stream.name, start_date)
-    max_bookmark_value = last_datetime
-    LOGGER.info(f'{stream.name}: bookmark last_datetime = {max_bookmark_value}')
-
+    last_date = helpers.get_bookmark(state, stream.name, start_date)
+    LOGGER.info(f'{stream.name}: bookmark last_datetime = {last_date}')
+    
     # Customise the url with ad_account ids
     custom_urls = set([url.format(advertiser_id=advertiser_id) for advertiser_id in advertiser_ids ])
     total_records, current_page = 0, 0
+    max_bookmark_value = last_date
 
     for url in custom_urls:
         pagination = True
@@ -175,7 +160,7 @@ def sync_rest_endpoint(client, catalog, state, url, start_date, stream, advertis
                 time_extracted=time_extracted,
                 bookmark_field=stream.bookmark_field,
                 max_bookmark_value=max_bookmark_value,
-                last_datetime=last_datetime)
+                last_date=last_date)
 
             total_records += record_count
             LOGGER.info(f'{stream.name}: Synced page number {current_page}, this page contains: {record_count} records. Total records processed: {total_records}')
@@ -190,34 +175,20 @@ def sync_async_endpoint(client, catalog, state, url, start_date, stream, custom_
     """
 
     # Get the latest bookmark for the stream and set the last_datetime
-    last_datetime = helpers.get_bookmark(state, stream.name, start_date)
-    LOGGER.info(f'{stream.name}: bookmark last_datetime = {last_datetime}')
-    
-    max_bookmark_value = last_datetime
-    last_datetime -= timedelta(days=window_size)
-
-    # NOTE: Documentation specifies start_date and end_date cannot be more than 30 days appart.
-    segments = []
-    now = date.today()
-    segment_start = last_datetime.date()
-    segment_end = segment_start + timedelta(days=30)
-    while segment_end <= now:
-        segments.append((segment_start, segment_end))
-        segment_start = segment_end + timedelta(days=1)
-        segment_end = segment_end + timedelta(days=30)
-    if segment_end > now:
-        segments.append((segment_start, now))
+    last_date = helpers.get_bookmark(state, stream.name, start_date)
+    LOGGER.info(f'{stream.name}: bookmark last_date = {last_date}')
+    max_bookmark_value = last_date
+    last_date -= timedelta(days=window_size)
 
     # Request params
-    # start_date and end_date are already defined in the endpoints dict
     body = stream.params
     body['columns']= helpers.get_selected_columns(custom_reports, catalog, stream.name)
-
     # in case the 'date' fields was among the selected ones, do not include it in the list of metrics
     if 'DATE' in body['columns']: 
         body['columns'].remove('DATE') 
 
     total_records = 0
+    segments = helpers.get_segments(last_date)
     for advertiser_id in advertiser_ids:
         # Set advertiser ID, if present in string.
         custom_url = url.format(advertiser_id=advertiser_id)
@@ -279,39 +250,27 @@ def sync_async_endpoint(client, catalog, state, url, start_date, stream, custom_
 def process_records(catalog, stream_name, records, time_extracted,
                     bookmark_field=None,
                     max_bookmark_value=None,
-                    last_datetime=None):
+                    last_date=None):
     stream = catalog.get_stream(stream_name)
     schema = stream.schema.to_dict()
 
     with metrics.record_counter(stream_name) as counter:
         for record in records:
-            for key in schema['properties']:
-                if key not in record:
-                    record[key] = None
-                elif isinstance(record[key], int) or (isinstance(record[key], str) and record[key].isdigit()):
-                    # Cast ints to floats to never have schema issues. 
-                    # !!! this also converts strings with digits and booleans
-                    record[key] = float(record[key])
 
-            # Remove all entries that are not in the schema. This is used for custom reports.
-            record = {key: value for key, value in record.items() if key in schema['properties']}
-
+            record = helpers.clean_record(record, schema['properties'])    
+            
             if bookmark_field in record:
-                bookmark_dttm = decode_bookmark_field(record[bookmark_field])
+                bookmark_dt = helpers.decode_bookmark_field(record[bookmark_field])
             else:
-                bookmark_dttm = datetime.now()
-
-            if isinstance(max_bookmark_value, str):
-                max_bookmark_value = datetime.strptime(max_bookmark_value, "%Y-%m-%dT%H:%M:%SZ")
+                bookmark_dt = date.today()
 
             # Reset max_bookmark_value to new value if higher
-            if (bookmark_field and (bookmark_field in record)) and (max_bookmark_value is None or bookmark_dttm > max_bookmark_value):
-                max_bookmark_value = bookmark_dttm
+            if (bookmark_field and (bookmark_field in record)) and (max_bookmark_value is None or bookmark_dt > max_bookmark_value):
+                max_bookmark_value = bookmark_dt
 
             if bookmark_field and (bookmark_field in record):
-                last_dttm = date(year = last_datetime.year, month = last_datetime.month, day = last_datetime.day)
                 # Keep only records whose bookmark is after the last_datetime
-                if (bookmark_dttm.date() >= last_dttm):
+                if (bookmark_dt >= last_date):
                     helpers.write_record(stream_name, record, time_extracted=time_extracted)
                     counter.increment()
             else:
@@ -319,4 +278,3 @@ def process_records(catalog, stream_name, records, time_extracted,
                 counter.increment()
 
         return max_bookmark_value, counter.value
-
