@@ -1,9 +1,18 @@
 from singer.catalog import Catalog, CatalogEntry, Schema
 from tap_pinterest.schema import get_schemas, STREAMS
 import singer
-
+import json
+import sys
 
 LOGGER = singer.get_logger()
+
+
+def do_discover(custom_report=None):
+
+    LOGGER.info('Starting discover')
+    catalog = discover(custom_report)
+    json.dump(catalog.to_dict(), sys.stdout, indent=2)
+    LOGGER.info('Finished discover')
 
 
 def discover(custom_reports=None):

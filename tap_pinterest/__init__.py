@@ -1,10 +1,7 @@
 #!/usr/bin/env python3
-
-import sys
-import json
 import singer
 from tap_pinterest.client import PinterestClient
-from tap_pinterest.discover import discover
+from tap_pinterest.discover import do_discover
 from tap_pinterest.sync import sync
 
 LOGGER = singer.get_logger()
@@ -15,14 +12,6 @@ REQUIRED_CONFIG_KEYS = [
     'client_secret',
     'refresh_token'
 ]
-
-
-def do_discover(custom_report=None):
-
-    LOGGER.info('Starting discover')
-    catalog = discover(custom_report)
-    json.dump(catalog.to_dict(), sys.stdout, indent=2)
-    LOGGER.info('Finished discover')
 
 
 @singer.utils.handle_top_exception(LOGGER)

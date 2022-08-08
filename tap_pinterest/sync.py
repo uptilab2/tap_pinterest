@@ -169,9 +169,8 @@ def sync_rest_endpoint(client, catalog, state, url, start_date, stream, advertis
 
 
 def sync_async_endpoint(client, catalog, state, url, start_date, stream, custom_reports, window_size, advertiser_ids):
-    """ Sync endpoints using the fancy ansyc report method.
-    https://developers.pinterest.com/docs/redoc/combined_reporting/#operation/ads_v3_create_advertiser_delivery_metrics_report_POST
-    https://developers.pinterest.com/docs/redoc/combined_reporting/#tag/reports
+    """ Sync endpoints using the fancy ansyc report method. 
+        https://developers.pinterest.com/docs/api/v5/#operation/analytics/get_report
     """
 
     # Get the latest bookmark for the stream and set the last_datetime
@@ -256,7 +255,6 @@ def process_records(catalog, stream_name, records, time_extracted,
 
     with metrics.record_counter(stream_name) as counter:
         for record in records:
-
             record = helpers.clean_record(record, schema['properties'])    
             
             if bookmark_field in record:
