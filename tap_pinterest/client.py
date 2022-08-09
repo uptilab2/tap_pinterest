@@ -112,11 +112,8 @@ class PinterestClient:
     def __exit__(self, exception_type, exception_value, traceback):
         self.__session.close()
 
-    def _make_base64_string(text):
-        res = text.encode('ascii')
-        res = base64.b64encode(res)
-        res = res.decode('ascii')
-        return res
+    def _make_base64_string(self,text):
+        return base64.b64encode(text.encode()).decode()
 
     @backoff.on_exception(backoff.expo,
                           Server5xxError,
@@ -126,6 +123,7 @@ class PinterestClient:
         """ Get a fresh access token using the refresh token provided in the config file
         """
         url = f'{BASE_URL}/oauth/token'
+        
         client_secret_string = self._make_base64_string(':'.join([self.__client_id, self.__client_secret]))
 
         response = self.__session.post(url, 
@@ -229,6 +227,6 @@ class PinterestClient:
                 params.update(dict(bookmark=response['bookmark']))
             else:
                 pagination = False
-            res += [adveriser['id'] for adveriser in response['items']]
+            res += [advertiser['id'] for advertiser in response['items']]
 
         return res
