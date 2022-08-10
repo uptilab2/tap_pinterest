@@ -1,0 +1,366 @@
+{
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": [
+                "null",
+                "string"
+            ],
+            "description": "Ad group name."
+        },
+        "status": {
+            "type": [
+                "null",
+                "string"
+            ],
+            "enum": [
+                "ACTIVE",
+                "PAUSED",
+                "ARCHIVED"
+            ],
+            "description": "Ad group/entity status."
+        },
+        "budget_in_micro_currency": {
+            "type": [
+                "null",
+                "number"
+            ],
+            "description": "Budget in micro currency. This field is REQUIRED for non-CBO (campaign budget optimization) campaigns. A CBO campaign automatically generates ad group budgets from its campaign budget to maximize campaign outcome. A CBO campaign is limited to 70 or less ad groups."
+        },
+        "bid_in_micro_currency": {
+            "type": [
+                "null",
+                "number"
+            ],
+            "description": "Bid price in micro currency. This field is REQUIRED for the following campaign objective_type/billable_event combinations: AWARENESS/IMPRESSION, CONSIDERATION/CLICKTHROUGH, CATALOG_SALES/CLICKTHROUGH, VIDEO_VIEW/VIDEO_V_50_MRC."
+        },
+        "bid_strategy_type": {
+            "type": [
+                "null",
+                "string"
+            ],
+            "enum": [
+                "AUTOMATIC_BID",
+                "MAX_BID",
+                "TARGET_AVG"
+            ]
+        },
+        "budget_type": {
+            "type": [
+                "null",
+                "string"
+            ],
+            "enum": [
+                "DAILY",
+                "LIFETIME",
+                "CBO_ADGROUP"
+            ],
+            "description": "Budget type. If DAILY, an ad group's daily spend will not exceed the budget parameter value. If LIFETIME, the end_time parameter is REQUIRED, and the ad group spend is spread evenly between the ad group start_time and end_time range. A CBO campaign automatically generates ad group budgets from its campaign budget to maximize campaign outcome."
+        },
+        "start_time": {
+            "type": [
+                "null",
+                "number"
+            ],
+            "description": "Ad group start time. Unix timestamp in seconds. Defaults to current time."
+        },
+        "end_time": {
+            "type": [
+                "null",
+                "number"
+            ],
+            "description": "Ad group end time. Unix timestamp in seconds."
+        },
+        "targeting_spec": {
+            "type": [
+                "null",
+                "object"
+            ],
+            "description": "Ad group targeting specification defining the ad group target audience. For example, {'APPTYPE':['iphone'], 'GENDER':['male'], 'LOCALE':['en-US'], 'LOCATION':['501'], 'AGE_BUCKET':[25-34]}",
+            "properties": {
+                "AGE_BUCKET": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "APPTYPE": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "AUDIENCE_EXCLUDE": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "AUDIENCE_INCLUDE": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "GENDER": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "GEO": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "INTEREST": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "LOCALE": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "LOCATION": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "TARGETING_STRATEGY": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ],
+                    "enum": [
+                        "CHOOSE_YOUR_OWN",
+                        "FIND_NEW_CUSTOMERS",
+                        "RECONNECT_WITH_USERS"
+                    ]
+                }
+            }
+        },
+        "lifetime_frequency_cap": {
+            "type": [
+                "null",
+                "number"
+            ],
+            "description": "Set a limit to the number of times a promoted pin from this campaign can be impressed by a pinner within the past rolling 30 days. Only available for CPM (cost per mille (1000 impressions)) ad groups. A CPM ad group has an IMPRESSION billable_event value. This field REQUIRES the end_time field."
+        },
+        "tracking_urls": {
+            "description": "Third-party tracking URLs.<br> JSON object with the format: {\"<a href=\"/docs/redoc/#section/Tracking-URL-event\">Tracking event enum</a>\":[URL string array],...}<br>For example: {\"impression\": [\"URL1\", \"URL2\"], \"click\": [\"URL1\", \"URL2\", \"URL3\"]}.<br>Up to three tracking URLs are supported for each event type. Tracking URLs set at the ad group or pin promotion level can override those set at the campaign level. May be null.<br><br>For more information, see <a href=\"https://help.pinterest.com/en/business/article/third-party-and-dynamic-tracking\" target=\"_blank\">Third-party and dynamic tracking</a>.",
+            "example": "// TrackingUrls\n{\"impression\": [\"URL1\", \"URL2\"]}",
+            "type": [
+                "object",
+                "null"
+            ],
+            "additionalProperties": true,
+            "properties": {
+                "impression": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "click": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "engagement": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "buyable_button": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "audience_verification": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            }
+        },
+        "auto_targeting_enabled": {
+            "type": [
+                "null",
+                "number"
+            ],
+            "description": "Enable auto-targeting for ad group. Also known as 'expanded' 'targeting'."
+        },
+        "placement_group": {
+            "type": [
+                "null",
+                "string"
+            ],
+            "enum": [
+                "ALL",
+                "SEARCH",
+                "BROWSE",
+                "OTHER"
+            ],
+            "description": "Placement group."
+        },
+        "pacing_delivery_type": {
+            "type": [
+                "null",
+                "string"
+            ],
+            "enum": [
+                "STANDARD",
+                "ACCELERATED"
+            ],
+            "description": "Pacing delivery type. With ACCELERATED, an ad group budget is spent as fast as possible. With STANDARD, an ad group budget is spent smoothly over a day."
+        },
+        "campaign_id": {
+            "type": [
+                "null",
+                "number"
+            ],
+            "description": "Campaign ID of the ad group."
+        },
+        "billable_event": {
+            "type": [
+                "null",
+                "string"
+            ],
+            "enum": [
+                "CLICKTHROUGH",
+                "IMPRESSION",
+                "VIDEO_V_50_MRC",
+                "BILLABLE_ENGAGEMENT"
+            ],
+            "description": "Ad group billable event type."
+        },
+        "id": {
+            "type": "number",
+            "description": "Ad group ID."
+        },
+        "ad_account_id": {
+            "type": [
+                "null",
+                "number"
+            ],
+            "description": "Advertiser ID."
+        },
+        "created_time": {
+            "type": [
+                "null",
+                "number"
+            ],
+            "description": "Ad group creation time. Unix timestamp in seconds."
+        },
+        "updated_time": {
+            "type": [
+                "null",
+                "number"
+            ],
+            "description": "Ad group last update time. Unix timestamp in seconds."
+        },
+        "type": {
+            "type": [
+                "null",
+                "string"
+            ],
+            "description": "Always 'adgroup'."
+        },
+        "conversion_learning_mode_type": {
+            "type": [
+                "null",
+                "string"
+            ],
+            "enum": [
+                "NOT_ACTIVE",
+                "ACTIVE",
+                "null"
+            ],
+            "description": "oCPM learn mode"
+        },
+        "summary_status": {
+            "type": [
+                "null",
+                "string"
+            ],
+            "enum": [
+                "RUNNING",
+                "PAUSED",
+                "NOT_STARTED",
+                "COMPLETED",
+                "ADVERTISER_DISABLED",
+                "ARCHIVED"
+            ],
+            "description": "Ad group summary status."
+        },
+        "feed_profile_id": {
+            "type": [
+                "null",
+                "number"
+            ],
+            "description": "Feed Profile ID associated to the adgroup."
+        },
+        "dca_assets": {
+            "type": [
+                "null",
+                "string"
+            ],
+            "description": "[DCA] The Dynamic creative assets to use for DCA. Dynamic Creative Assembly (DCA) accepts basic creative assets of an ad (image, video, title, call to action, logo etc). Then it automatically generates optimized ad combinations based on these assets."
+        }
+    }
+}
